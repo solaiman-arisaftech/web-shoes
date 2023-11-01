@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "flowbite-react": "^0.6.4",
     "lucide-react": "^0.290.0",
     "next": "14.0.0",
     "pnpm": "^8.10.0",
