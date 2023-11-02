@@ -1,6 +1,7 @@
 import HeroSection from '@/components/hero-section/heroSection'
 import Navbar from '@/components/navbar/navbar'
 import Products from '@/components/products/products'
+import About from '@/components/web-about/web-about'
 import Image from 'next/image'
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       
       <HeroSection/>
       <Products/>
+      <About/>
       
     </main>
   )
