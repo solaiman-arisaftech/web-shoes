@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/navbar/navbar'
 import { Jost } from 'next/font/google'
+import Footer from '@/components/footer/footer'
 
 const inter = Inter({ subsets: ['latin'] })
 // const jost = Jost({ subsets: ['latin'] })
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className = 'no-scrollbar'>
         <Navbar/>
         {children}
+        <Footer/>
         </body>
     </html>
   )

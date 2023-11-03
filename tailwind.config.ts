@@ -14,7 +14,8 @@ const config: Config = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-          'hero-bg': "url('../../public/resources/bg1.png')"
+          'hero-bg': "url('../../public/resources/bg1.png')",
+          'login-bg': "url('../../public/resources/bg2.png')"
       },
       backgroundColor:{
         NeonPink:"#C72092",

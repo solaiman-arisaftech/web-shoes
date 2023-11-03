@@ -10,7 +10,7 @@ const ReviewCard = () => {
     <div className="group w-full p-4 border-2 flex flex-col items-center rounded-lg shadow-slate-500 shadow-md bg-slate-100">
       <div className="p-4 flex items-start self-start justify-start gap-4 ">
         <div className="rounded-full ...">
-          <Image src={reviewer1} alt="" width={30} height={30} />
+          <Image className="rounden-full" src={reviewer1} alt="" width={30} height={30} />
         </div>
         <div className="flex flex-col">
           <div className="font-bold text-sm text-start w-full">

@@ -3,15 +3,17 @@
 import React from "react";
 import Image from "next/image";
 import img1 from "../../../public/resources/shoes.png";
-import { Jost } from 'next/font/google';
+import { Jost } from "next/font/google";
 
 const HeroSection = () => {
   return (
-    <div className="bg-hero-bg bg-cover bg-center w-full min-h-screen flex justify-between self-center px-4 md:px-36 py-20 gap-10">
-      <div className="flex flex-col mt-36 w-1/2 gap-10">
+    <div className="bg-hero-bg bg-cover bg-center w-full min-h-screen flex justify-between self-center mx-64 px-4 md:px-64 py-20 gap-10">
+      <div className="flex flex-col mt-80 w-1/2 gap-10">
         <div className="flex flex-col text-7xl font-bold  ">
           <div className="text-NeonPink ">NIKE</div>
-          <div className=" text-transparent bg-clip-text bg-gradient-to-r from-NeonPink to-purple">Collection</div>
+          <div className=" text-transparent bg-clip-text bg-gradient-to-r from-NeonPink to-purple">
+            Collection
+          </div>
         </div>
         <div className="font-Jost text-justify">
           Lorem Ipsum is simply dummy text of the printing and typesetting
