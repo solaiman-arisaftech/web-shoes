@@ -25,6 +25,13 @@ const config: Config = {
       colors:{
         NeonPink:"#C72092",
         purple:"#6c14d0"
+      },
+      borderWidth:{
+        "1":"1px",
+      },
+      blur:{
+        1:"1px",
+        "half":"0.5px"
       }
     },
   },
