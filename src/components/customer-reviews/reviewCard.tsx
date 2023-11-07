@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import reviewer1 from "../../../public/resources/gir_dp2.jpg";
 import { Rating } from "flowbite-react";
-import { Heart, Forward } from "lucide-react";
+import { Heart, Forward, Star } from "lucide-react";
 
 const ReviewCard = () => {
   return (
@@ -18,23 +18,16 @@ const ReviewCard = () => {
             height={30}
           />
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col text-red-500" style={{color: "red"}}>
           <div className="font-bold text-sm text-start w-full ">
             Ranidi Lochana
           </div>
-          <Rating className="self-center " size="sm">
-            <Rating.Star />
-            <Rating.Star />
-            <Rating.Star />
-            <Rating.Star />
-            <Rating.Star filled={false} />
-          </Rating>
-          <Rating>
-            <Rating.Star className="text-red-500"/>
-            <Rating.Star />
-            <Rating.Star />
-            <Rating.Star />
-            <Rating.Star filled={true} />
+          <Rating className=" ">
+            <Star className="fill-amber-500 stroke-none " size={16}/>
+            <Star className="fill-amber-500 stroke-none " size={16}/>
+            <Star className="fill-amber-500 stroke-none " size={16}/>
+            <Star className="fill-amber-500 stroke-none " size={16}/>
+            <Star className="fill-amber-500 stroke-none " size={16}/>
           </Rating>
         </div>
       </div>

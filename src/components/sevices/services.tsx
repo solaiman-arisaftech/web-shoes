@@ -6,8 +6,8 @@ import { Truck, RotateCcw, Headphones } from "lucide-react";
 
 const Services = () => {
   return (
-    <section className="w-full flex flex-col px-4  md:px-72 py-36 gap-8" id="services">
-      <div className="flex self-center text-black  text-center text-5xl text- font-semibold gap-4 py-10">
+    <section className="w-full flex flex-col px-4  md:px-72 md:py-36 gap-8" id="services">
+      <div className="flex self-center text-black  text-center text-5xl font-semibold gap-4 md:py-10">
         <span>OUR</span>
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-NeonPink to-purple">
           SERVICES

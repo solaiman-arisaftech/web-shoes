@@ -10,43 +10,42 @@ import Image from "next/image";
 const About = () => {
   return (
     <section
-      className="w-full flex flex-col my-16 px-4 md:px-64 gap-8"
+      className="w-full flex flex-col py-36 px-4 md:px-64 gap-8 "
       id="about"
     >
-
-      <div className="flex self-center text-black text-center text-5xl font-semibold gap-4">
+      <div className="flex self-center text-black text-center text-5xl pb-10 font-semibold gap-4">
         <span>WEB</span>
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-NeonPink to-purple">
           ABOUT
         </span>
       </div>
-      <div className="flex flex-col md:flex-row justify-between gap-4 w-full">
-        <div className="flex w-full  md:w-3/5 gap-4 ">
-          <div className="flex flex-col gap-4 p-2 w-2/6 min-h-full">
+      <div className="flex flex-col md:flex-row justify-between gap-4 w-full ">
+        <div className="flex w-full  md:w-2/4 gap-4 ">
+          <div className="flex flex-col gap-4 p-2 w-1/5 md:w-1/6 h-48 ">
             <div className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2  hover:duration-300 opacity-80 hover:opacity-100">
-              <Image src={red_img1} alt="" width={400} height={400} />
+              <Image src={red_img1} alt="" width={200} height={200} />
             </div>
             <div className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2 hover:duration-300  opacity-80 hover:opacity-100">
-              <Image src={red_img2} alt="" width={400} height={400} />
+              <Image src={red_img2} alt="" width={200} />
             </div>
             <div className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2 hover:duration-300  opacity-80 hover:opacity-100">
-              <Image src={red_img3} alt="" width={400} height={400} />
+              <Image src={red_img3} alt="" width={200} />
             </div>
             <div className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2 hover:duration-300  opacity-80 hover:opacity-100">
-              <Image src={red_img4} alt="" width={400} height={400} />
+              <Image src={red_img4} alt="" width={200} />
             </div>
           </div>
-          <div className=" border-NeonPink shadow-md shadow-NeonPink md:h-full  rounded-xl border-2 p-2 w-full flex items-center ">
+          <div className=" border-NeonPink shadow-md shadow-NeonPink  rounded-xl border-2 p-2 w-full flex items-center justify-center  ">
             <Image
               className="object-fit "
               src={red_img1}
               alt=""
-              width={600}
+              width={400}
               height={400}
             />
           </div>
         </div>
-        <div className="flex w-full md:w-2/5 gap-6 p-4 text-sm text-black text-justify border-purple rounded-xl border-2 shadow-md shadow-purple">
+        <div className="flex w-full md:w-2/4 gap-6 p-8 text-base text-black text-justify border-purple rounded-xl border-2 shadow-md shadow-purple">
           Contrary to popular belief, Lorem Ipsum is not simply random text. It
           has roots in a piece of classical Latin literature from 45 BC, making
           it over 2000 years old. Richard McClintock, a Latin professor at
@@ -65,7 +64,7 @@ const About = () => {
           versions from the 1914 translation by H. Rackham.
         </div>
       </div>
-      <div className="self-center">
+      <div className="self-center flex justify-center items-center">
         <button className="border-NeonPink border-1 text-black hover:bg-NeonPink hover:text-white px-2 py-1 shadow-md shadow-NeonPink font-semibold hover:duration-300 ">
           Shop Now
         </button>

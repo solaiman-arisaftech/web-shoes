@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 import React from "react";
 import { useState } from "react";
@@ -15,7 +16,7 @@ const Navbar = () => {
     <nav className="w-full bg-white h-14 flex justify-between items-center shadow-lg px-4 mx-auto md:px-64 fixed z-50 ">
       <Link href={"/"} className="text-NeonPink font-extrabold text-4xl">
         Shoe
-        <span >
+        <span>
           <u className="text-purple">s</u>
         </span>
       </Link>
@@ -44,8 +45,10 @@ const Navbar = () => {
       <div className="hidden md:flex gap-2">
         <Heart className="stroke-none fill-black hover:fill-NeonPink" />
         <ShoppingCart className="stroke-black stroke-2 fill-black hover:fill-NeonPink hover:stroke-NeonPink" />
-        <Link href="#login"> <User2 className="stroke-white fill-black hover:fill-NeonPink" /></Link>
-       
+        <Link href="#login">
+          {" "}
+          <User2 className="stroke-white fill-black hover:fill-NeonPink" />
+        </Link>
       </div>
 
       <div className="md:hidden  flex items-center">
@@ -60,6 +63,9 @@ const Navbar = () => {
           />
         </button>
       </div>
+
+   
+
       {/* <div
         className={`md:hidden mobile-menu mt-64 ${isMobileMenuOpen ? "" : "hidden"}`}
       >

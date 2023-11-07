@@ -9,10 +9,11 @@
   box-sizing: border-box;
   font-family: sans-serif;
   color: black;
+  /* color: inherit */
 }
 
 :root {
-  --foreground-rgb: 0, 0, 0;
+  /* --foreground-rgb: 0, 0, 0; */
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }

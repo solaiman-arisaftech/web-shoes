@@ -6,7 +6,7 @@ import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 const Footer = () => {
   return (
     <footer className="bg-slate-100 flex flex-col ">
-      <div className=" flex flex-col md:flex-row justify-evenly p-4 py-12 md:px-64 gap-8 md:gap-24">
+      <div className=" flex flex-col md:flex-row justify-evenly p-4 md:py-12 md:px-64 gap-8 md:gap-24">
         <div className="flex flex-col gap-4 md:gap-6">
           <div className="text-NeonPink font-extrabold text-4xl">
             Shoe
