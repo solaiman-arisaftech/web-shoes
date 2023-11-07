@@ -10,18 +10,31 @@ const ReviewCard = () => {
     <div className="group w-full p-4 border-2 flex flex-col items-center rounded-lg shadow-slate-500 shadow-md bg-goldlight">
       <div className="p-4 flex items-start self-start justify-start gap-4 ">
         <div className="rounded-lg hover:scale-125 duration-300">
-          <Image className="rounded" src={reviewer1} alt="" width={30} height={30} />
+          <Image
+            className="rounded"
+            src={reviewer1}
+            alt=""
+            width={30}
+            height={30}
+          />
         </div>
         <div className="flex flex-col">
-          <div className="font-bold text-sm text-start w-full">
+          <div className="font-bold text-sm text-start w-full ">
             Ranidi Lochana
           </div>
-          <Rating className="self-center" size="sm">
+          <Rating className="self-center " size="sm">
             <Rating.Star />
             <Rating.Star />
             <Rating.Star />
             <Rating.Star />
             <Rating.Star filled={false} />
+          </Rating>
+          <Rating>
+            <Rating.Star className="text-red-500"/>
+            <Rating.Star />
+            <Rating.Star />
+            <Rating.Star />
+            <Rating.Star filled={true} />
           </Rating>
         </div>
       </div>

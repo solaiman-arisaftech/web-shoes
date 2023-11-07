@@ -10,8 +10,8 @@ const Footer = () => {
         <div className="flex flex-col gap-4 md:gap-6">
           <div className="text-NeonPink font-extrabold text-4xl">
             Shoe
-            <span className="text-purple">
-              <u>s</u>
+            <span >
+              <u className="text-purple">s</u>
             </span>
           </div>
           <div className="flex flex-col gap-2">

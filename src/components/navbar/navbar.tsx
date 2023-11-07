@@ -13,26 +13,41 @@ const Navbar = () => {
 
   return (
     <nav className="w-full bg-white h-14 flex justify-between items-center shadow-lg px-4 mx-auto md:px-64 fixed z-50 ">
-      
-        <Link href={'/'} className="text-NeonPink font-extrabold text-4xl">
-          Shoe
-          <span className="text-purple">
-            <u>s</u>
-          </span>
+      <Link href={"/"} className="text-NeonPink font-extrabold text-4xl">
+        Shoe
+        <span >
+          <u className="text-purple">s</u>
+        </span>
+      </Link>
+      <div className="md:flex gap-10 hidden ">
+        <Link
+          href="#hero"
+          className="hover:text-NeonPink font-medium smooth-scroll"
+        >
+          Home
         </Link>
-        <div className="md:flex gap-10 hidden ">
-          <Link  href={""} className="hover:text-NeonPink font-medium smooth-scroll">Home</Link>
-          <><Link className="hover:text-NeonPink font-medium" href={""}>Products</Link>
-          <Link className="hover:text-NeonPink font-medium" href={""}>About</Link>
-          <Link className="hover:text-NeonPink font-medium" href={""}>Review</Link>
-          <Link className="hover:text-NeonPink font-medium" href={""}>Services</Link></>
-        </div>
-        <div className="hidden md:flex gap-2">
-          <Heart className="stroke-none fill-black hover:fill-NeonPink" />
-          <ShoppingCart className="stroke-black stroke-2 fill-black hover:fill-NeonPink hover:stroke-NeonPink" />
-          <User2 className="stroke-white fill-black hover:fill-NeonPink" />
-        </div>
-      
+        <>
+          <Link className="hover:text-NeonPink font-medium" href="#products">
+            Products
+          </Link>
+          <Link className="hover:text-NeonPink font-medium" href="#about">
+            About
+          </Link>
+          <Link className="hover:text-NeonPink font-medium" href="#reviews">
+            Review
+          </Link>
+          <Link className="hover:text-NeonPink font-medium" href="#services">
+            Services
+          </Link>
+        </>
+      </div>
+      <div className="hidden md:flex gap-2">
+        <Heart className="stroke-none fill-black hover:fill-NeonPink" />
+        <ShoppingCart className="stroke-black stroke-2 fill-black hover:fill-NeonPink hover:stroke-NeonPink" />
+        <Link href="#login"> <User2 className="stroke-white fill-black hover:fill-NeonPink" /></Link>
+       
+      </div>
+
       <div className="md:hidden  flex items-center">
         <button
           className="outline-none mobile-menu-button"
@@ -77,7 +92,6 @@ const Navbar = () => {
           </li>
         </ul>
       </div> */}
-      
     </nav>
   );
 };
