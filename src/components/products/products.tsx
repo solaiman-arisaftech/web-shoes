@@ -3,7 +3,7 @@ import ProductCard from "./productCard";
 
 const Products = () => {
   return (
-    <div className="w-full flex flex-col my-16 px-64 gap-8">
+    <section className="w-full flex flex-col my-16 px-64 gap-8" id="#products">
       <div className="flex self-center text-center text-5xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-NeonPink to-purple py-10">
         PRODUCTS
       </div>
@@ -19,7 +19,7 @@ const Products = () => {
         <ProductCard />
         <ProductCard />
       </div>
-    </div>
+    </section>
   );
 };
 

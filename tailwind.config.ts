@@ -19,7 +19,8 @@ const config: Config = {
       },
       backgroundColor:{
         NeonPink:"#C72092",
-        purple:"#6c14d0"
+        purple:"#6c14d0",
+        goldlight:"#f3f1f1"
 
       },
       colors:{

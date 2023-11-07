@@ -14,18 +14,18 @@ const Navbar = () => {
   return (
     <nav className="w-full bg-white h-14 flex justify-between items-center shadow-lg px-4 mx-auto md:px-64 fixed z-50 ">
       
-        <div className="text-NeonPink font-extrabold text-4xl">
+        <Link href={'/'} className="text-NeonPink font-extrabold text-4xl">
           Shoe
           <span className="text-purple">
             <u>s</u>
           </span>
-        </div>
+        </Link>
         <div className="md:flex gap-10 hidden ">
-          <div className="hover:text-NeonPink font-medium">Home</div>
-          <div className="hover:text-NeonPink font-medium">Products</div>
-          <div className="hover:text-NeonPink font-medium">About</div>
-          <div className="hover:text-NeonPink font-medium">Review</div>
-          <div className="hover:text-NeonPink font-medium">Services</div>
+          <Link  href={""} className="hover:text-NeonPink font-medium smooth-scroll">Home</Link>
+          <><Link className="hover:text-NeonPink font-medium" href={""}>Products</Link>
+          <Link className="hover:text-NeonPink font-medium" href={""}>About</Link>
+          <Link className="hover:text-NeonPink font-medium" href={""}>Review</Link>
+          <Link className="hover:text-NeonPink font-medium" href={""}>Services</Link></>
         </div>
         <div className="hidden md:flex gap-2">
           <Heart className="stroke-none fill-black hover:fill-NeonPink" />

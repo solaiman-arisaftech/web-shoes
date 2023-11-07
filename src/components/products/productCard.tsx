@@ -14,7 +14,7 @@ const ProductCard = () => {
       <Forward className="stroke-fill stroke-2 hover:stroke-NeonPink border-2 p-2 rounded-md" width={45} height={45} />
       </div>
       <div className=" w-1/2 p-4 group-hover:translate-y-1 group-hover:scale-125 duration-300 relative">
-        <Image src={img1} alt="" />
+        <Image className="group-hover:rotate-45 group-hover:transition-300 group-hover:translate-x-5 group-hover:delay-50 transition-transform " src={img1} alt="" />
       </div>
       <div className=" flex flex-col p-4 gap-4">
         <div className="text-center text-3xl font-bold">NIKE</div>
@@ -29,7 +29,7 @@ const ProductCard = () => {
           <Rating.Star />
           <Rating.Star />
         </Rating>
-        <button className="w-1/2  rounded-sm self-center text-center text-white p-1 bg-gradient-to-r from-NeonPink to-purple hover:-translate-y-1 hover:scale-110 duration-200">
+        <button className="w-1/2  rounded self-center text-center text-white p-2 bg-gradient-to-r from-NeonPink to-purple hover:-translate-y-1 hover:scale-110 duration-200">
           Add to cart
         </button>
       </div>

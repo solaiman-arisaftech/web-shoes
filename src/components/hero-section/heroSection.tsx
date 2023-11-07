@@ -7,7 +7,7 @@ import { Jost } from "next/font/google";
 
 const HeroSection = () => {
   return (
-    <div className="bg-hero-bg bg-cover bg-center w-full min-h-screen flex justify-between self-center mx-64 px-4 md:px-64 py-20 gap-10">
+    <section className="bg-hero-bg bg-cover bg-center w-full min-h-screen flex justify-between self-center mx-64 px-4 md:px-64 py-20 gap-10" id="hero">
       <div className="flex flex-col mt-80 w-1/2 gap-10">
         <div className="flex flex-col text-7xl font-bold  ">
           <div className="text-NeonPink ">NIKE</div>
@@ -27,7 +27,7 @@ const HeroSection = () => {
       <div className="flex self-center justify-center w-1/2">
         <Image className="" src={img1} alt={""} height={400} width={420} />
       </div>
-    </div>
+    </section>
   );
 };
 

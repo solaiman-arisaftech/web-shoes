@@ -5,8 +5,8 @@ import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 // import logo from "../../../public/resources/CV-Sorting_logo.svg";
 const Footer = () => {
   return (
-    <footer className="bg-slate-100 ">
-      <div className=" flex flex-col md:flex-row justify-between p-4 py-12 md:px-64 gap-8 md:gap-24">
+    <footer className="bg-slate-100 flex flex-col ">
+      <div className=" flex flex-col md:flex-row justify-evenly p-4 py-12 md:px-64 gap-8 md:gap-24">
         <div className="flex flex-col gap-4 md:gap-6">
           <div className="text-NeonPink font-extrabold text-4xl">
             Shoe
@@ -33,14 +33,14 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-row-reverse justify-between  gap-4 md:gap-36 md:flex-row">
+        <div className="flex flex-row-reverse justify-between md:justify-evenly gap-4 md:gap-24 md:flex-row w-full">
           <div className="flex flex-col  md:pr-0 gap-4 md:gap-6">
             <div className=" text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-NeonPink to-purple ">
               Get Help
             </div>
             <div className="flex flex-col gap-2 text-textSub text-sm font-normal">
-              <div>Login/Register</div>
               <div>FAQ</div>
+              <div>Order Status</div>
               <div>Shipping</div>
               <div>Returns</div>
               <div>Payment Options</div>
@@ -62,12 +62,29 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col gap-4 md:gap-6">
-          <div className="text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-NeonPink to-purple">Preferance</div>
+          <div className="text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-NeonPink to-purple">
+            Preferance
+          </div>
           <div className="flex flex-col gap-2 text-textSub text-sm font-normal">
             <div>About US</div>
             <div>Contact Us</div>
             <div>Terms & Conditions</div>
             <div>Privacy & Policy</div>
+          </div>
+        </div>
+        <div className="flex flex-col gap-4 md:gap-6 ">
+          <div className="text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-NeonPink to-purple">
+            Newsletter
+          </div>
+          <div className="flex flex-col gap-2 text-textSub  font-normal">
+            <input
+              className="w-full text-xs rounded-3xl bg-slate-200 border-none bg-transparent focus:border-NeonPink "
+              type="text"
+              placeholder="Your email id here"
+            />
+            <button className="bg-gradient-to-r from-NeonPink to-purple rounded-3xl text-white text-sm w-28 p-1  ">
+              Subscribe
+            </button>
           </div>
         </div>
       </div>

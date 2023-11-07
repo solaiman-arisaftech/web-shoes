@@ -7,7 +7,7 @@ import { Jost } from "next/font/google";
 
 const SignIn = () => {
   return (
-    <div className=" bg-login-bg bg-cover bg-center w-full min-h-screen flex justify-between mx-64 px-4 md:px-64 py-20 gap-4">
+    <div className=" bg-login-bg bg-cover bg-center w-full min-h-screen flex justify-between mx-64 px-4 md:px-64 py-20 gap-4" id="login">
       <div className="flex self-center justify-center w-1/2">
         <Image className="" src={img1} alt={""} height={650} width={650} />
       </div>
