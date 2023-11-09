@@ -37,10 +37,6 @@ const config: Config = {
         "half":"0.5px"
       }
     },
-  },
-  plugins: [
-    require('flowbite/plugin'),
-    require("tw-elements-react/dist/plugin.cjs")
-],
+  }
 }
 export default config

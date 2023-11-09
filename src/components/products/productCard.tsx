@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import img1 from "../../../public/resources/shoes3.png";
-import { Rating } from "flowbite-react";
+// import { Rating } from "flowbite-react";
 import { Heart, Forward, Star } from "lucide-react";
 
 
@@ -21,14 +21,15 @@ const ProductCard = () => {
         <div className="text-center text-slate-500">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit
         </div>
+        <h1>Hello </h1>
         <div className="text-center font-bold text-lg">$100.99</div>
-        <Rating className=" self-center ">
+        {/* <Rating className=" self-center ">
             <Star className="fill-amber-500 stroke-none " size={20}/>
             <Star className="fill-amber-500 stroke-none " size={20}/>
             <Star className="fill-amber-500 stroke-none " size={20}/>
             <Star className="fill-amber-500 stroke-none " size={20}/>
             <Star className="fill-amber-500 stroke-none " size={20}/>
-          </Rating>
+          </Rating> */}
         <button className="w-1/2  rounded self-center text-center text-white p-2 bg-gradient-to-r from-NeonPink to-purple hover:-translate-y-1 hover:scale-110 duration-200">
           Add to cart
         </button>
