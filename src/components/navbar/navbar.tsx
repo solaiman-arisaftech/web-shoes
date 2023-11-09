@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 import React from "react";
 import { useState } from "react";
@@ -12,27 +13,44 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="w-full bg-white h-14 flex justify-between items-center shadow-lg px-4 mx-auto md:px-64 ">
-      <p>hello</p>
-        <div className="text-NeonPink font-extrabold text-4xl">
-          Shoe
-          <span className="text-purple">
-            <u>s</u>
-          </span>
-        </div>
-        <div className="md:flex gap-10 hidden ">
-          <div className="hover:text-NeonPink font-medium">Home</div>
-          <div className="hover:text-NeonPink font-medium">Products</div>
-          <div className="hover:text-NeonPink font-medium">About</div>
-          <div className="hover:text-NeonPink font-medium">Review</div>
-          <div className="hover:text-NeonPink font-medium">Services</div>
-        </div>
-        <div className="hidden md:flex gap-2">
-          <Heart className="stroke-none fill-black hover:fill-NeonPink" />
-          <ShoppingCart className="stroke-black stroke-2 fill-black hover:fill-NeonPink hover:stroke-NeonPink" />
+    <nav className="w-full bg-white h-14 flex justify-between items-center shadow-lg px-4 mx-auto md:px-64 fixed z-50 ">
+      <Link href={"/"} className="text-NeonPink font-extrabold text-4xl">
+        Shoe
+        <span>
+          <u className="text-purple">s</u>
+        </span>
+      </Link>
+      <div className="md:flex gap-10 hidden ">
+        <Link
+          href="#hero"
+          className="hover:text-NeonPink font-medium smooth-scroll"
+        >
+          Home
+        </Link>
+        <>
+          <Link className="hover:text-NeonPink font-medium" href="#products">
+            Products
+          </Link>
+          <Link className="hover:text-NeonPink font-medium" href="#about">
+            About
+          </Link>
+          <Link className="hover:text-NeonPink font-medium" href="#reviews">
+            Review
+          </Link>
+          <Link className="hover:text-NeonPink font-medium" href="#services">
+            Services
+          </Link>
+        </>
+      </div>
+      <div className="hidden md:flex gap-2">
+        <Heart className="stroke-none fill-black hover:fill-NeonPink" />
+        <ShoppingCart className="stroke-black stroke-2 fill-black hover:fill-NeonPink hover:stroke-NeonPink" />
+        <Link href="#login">
+          {" "}
           <User2 className="stroke-white fill-black hover:fill-NeonPink" />
-        </div>
-      
+        </Link>
+      </div>
+
       <div className="md:hidden  flex items-center">
         <button
           className="outline-none mobile-menu-button"
@@ -45,6 +63,9 @@ const Navbar = () => {
           />
         </button>
       </div>
+
+   
+
       {/* <div
         className={`md:hidden mobile-menu mt-64 ${isMobileMenuOpen ? "" : "hidden"}`}
       >
@@ -77,7 +98,6 @@ const Navbar = () => {
           </li>
         </ul>
       </div> */}
-      
     </nav>
   );
 };
