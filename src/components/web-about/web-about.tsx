@@ -10,7 +10,7 @@ import Image from "next/image";
 const About = () => {
   return (
     <section
-      className="w-full flex flex-col py-36 px-4 md:px-64 gap-8 "
+      className="w-full flex flex-col py-36 px-4 md:px-16 lg:px-32 xl:px-64  gap-8 "
       id="about"
     >
       <div className="flex self-center text-black text-center text-5xl pb-10 font-semibold gap-4">

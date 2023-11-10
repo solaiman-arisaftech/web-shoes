@@ -12,7 +12,7 @@ const Reviews = () => {
           REVIEW
         </span>
       </div>
-      <div className=" justify-evenly self-center w-full gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+      <div className=" justify-evenly self-center w-full gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3">
         <ReviewCard />
         <ReviewCard />
         <ReviewCard />
