@@ -31,7 +31,7 @@ const ProductCard = ({product, idIndexObject}:any) => {
           Lorem ipsum dolor sit, amet consectetur adipisicing elit
         </div>
         <div className="text-center font-bold text-lg">${product.price}</div>
-        <div className=" self-center ">
+        <div className="flex self-center ">
             <Star className="fill-amber-500 stroke-none " size={20}/>
             <Star className="fill-amber-500 stroke-none " size={20}/>
             <Star className="fill-amber-500 stroke-none " size={20}/>

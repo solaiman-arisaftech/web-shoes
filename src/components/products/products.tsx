@@ -1,5 +1,11 @@
+"use client"
+
 import React from "react";
 import ProductCard from "./productCard";
+import SimpleSlider from "./test";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const Products = () => {
   const productData = [
@@ -15,20 +21,33 @@ const Products = () => {
     { tittle: "NIKE10", desc: "description 10", price: "1000.99" },
   ];
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+ 
+  };
 
   return (
     <section
-      className="w-full flex flex-col py-36 px-4 md:px-16 lg:px-32 xl:px-64 gap-8 "
+      className="w-full flex flex-col py-36 px-4 md:px-16 lg:px-32 xl:px-64 gap-8 bg-slate-700 "
       id="products"
     >
       <div className="flex self-center text-center text-5xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-NeonPink to-purple pb-10">
         PRODUCTS
       </div>
-      <div className=" justify-evenly self-center w-full gap-6 grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-        {productData.map((product:any)=>(
-          <ProductCard key={product.tittle } product={product}  />
-        ))}
+      
+      <div className=" justify-evenly self-center w-full gap-6 ">
+      <Slider {...settings} className=" ">
+          {productData.map((product: any) => (
+            <ProductCard key={product.tittle} product={product} />
+          ))}
+        </Slider>
+        {/* <SimpleSlider/> */}
       </div>
+     
     </section>
   );
 };

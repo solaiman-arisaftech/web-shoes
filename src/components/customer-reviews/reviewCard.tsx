@@ -22,7 +22,7 @@ const ReviewCard = () => {
           <div className="font-bold text-sm text-start w-full ">
             Ranidi Lochana
           </div>
-          <div className=" ">
+          <div className="flex ">
             <Star className="fill-amber-500 stroke-none " size={16}/>
             <Star className="fill-amber-500 stroke-none " size={16}/>
             <Star className="fill-amber-500 stroke-none " size={16}/>
