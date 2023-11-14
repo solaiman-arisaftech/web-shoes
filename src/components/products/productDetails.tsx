@@ -10,8 +10,14 @@ import Image from "next/image";
 
 const ProductDetails = (Product: any) => {
   const [count, setCount] = useState(0);
+  const [srcc, setSrcc] = useState<any>(red_img1)
   const decrease = () => {
-    setCount(count - 1);
+    if(count==0){
+      setCount(0)
+    }
+    else{
+      setCount(count - 1);
+    }
   };
   const increase = () => {
     setCount(count + 1);
@@ -25,23 +31,23 @@ const ProductDetails = (Product: any) => {
       <div className="w-full flex justify-center gap-20 ">
         <div className="flex w-full  md:w-2/4 gap-4 ">
           <div className="flex flex-col gap-4 p-2 w-1/5 md:w-1/6 h-48 ">
-            <div className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2  hover:duration-300 opacity-80 hover:opacity-100">
+            <div className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2  hover:duration-300 opacity-80 hover:opacity-100" onClick={() => setSrcc(red_img1)}>
               <Image src={red_img1} alt="" width={200} height={200} />
             </div>
-            <div className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2 hover:duration-300  opacity-80 hover:opacity-100">
+            <div className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2 hover:duration-300  opacity-80 hover:opacity-100"  onClick={() => setSrcc(red_img2)}>
               <Image src={red_img2} alt="" width={200} />
             </div>
-            <div className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2 hover:duration-300  opacity-80 hover:opacity-100">
+            <div className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2 hover:duration-300  opacity-80 hover:opacity-100" onClick={() => setSrcc(red_img3)}>
               <Image src={red_img3} alt="" width={200} />
             </div>
-            <div className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2 hover:duration-300  opacity-80 hover:opacity-100">
+            <div className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2 hover:duration-300  opacity-80 hover:opacity-100" onClick={() => setSrcc(red_img4)}>
               <Image src={red_img4} alt="" width={200} />
             </div>
           </div>
           <div className=" border-NeonPink shadow-md shadow-NeonPink  rounded-xl border-2 p-2 w-full flex items-center justify-center  ">
             <Image
               className="object-fit "
-              src={red_img1}
+              src={srcc}
               alt=""
               width={400}
               height={400}
@@ -82,7 +88,7 @@ const ProductDetails = (Product: any) => {
                 <span className="m-auto text-2xl font-thin">−</span>
               </button>
               <input
-                type="number"
+            
                 className="outline-none focus:outline-none text-center w-16 bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none"
                 value={count}
               ></input>
@@ -119,6 +125,11 @@ const ProductDetails = (Product: any) => {
             Buy Now
           </div>
         </div>
+      </div>
+      <div className="flex gap-4 items-center self-center ">
+        <div className="p-4 border-1 border-NeonPink cursor-pointer hover:text-white hover:bg-purple hover:border-none font-bold shadow-xl rounded">describtion</div>
+        <div className="p-4 border-1 border-NeonPink cursor-pointer hover:text-white hover:bg-purple hover:border-none font-bold shadow-xl rounded">Reviews</div>
+        <div className="p-4 border-1 border-NeonPink cursor-pointer hover:text-white hover:bg-purple hover:border-none font-bold shadow-xl rounded">Related Products</div>
       </div>
     </div>
   );
