@@ -106,7 +106,8 @@ const Navbar = () => {
         </ul>
       </div> */}
       </nav>
-      {isCartOpen && <CartList />}
+      <div className="flex justify-end">{isCartOpen && <CartList />}</div>
+      {/* <div className="flex items-end"><div><CartList/></div></div> */}
     </>
   );
 };

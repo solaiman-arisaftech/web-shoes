@@ -6,8 +6,8 @@ import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 const Footer = () => {
   return (
     <footer className="bg-slate-100 flex flex-col ">
-      <div className=" flex flex-col md:flex-row justify-evenly p-4 md:py-12 md:px-64 gap-8 md:gap-24">
-        <div className="flex flex-col gap-4 md:gap-6">
+      <div className=" flex flex-col md:flex-row justify-between p-4 md:py-12 md:px-16 lg:px-32 xl:px-64 gap-8 md:gap-4 lg:gap-8 ">
+        <div className="flex flex-col gap-4 md:gap-6 w-full">
           <div className="text-NeonPink font-extrabold text-4xl">
             Shoe
             <span >
@@ -33,8 +33,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-row-reverse justify-between md:justify-evenly gap-4 md:gap-24 md:flex-row w-full">
-          <div className="flex flex-col  md:pr-0 gap-4 md:gap-6">
+        {/* <div className="flex flex-row-reverse justify-between md:justify-evenly gap-4 md:gap-24 md:flex-row w-full"> */}
+          <div className="flex flex-col  gap-4 md:gap-6 w-full">
             <div className=" text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-NeonPink to-purple ">
               Get Help
             </div>
@@ -47,7 +47,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="flex flex-col gap-4 md:gap-6">
+          <div className="flex flex-col gap-4 md:gap-6 w-full">
             <div className="text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-NeonPink to-purple">
               Our Stores
             </div>
@@ -59,9 +59,9 @@ const Footer = () => {
               <div>Employers Dashboard</div>
             </div>
           </div>
-        </div>
+        {/* </div> */}
 
-        <div className="flex flex-col gap-4 md:gap-6">
+        <div className="flex flex-col gap-4 md:gap-6 w-full">
           <div className="text-2xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-NeonPink to-purple">
             Preferance
           </div>

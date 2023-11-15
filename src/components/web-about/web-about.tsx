@@ -1,6 +1,8 @@
+"use client";
 /* eslint-disable react/no-unescaped-entities */
-import React from "react";
+
 // import ProductCard from "./productCard";
+import React, { useState } from "react";
 import red_img1 from "../../../public/resources/red_shoes1.png";
 import red_img2 from "../../../public/resources/red_shoes2.png";
 import red_img3 from "../../../public/resources/red_shoes3.png";
@@ -8,6 +10,8 @@ import red_img4 from "../../../public/resources/red_shoes4.png";
 import Image from "next/image";
 
 const About = () => {
+  const [srcc, setSrcc] = useState(red_img1);
+
   return (
     <section
       className="w-full flex flex-col py-36 px-4 md:px-16 lg:px-32 xl:px-64  gap-8 "
@@ -20,7 +24,7 @@ const About = () => {
         </span>
       </div>
       <div className="flex flex-col md:flex-row justify-between gap-4 w-full ">
-        <div className="flex w-full  md:w-2/4 gap-4 ">
+        {/* <div className="flex w-full  md:w-2/4 gap-4 ">
           <div className="flex flex-col gap-4 p-2 w-1/5 md:w-1/6 h-48 ">
             <div className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2  hover:duration-300 opacity-80 hover:opacity-100">
               <Image src={red_img1} alt="" width={200} height={200} />
@@ -39,6 +43,43 @@ const About = () => {
             <Image
               className="object-fit "
               src={red_img1}
+              alt=""
+              width={400}
+              height={400}
+            />
+          </div>
+        </div> */}
+        <div className="flex w-full  md:w-2/4 gap-4 ">
+          <div className="flex flex-col gap-4 p-2 w-1/5 md:w-1/6 h-48 ">
+            <div
+              className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2  hover:duration-300 opacity-80 hover:opacity-100"
+              onClick={() => setSrcc(red_img1)}
+            >
+              <Image src={red_img1} alt="" width={200} height={200} />
+            </div>
+            <div
+              className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2 hover:duration-300  opacity-80 hover:opacity-100"
+              onClick={() => setSrcc(red_img2)}
+            >
+              <Image src={red_img2} alt="" width={200} />
+            </div>
+            <div
+              className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2 hover:duration-300  opacity-80 hover:opacity-100"
+              onClick={() => setSrcc(red_img3)}
+            >
+              <Image src={red_img3} alt="" width={200} />
+            </div>
+            <div
+              className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2 hover:duration-300  opacity-80 hover:opacity-100"
+              onClick={() => setSrcc(red_img4)}
+            >
+              <Image src={red_img4} alt="" width={200} />
+            </div>
+          </div>
+          <div className=" border-NeonPink shadow-md shadow-NeonPink  rounded-xl border-2 p-2 w-full flex items-center justify-center  ">
+            <Image
+              className="object-fit "
+              src={srcc}
               alt=""
               width={400}
               height={400}
