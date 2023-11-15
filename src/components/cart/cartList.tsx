@@ -24,11 +24,7 @@ const CartList = (toggleCart:any) => {
         setScore(score+1)
       }
   return (
-<<<<<<< HEAD
-    <div className=" bg-slate-100 w-full md:w-auto  absolute mt-14 flex flex-col items-center justify-end self-end  overflow-hidden  shadow-md shadow-slate-300 border-purple" >
-=======
-    <div className=" bg-slate-100 w-full md:w-auto absolute mt-14 flex flex-col items-center shadow-md shadow-slate-300 border-purple">
->>>>>>> 82cf3cbe49b4186dd04db3912e2cc5b02d6b572b
+    <div className=" bg-slate-100 w-full md:w-auto absolute mt-14 flex flex-col items-center shadow-md shadow-slate-300 border-purple z-40">
       <div className="bg-gradient-to-r from-NeonPink to-purple text-white text-lg font-bold w-full justify-center text-center py-1">Selected item list</div>
       <div className="bg-slate-300 w-full">
       {productData.map((product:any)=>(
@@ -36,10 +32,10 @@ const CartList = (toggleCart:any) => {
         ))}
         
       </div>
-      <div>
+      {/* <div>
         <div>Total item = {score}</div>
         <button onClick={increaseScore}>increase score</button>
-      </div>
+      </div> */}
 
       <div className="flex w-full justify-between  ">
         <div className="bg-gradient-to-r from-NeonPink to-purple text-white w-1/2 text-center text-lg py-1">place order</div>

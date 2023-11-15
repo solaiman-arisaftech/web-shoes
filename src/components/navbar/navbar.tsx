@@ -28,13 +28,16 @@ const Navbar = () => {
         </Link>
         <div className="md:flex gap-10 hidden ">
           <Link
-            href="#hero"
+            href="/"
             className="hover:text-NeonPink font-medium smooth-scroll"
           >
             Home
           </Link>
           <>
-            <Link className="hover:text-NeonPink font-medium" href="#products">
+            <Link
+              className="hover:text-NeonPink font-medium"
+              href="/all-products"
+            >
               Products
             </Link>
             <Link className="hover:text-NeonPink font-medium" href="#about">
@@ -49,7 +52,9 @@ const Navbar = () => {
           </>
         </div>
         <div className="hidden md:flex gap-2">
-          <Heart className="stroke-none fill-black hover:fill-NeonPink" />
+          <Link href="/wish-list">
+            <Heart className="stroke-none fill-black hover:fill-NeonPink" />
+          </Link>
           <ShoppingCart
             className="stroke-black stroke-2 fill-black hover:fill-NeonPink hover:stroke-NeonPink"
             onClick={toggleCart}
