@@ -2,6 +2,8 @@
 import React from "react";
 import ProductCard from "./productCard";
 import Link from "next/link";
+import Slider from "react-slick";
+import SimpleSlider from "./test";
 
 const Products = () => {
   const productData = [
@@ -16,6 +18,15 @@ const Products = () => {
     { tittle: "NIKE9", desc: "description 9", price: "900.99" },
     { tittle: "NIKE10", desc: "description 10", price: "1000.99" },
   ];
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    // nextArrow: <SampleNextArrow />,
+    // prevArrow: <SamplePrevArrow />,
+  };
+
 
   return (
     <section
