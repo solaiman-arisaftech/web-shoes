@@ -15,8 +15,8 @@ const page = () => {
           <div>Payment </div>
         </div>
       </div>
-      <div className="flex w-full gap-8 ">
-        <div className="flex flex-col gap-4 w-1/2 p-4 ">
+      <div className="flex flex-col md:flex-row w-full gap-8 ">
+        <div className="flex flex-col gap-4 w-full md:w-1/2 p-4 ">
           <div className="flex flex-col">
             <div className="font-bold">Order Summary</div>
             <div className="text-xs text-slate-500">
@@ -35,7 +35,7 @@ const page = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-4 w-1/2 bg-slate-50 p-4">
+        <div className="flex flex-col gap-4 w-full md:w-1/2 bg-slate-50 p-4">
           <div className="flex flex-col">
             <div className="font-bold">Payment Details</div>
             <div className="text-xs text-slate-500">

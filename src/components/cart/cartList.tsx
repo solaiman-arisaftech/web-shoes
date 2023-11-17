@@ -6,7 +6,7 @@ import { describe } from "node:test";
 import CartDetails from "./cartDetails";
 import Link from "next/link";
 
-const CartList = (toggleCart: any) => {
+const CartList = ({toggleCart, setIsCartOpen}: any) => {
   const productData = [
     { tittle: "NIKE1", desc: "description 1", price: "100.99" },
     { tittle: "NIKE2", desc: "description 2", price: "200.99" },
@@ -41,7 +41,7 @@ const CartList = (toggleCart: any) => {
       <div className="flex w-full justify-between  ">
         
           <div className="bg-gradient-to-r from-NeonPink to-purple text-white w-1/2 text-center text-lg py-1">
-          <Link href="/checkout"> Checkout</Link>
+          <Link href="/checkout" onClick={toggleCart} > Checkout</Link>
           </div>
         
         <div className="bg-gradient-to-r from-NeonPink to-purple text-white w-1/2 text-center text-lg py-1">
