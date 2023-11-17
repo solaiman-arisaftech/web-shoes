@@ -114,7 +114,7 @@ const page = () => {
               <div>Total</div>
               <div className="text-base font-bold">$100.99</div>
             </div>
-            <div className="bg-gradient-to-r from-NeonPink to-purple text-white w-full rounded text-center text-lg py-1">
+            <div className="bg-gradient-to-r from-NeonPink to-purple text-white w-full rounded text-center text-lg py-1 cursor-pointer">
               Confirm order
             </div>
           </div>

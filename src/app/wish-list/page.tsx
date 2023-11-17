@@ -1,5 +1,6 @@
-import React from 'react'
-import WishListCard from './wishListCard'
+import React from "react";
+import WishListCard from "./wishListCard";
+import PaginationCard from "@/components/pagination/paginations";
 
 const page = () => {
   return (
@@ -10,17 +11,19 @@ const page = () => {
       <div className="flex self-center text-center text-5xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-NeonPink to-purple pb-10">
         Wishlist Products
       </div>
-      <WishListCard/>
-      <WishListCard/>
-      <WishListCard/>
-      <WishListCard/>
-      <WishListCard/>
-      <WishListCard/>
-      
-
-      
+      <div className="flex flex-col gap-4">
+        <WishListCard />
+        <WishListCard />
+        <WishListCard />
+        <WishListCard />
+        <WishListCard />
+        <WishListCard />
+      </div>
+      <div className="flex justify-center">
+        <PaginationCard />
+      </div>
     </section>
-  )
-}
+  );
+};
 
-export default page
+export default page;

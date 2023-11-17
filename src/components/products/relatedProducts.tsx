@@ -1,6 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 import ProductCard from "./productCard";
+import SimpleSlider from "./test";
 
 
 // const SampleNextArrow: React.FC<any> = (props) => {
@@ -36,11 +37,8 @@ const RelatedProduct = () => {
   };
 
   return (
-    <div className="bg-slate-700">
-      <h2>Custom Arrows</h2>
-      <Slider {...settings} className=" ">
-         
-        </Slider>
+    <div className="">
+      <SimpleSlider/>
     </div>
   );
 };

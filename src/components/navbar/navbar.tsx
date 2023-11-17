@@ -53,15 +53,15 @@ const Navbar = () => {
         </div>
         <div className="hidden md:flex gap-2">
           <Link href="/wish-list">
-            <Heart className="stroke-none fill-black hover:fill-NeonPink" />
+            <Heart className="stroke-none fill-black hover:fill-NeonPink cursor-pointer" />
           </Link>
           <ShoppingCart
-            className="stroke-black stroke-2 fill-black hover:fill-NeonPink hover:stroke-NeonPink"
+            className="stroke-black stroke-2 fill-black hover:fill-NeonPink hover:stroke-NeonPink cursor-pointer"
             onClick={toggleCart}
           />
           <Link href="#login">
             {" "}
-            <User2 className="stroke-white fill-black hover:fill-NeonPink" />
+            <User2 className="stroke-white fill-black hover:fill-NeonPink cursor-pointer" />
           </Link>
         </div>
 

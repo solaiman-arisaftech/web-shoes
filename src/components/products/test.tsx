@@ -4,13 +4,19 @@ import ProductCard from "./productCard";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { ChevronRightSquare, ChevronLeftSquare } from 'lucide-react';
 const SimpleSlider: React.FC = () => {
     const settings = {
+      className: "p-10 ",
       dots: true,
-      infinite: true,
+      // infinite: true,
       speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 1
+      // centerMode: true,
+      // centerPadding: "60px",
+      slidesToShow: 5,
+      slidesToScroll: 1,
+      nextArrow: <ChevronRightSquare  className=" stroke-NeonPink fill-violet-600" /> ,
+      prevArrow: <ChevronLeftSquare /> 
     };
     const productData = [
         { tittle: "NIKE1", desc: "description 1", price: "100.99" },
@@ -26,8 +32,8 @@ const SimpleSlider: React.FC = () => {
       ];
     return (
       <div>
-        <h2>Single Item</h2>
-        <Slider {...settings}>
+      
+        <Slider {...settings} >
         {productData.map((product: any) => (
             <ProductCard key={product.tittle} product={product} />
           ))}
