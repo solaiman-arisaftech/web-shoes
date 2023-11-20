@@ -171,7 +171,7 @@ const ProductDetails = (Product: any) => {
             Reviews
           </div>
         </Link>
-        <Link href="#rProduct">
+        <Link href="#relatedProduct">
           <div className="p-4 border-1 border-NeonPink cursor-pointer hover:text-white hover:bg-purple hover:border-none font-bold shadow-xl rounded">
             Related Products
           </div>

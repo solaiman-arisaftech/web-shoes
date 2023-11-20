@@ -4,23 +4,18 @@ import React from "react";
 import Link from "next/link";
 import ProductCard from './../../components/products/productCard';
 import Products from "@/components/products/products";
+import PaginationCard from "@/components/pagination/paginations";
 const AllProducts = () => {
    
     
 
   return (
-    <div>
-    
-      <Products/>
+    <div className="bg-white">
 
-      {/* <div className=" justify-evenly self-center w-full gap-6 ">
-      <Slider {...settings} className=" ">
-          {productData.map((product: any) => (
-            <ProductCard key={product.tittle} product={product} />
-          ))}
-        </Slider>
-        <SimpleSlider/>
-      </div> */}
+      <Products/>
+      <div className="flex justify-center ">
+        <PaginationCard/>
+      </div>
     </div>
   );
 };

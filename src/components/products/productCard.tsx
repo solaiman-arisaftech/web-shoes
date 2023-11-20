@@ -17,7 +17,7 @@ const ProductCard = ({product, idIndexObject}:any) => {
 
 
   return (
-    <div className="group w-full  border-2 flex flex-col items-center rounded-lg shadow-purple shadow-md bg-white py-5 " >
+    <div className="group w-full  md:w-[96%] my-3 border-2 flex flex-col items-center rounded-lg shadow-purple shadow-md bg-white py-5 " >
       <div className="flex flex-col absolute self-start mx-4 mt-4 gap-2  -translate-x-4 invisible group-hover:visible group-hover:translate-x-1 duration-75 delay-75">
       <Heart className="stroke-none fill-black hover:fill-NeonPink border-2 p-2 rounded-md " width={45} height={45} />
       <Forward className="stroke-fill stroke-2 stroke-black hover:stroke-NeonPink border-2 p-2 rounded-md" width={45} height={45} />

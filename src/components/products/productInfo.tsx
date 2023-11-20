@@ -3,13 +3,13 @@ import React from "react";
 const ProductInfo = () => {
   return (
     <section
-      className="flex flex-col  bg-white  py-16 px-4 md:px-16 lg:px-32 xl:px-64"
+      className="flex flex-col  bg-white  py-16 px-4 md:px-16 lg:px-32 xl:px-64 scroll-mt-10"
       id="pInfo"
     >
-      <div className="text-center bg-slate-500 py-1 text-white">
+      <div className="text-center bg-violet-600 py-1 text-white">
         Product Information
       </div>
-      <div className="bg-slate-300 p-4">
+      <div className="bg-slate-100 p-4">
         <div>
           The body shoe is design to support the natural movement of your body
         </div>

@@ -15,8 +15,8 @@ const page = () => {
           <div>Payment </div>
         </div>
       </div>
-      <div className="flex w-full gap-8 ">
-        <div className="flex flex-col gap-4 w-1/2 p-4 ">
+      <div className="flex flex-col md:flex-row w-full gap-8 ">
+        <div className="flex flex-col gap-4 w-full md:w-1/2 p-4 ">
           <div className="flex flex-col">
             <div className="font-bold">Order Summary</div>
             <div className="text-xs text-slate-500">
@@ -35,7 +35,7 @@ const page = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-4 w-1/2 bg-slate-50 p-4">
+        <div className="flex flex-col gap-4 w-full md:w-1/2 bg-slate-50 p-4">
           <div className="flex flex-col">
             <div className="font-bold">Payment Details</div>
             <div className="text-xs text-slate-500">
@@ -114,7 +114,7 @@ const page = () => {
               <div>Total</div>
               <div className="text-base font-bold">$100.99</div>
             </div>
-            <div className="bg-gradient-to-r from-NeonPink to-purple text-white w-full rounded text-center text-lg py-1">
+            <div className="bg-gradient-to-r from-NeonPink to-purple text-white w-full rounded text-center text-lg py-1 cursor-pointer">
               Confirm order
             </div>
           </div>
