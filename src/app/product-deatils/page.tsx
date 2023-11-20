@@ -3,7 +3,7 @@ import ProductDetails from "@/components/products/productDetails";
 import ProductInfo from "@/components/products/productInfo";
 import RelatedProduct from "@/components/products/relatedProducts";
 import React from "react";
-// import CheckoutCard from "../checkout/checkoutCard";
+import CheckoutCard from "../checkout/checkoutCard";
 
 const page = () => {
   return (
