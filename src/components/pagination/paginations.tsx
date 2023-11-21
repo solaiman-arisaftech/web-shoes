@@ -19,6 +19,7 @@ const PaginationCard=()=> {
         previousLabel="Previous"
         nextLabel="Next"
         showIcons
+    
       />
     </div>
   );

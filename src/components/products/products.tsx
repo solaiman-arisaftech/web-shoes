@@ -1,5 +1,6 @@
+'use client'
 /* eslint-disable react/jsx-key */
-import React from "react";
+import React, { useEffect } from "react";
 import ProductCard from "./productCard";
 import Link from "next/link";
 // import Slider from "react-slick";
@@ -8,19 +9,29 @@ import PaginationCard from "../pagination/paginations";
 
 const Products = () => {
   const productData = [
-    { tittle: "NIKE1", desc: "description 1", price: "100.99" },
-    { tittle: "NIKE2", desc: "description 2", price: "200.99" },
-    { tittle: "NIKE3", desc: "description 3", price: "300.99" },
-    { tittle: "NIKE4", desc: "description 4", price: "400.99" },
-    { tittle: "NIKE5", desc: "description 5", price: "500.99" },
-    { tittle: "NIKE6", desc: "description 6", price: "600.99" },
-    { tittle: "NIKE7", desc: "description 7", price: "700.99" },
-    { tittle: "NIKE8", desc: "description 8", price: "800.99" },
-    { tittle: "NIKE9", desc: "description 9", price: "900.99" },
-    { tittle: "NIKE10", desc: "description 10", price: "1000.99" },
+    {id:1, tittle: "NIKE1", desc: "description 1", price: "100.99" },
+    {id:2, tittle: "NIKE2", desc: "description 2", price: "200.99" },
+    {id:3, tittle: "NIKE3", desc: "description 3", price: "300.99" },
+    {id:4, tittle: "NIKE4", desc: "description 4", price: "400.99" },
+    {id:5, tittle: "NIKE5", desc: "description 5", price: "500.99" },
+    {id:6, tittle: "NIKE6", desc: "description 6", price: "600.99" },
+    { id:7,tittle: "NIKE7", desc: "description 7", price: "700.99" },
+    {id:8, tittle: "NIKE8", desc: "description 8", price: "800.99" },
+    {id:9, tittle: "NIKE9", desc: "description 9", price: "900.99" },
+    {id:10, tittle: "NIKE10", desc: "description 10", price: "1000.99" },
   ];
 
-
+useEffect(() => {
+  const jsonArray = JSON.stringify(productData)
+  try{
+    localStorage.setItem('productData', jsonArray)
+    console.log("Type of ", productData)
+    console.log("data ", localStorage.getItem("productData"))
+  } catch(e) {
+  console.log(e)
+  }
+  
+})
 
   return (
     <section
@@ -32,9 +43,10 @@ const Products = () => {
       </div>
       <div className=" justify-evenly self-center w-full gap-6 grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
         {productData.map((product: any) => (
-          <Link href="/product-deatils">
+          // <Link href="/product-deatils">
             <ProductCard key={product.tittle} product={product} />
-          </Link>
+
+          // </Link>
         ))}
       </div>
 
