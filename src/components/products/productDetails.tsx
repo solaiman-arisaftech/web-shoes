@@ -96,7 +96,7 @@ const ProductDetails = (Product: any) => {
             <div className="bg-green-400 text-white w-24 flex justify-center rounded-xl ">
               In Stock
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-col md:flex-row gap-2">
               <div className="text-red-500 ">Ships from china. </div>
               <div> Most customers receive within 3-31 days.</div>
             </div>

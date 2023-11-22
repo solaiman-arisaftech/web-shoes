@@ -1,8 +1,26 @@
-import React from "react";
+"use client";
+import React, { useState, useContext } from "react";
 import WishListCard from "./wishListCard";
 import PaginationCard from "@/components/pagination/paginations";
+import { MyContext } from "@/app/context/myContext";
 
-const page = () => {
+const Page = (product:any) => {
+  const { countWish, setWishCount } = useContext(MyContext);
+
+  // Get wish items from local storage
+  const [wishItems, setWishItems] = React.useState(
+    JSON.parse(localStorage.getItem("wishItems") || "[]")
+  );
+
+  const removeFromWish = (index: number) => {
+    // Remove the item at the specified index from the cart
+    const updatedWishItems = [...wishItems];
+    updatedWishItems.splice(index, 1);
+    // Update local storage and state
+    localStorage.setItem("wishItems", JSON.stringify(updatedWishItems));
+    setWishItems(updatedWishItems);
+  };
+
   return (
     <section
       className="w-full flex flex-col py-36 px-4 md:px-16 lg:px-32 xl:px-64 gap-8 bg-white "
@@ -12,12 +30,25 @@ const page = () => {
         Wishlist Products
       </div>
       <div className="flex flex-col gap-4">
-        <WishListCard />
-        <WishListCard />
-        <WishListCard />
-        <WishListCard />
-        <WishListCard />
-        <WishListCard />
+        <div className="bg-slate-300 w-full">
+          {wishItems.length > 0 ? (
+            <ul>
+              {wishItems.map((product: any, index: number) => (
+                <li key={index} >
+                  <WishListCard
+                    key={product.id}
+                    product={product}
+                    removeWish={() => {
+                      removeFromWish(index), setWishCount(countWish - 1);
+                    }}
+                  />
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="w-full px-48 py-48 text-center">Your wish list is empty.</p>
+          )}
+        </div>
       </div>
       <div className="flex justify-center">
         <PaginationCard />
@@ -26,4 +57,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

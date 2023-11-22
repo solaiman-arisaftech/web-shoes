@@ -5,6 +5,11 @@ import MethodCard from "./methodCard";
 
 
 const page = () => {
+
+
+
+
+
   return (
     <section className="w-full flex flex-col  px-4 md:px-16 lg:px-32 xl:px-64 bg-white mt-14 ">
       <div className="flex justify-between p-4 bg-fuchsia-200">
@@ -26,6 +31,8 @@ const page = () => {
           <div className="border-1 rounded-lg border-slate-200 p-4">
             <CheckoutCard/>
             <CheckoutCard/>
+
+           
           </div>
           <div className="flex flex-col gap-2">
             <div className="font-bold">Shipping methods</div>
