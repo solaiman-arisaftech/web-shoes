@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import img1 from "../../../public/resources/shoes1.png";
 import Image from "next/image";
 import { describe } from "node:test";
@@ -7,18 +7,21 @@ import CartDetails from "./cartDetails";
 import Link from "next/link";
 
 const CartList = ({toggleCart, setIsCartOpen}: any) => {
-  const productData = [
-    { tittle: "NIKE1", desc: "description 1", price: "100.99" },
-    { tittle: "NIKE2", desc: "description 2", price: "200.99" },
-    { tittle: "NIKE3", desc: "description 3", price: "300.99" },
-    { tittle: "NIKE4", desc: "description 4", price: "400.99" },
-    { tittle: "NIKE5", desc: "description 5", price: "500.99" },
-    { tittle: "NIKE6", desc: "description 6", price: "600.99" },
-    { tittle: "NIKE7", desc: "description 7", price: "700.99" },
-    { tittle: "NIKE8", desc: "description 8", price: "800.99" },
-    { tittle: "NIKE9", desc: "description 9", price: "900.99" },
-    { tittle: "NIKE10", desc: "description 10", price: "1000.99" },
-  ];
+  const [cartData, setCartData] = useState<any[]>([])
+
+  useEffect(() => {
+    try{
+      console.log("data ", localStorage.getItem("productData"))
+    } catch(e) {
+    console.log(e)
+    }
+    
+  })
+  // @ts-ignore
+  const productData= localStorage.getItem("productData") !== null ? JSON.parse(localStorage.getItem("productData")) : []
+
+
+
   const [score, setScore] = useState(0);
   const increaseScore = () => {
     setScore(score + 1);
@@ -29,8 +32,8 @@ const CartList = ({toggleCart, setIsCartOpen}: any) => {
         Selected item list
       </div>
       <div className="bg-slate-300 w-full">
-        {productData.map((product: any) => (
-          <CartDetails key={product.tittle} product={product} />
+        {productData?.map((product: any) => (
+          <CartDetails key={product.id} product={product} />
         ))}
       </div>
       {/* <div>

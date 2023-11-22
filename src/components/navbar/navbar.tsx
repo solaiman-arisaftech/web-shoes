@@ -1,14 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import Link from "next/link";
 import { User2, ShoppingCart, Heart, Menu } from "lucide-react";
 import CartList from "../cart/cartList";
-
+import { MyContext } from "@/app/context/myContext";
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  // const [isCartOpen, setIsCartOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -16,8 +16,12 @@ const Navbar = () => {
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
   };
+  const {count, setCount } = useContext(MyContext)
+  const {isCartOpen, setIsCartOpen } = useContext(MyContext)
+  console.log("Nav ", count)
+  console.log(isCartOpen)
+   return (
 
-  return (
     <>
       <nav className="w-full bg-white h-14 flex justify-between items-center shadow-lg px-4 mx-auto md:px-64 fixed z-50 ">
         <Link href={"/"} className="text-NeonPink font-extrabold text-4xl">
@@ -58,14 +62,20 @@ const Navbar = () => {
           <ShoppingCart
             className="stroke-black stroke-2 fill-black hover:fill-NeonPink hover:stroke-NeonPink cursor-pointer"
             onClick={toggleCart}
-          />
+          /><sup className="pt-2 -ml-4 bg-red-500 text-white mb-2 px-1 py-1 rounded-full">{count}</sup>
           <Link href="#login">
             {" "}
             <User2 className="stroke-white fill-black hover:fill-NeonPink cursor-pointer" />
           </Link>
         </div>
 
-        <div className="md:hidden  flex items-center">
+        <div className="md:hidden  flex items-center gap-2">
+          <div className="flex gap-1">
+          <ShoppingCart
+            className="stroke-black stroke-2 fill-black hover:fill-NeonPink hover:stroke-NeonPink cursor-pointer"
+            onClick={toggleCart}
+          /><sup className="pt-2 -ml-3 bg-red-500 text-white mb-2 px-1 py-1 rounded-full">{count}</sup>
+          </div>
           <button
             className="outline-none mobile-menu-button"
             onClick={toggleMobileMenu}
@@ -111,7 +121,11 @@ const Navbar = () => {
         </ul>
       </div> */}
       </nav>
-      <div className="flex justify-end">{isCartOpen && <CartList toggleCart={toggleCart} setIsCartOpen={setIsCartOpen} />}</div>
+      <div className="flex justify-end">
+        {isCartOpen && <CartList toggleCart={toggleCart} setIsCartOpen={setIsCartOpen} />}
+        {/* {!isCartOpen && <CartList toggleCart={setIsCartOpen(false)}  />} */}
+        
+      </div>
       {/* <div className="flex items-end"><div><CartList/></div></div> */}
     </>
   );
