@@ -16,7 +16,7 @@ const Navbar = () => {
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
   };
-  const {count, setCount } = useContext(MyContext)
+  const {count, setCount ,countWish, setWishCount} = useContext(MyContext)
   const {isCartOpen, setIsCartOpen } = useContext(MyContext)
   console.log("Nav ", count)
   console.log(isCartOpen)
@@ -56,13 +56,16 @@ const Navbar = () => {
           </>
         </div>
         <div className="hidden md:flex gap-2">
-          <Link href="/wish-list">
+          <Link href="/wish-list" className="flex gap-2">
             <Heart className="stroke-none fill-black hover:fill-NeonPink cursor-pointer" />
+            <sup className="pt-2 -ml-4 bg-red-500 text-white mb-2 px-1 py-1 rounded-full">{countWish}</sup>
           </Link>
+          <div className="flex gap-2">
           <ShoppingCart
             className="stroke-black stroke-2 fill-black hover:fill-NeonPink hover:stroke-NeonPink cursor-pointer"
             onClick={toggleCart}
           /><sup className="pt-2 -ml-4 bg-red-500 text-white mb-2 px-1 py-1 rounded-full">{count}</sup>
+          </div>
           <Link href="#login">
             {" "}
             <User2 className="stroke-white fill-black hover:fill-NeonPink cursor-pointer" />

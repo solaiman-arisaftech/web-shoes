@@ -9,11 +9,12 @@ const ContextProvider = ({ children }) => {
 
   //handle add to cart and count
   const [count, setCount]= useState(0);
+  const [countWish, setWishCount]= useState(0);
   
   const [cartData, setCartData] = useState([])
 
   return (
-    <MyContext.Provider value={{ count, setCount, isCartOpen, setIsCartOpen, cartData, setCartData}}>
+    <MyContext.Provider value={{ count, setCount, isCartOpen, setIsCartOpen, cartData, setCartData, countWish, setWishCount}}>
       {children}
     </MyContext.Provider>
   );

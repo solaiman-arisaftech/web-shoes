@@ -1,22 +1,25 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import img1 from "../../../public/resources/shoes1.png";
 import Image from "next/image";
 import { XCircle } from 'lucide-react';
-const CartDetails = ({ product, idIndexObject }: any) => {
 
-  const [count, setCount] = useState(1);
+const CartDetails = ({ product, remove, idIndexObject }: any) => {
+
+  const [quantityCount, setQuantityCount] = useState(1);
 
   const decrease = () => {
-    if (count == 0) {
-      setCount(0);
+    if (quantityCount == 0) {
+      setQuantityCount(0);
     } else {
-      setCount(count - 1);
+      setQuantityCount(quantityCount - 1);
     }
   };
   const increase = () => {
-    setCount(count + 1);
+    setQuantityCount(quantityCount + 1);
   };
+
+  
 
   return (
     <div className=" bg-white  flex justify-between items-center  p-4 gap-4 border-b-1 z-40 overflow-y-hidden ">
@@ -35,7 +38,7 @@ const CartDetails = ({ product, idIndexObject }: any) => {
               </button>
               <input
                 className="outline-none focus:outline-none text-center w-16 bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700 "
-                value={count}
+                value={quantityCount}
               ></input>
               <button
                 onClick={increase}
@@ -44,8 +47,8 @@ const CartDetails = ({ product, idIndexObject }: any) => {
                 <span className="m-auto text-2xl font-thin">+</span>
               </button>
             </div>
-        <div className="w-20 text-center overflow-hidden">${product.price * count}</div>
-        <div className=" cursor-pointer ">
+        <div className="w-20 text-center overflow-hidden">${product.price * quantityCount}</div>
+        <div className=" cursor-pointer " onClick={remove}>
           <XCircle className="fill-red-500 stroke-white hover:-translate-y-1 hover:scale-125 duration-300"/>
         </div>
       
