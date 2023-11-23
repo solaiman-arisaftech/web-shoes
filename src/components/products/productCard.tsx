@@ -72,6 +72,7 @@ const ProductCard = ({ product, idIndexObject }: any) => {
         <button
           className="w-1/2  rounded self-center text-center text-white p-2 bg-gradient-to-r from-NeonPink to-purple hover:-translate-y-1 hover:scale-110 duration-200"
           // onClick={handleAddToCart}
+          
         >
           Add to cart
         </button>
