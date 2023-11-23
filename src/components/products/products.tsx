@@ -1,4 +1,4 @@
-'use client'
+"use client";
 /* eslint-disable react/jsx-key */
 import React, { useEffect } from "react";
 import ProductCard from "./productCard";
@@ -7,31 +7,18 @@ import Link from "next/link";
 import SimpleSlider from "./test";
 import PaginationCard from "../pagination/paginations";
 
+import { productData } from "@/app/lib/data";
 const Products = () => {
-  const productData = [
-    {id:1, tittle: "NIKE", desc: "description 1", price: "100.99" },
-    {id:2, tittle: "NIKE", desc: "description 2", price: "200.99" },
-    {id:3, tittle: "NIKE", desc: "description 3", price: "300.99" },
-    {id:4, tittle: "NIKE", desc: "description 4", price: "400.99" },
-    {id:5, tittle: "NIKE", desc: "description 5", price: "500.99" },
-    {id:6, tittle: "NIKE", desc: "description 6", price: "600.99" },
-    {id:7, tittle: "NIKE", desc: "description 7", price: "700.99" },
-    {id:8, tittle: "NIKE", desc: "description 8", price: "800.99" },
-    {id:9, tittle: "NIKE", desc: "description 9", price: "900.99" },
-    {id:10, tittle: "NIKE", desc: "description 10", price: "1000.99" },
-  ];
-
-useEffect(() => {
-  const jsonArray = JSON.stringify(productData)
-  try{
-    localStorage.setItem('productData', jsonArray)
-    console.log("Type of ", productData)
-    console.log("data ", localStorage.getItem("productData"))
-  } catch(e) {
-  console.log(e)
-  }
-  
-})
+  useEffect(() => {
+    const jsonArray = JSON.stringify(productData);
+    try {
+      localStorage.setItem("productData", jsonArray);
+      console.log("Type of ", productData);
+      console.log("data ", localStorage.getItem("productData"));
+    } catch (e) {
+      console.log(e);
+    }
+  });
 
   return (
     <section
@@ -44,15 +31,11 @@ useEffect(() => {
       <div className=" justify-evenly self-center w-full gap-6 grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
         {productData.map((product: any) => (
           // <Link href="/product-deatils">
-            <ProductCard key={product.id} product={product} />
+          <ProductCard key={product.id} product={product} />
 
           // </Link>
         ))}
       </div>
-
-      
-
-      
     </section>
   );
 };

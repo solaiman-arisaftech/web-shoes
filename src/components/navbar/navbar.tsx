@@ -7,6 +7,10 @@ import { User2, ShoppingCart, Heart, Menu } from "lucide-react";
 import CartList from "../cart/cartList";
 import { MyContext } from "@/app/context/myContext";
 const Navbar = () => {
+  const [activeMenu, setActiveMenu] = useState(null);
+  const selectedMenu = (id: any) => {
+    setActiveMenu(id);
+  };
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   // const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -16,12 +20,11 @@ const Navbar = () => {
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
   };
-  const {count, setCount ,countWish, setWishCount} = useContext(MyContext)
-  const {isCartOpen, setIsCartOpen } = useContext(MyContext)
-  console.log("Nav ", count)
-  console.log(isCartOpen)
-   return (
-
+  const { count, setCount, countWish, setWishCount } = useContext(MyContext);
+  const { isCartOpen, setIsCartOpen } = useContext(MyContext);
+  console.log("Nav ", count);
+  console.log(isCartOpen);
+  return (
     <>
       <nav className="w-full bg-white h-14 flex justify-between items-center shadow-lg px-4 mx-auto md:px-64 fixed z-50 ">
         <Link href={"/"} className="text-NeonPink font-extrabold text-4xl">
@@ -33,24 +36,49 @@ const Navbar = () => {
         <div className="md:flex gap-10 hidden ">
           <Link
             href="/"
-            className="hover:text-NeonPink font-medium smooth-scroll"
+            // className="hover:text-NeonPink font-medium smooth-scroll"
+            className={`cursor-pointer hover:text-NeonPink font-medium smooth-scroll ${
+              activeMenu === 1 ? "text-NeonPink" : "text-black"
+            }`}
+            onClick={() => selectedMenu(1)}
           >
             Home
           </Link>
           <>
             <Link
-              className="hover:text-NeonPink font-medium"
               href="/all-products"
+              className={`cursor-pointer hover:text-NeonPink font-medium smooth-scroll ${
+                activeMenu === 2 ? "text-NeonPink" : "text-black"
+              }`}
+              onClick={() => selectedMenu(2)}
             >
               Products
             </Link>
-            <Link className="hover:text-NeonPink font-medium" href="#about">
+            <Link
+              href="#about"
+              className={`cursor-pointer hover:text-NeonPink font-medium smooth-scroll ${
+                activeMenu === 3 ? "text-NeonPink" : "text-black"
+              }`}
+              onClick={() => selectedMenu(3)}
+            >
               About
             </Link>
-            <Link className="hover:text-NeonPink font-medium" href="#reviews">
+            <Link
+              href="#reviews"
+              className={`cursor-pointer hover:text-NeonPink font-medium smooth-scroll ${
+                activeMenu === 4 ? "text-NeonPink" : "text-black"
+              }`}
+              onClick={() => selectedMenu(4)}
+            >
               Review
             </Link>
-            <Link className="hover:text-NeonPink font-medium" href="#services">
+            <Link
+              href="#services"
+              className={`cursor-pointer hover:text-NeonPink font-medium smooth-scroll ${
+                activeMenu === 5 ? "text-NeonPink" : "text-black"
+              }`}
+              onClick={() => selectedMenu(5)}
+            >
               Services
             </Link>
           </>
@@ -58,13 +86,18 @@ const Navbar = () => {
         <div className="hidden md:flex gap-2">
           <Link href="/wish-list" className="flex gap-2">
             <Heart className="stroke-none fill-black hover:fill-NeonPink cursor-pointer" />
-            <sup className="pt-2 -ml-4 bg-red-500 text-white mb-2 px-1 py-1 rounded-full">{countWish}</sup>
+            <sup className="pt-2 -ml-4 bg-red-500 text-white mb-2 px-1 py-1 rounded-full">
+              {countWish}
+            </sup>
           </Link>
           <div className="flex gap-2">
-          <ShoppingCart
-            className="stroke-black stroke-2 fill-black hover:fill-NeonPink hover:stroke-NeonPink cursor-pointer"
-            onClick={toggleCart}
-          /><sup className="pt-2 -ml-4 bg-red-500 text-white mb-2 px-1 py-1 rounded-full">{count}</sup>
+            <ShoppingCart
+              className="stroke-black stroke-2 fill-black hover:fill-NeonPink hover:stroke-NeonPink cursor-pointer"
+              onClick={toggleCart}
+            />
+            <sup className="pt-2 -ml-4 bg-red-500 text-white mb-2 px-1 py-1 rounded-full">
+              {count}
+            </sup>
           </div>
           <Link href="#login">
             {" "}
@@ -74,10 +107,13 @@ const Navbar = () => {
 
         <div className="md:hidden  flex items-center gap-2">
           <div className="flex gap-1">
-          <ShoppingCart
-            className="stroke-black stroke-2 fill-black hover:fill-NeonPink hover:stroke-NeonPink cursor-pointer"
-            onClick={toggleCart}
-          /><sup className="pt-2 -ml-3 bg-red-500 text-white mb-2 px-1 py-1 rounded-full">{count}</sup>
+            <ShoppingCart
+              className="stroke-black stroke-2 fill-black hover:fill-NeonPink hover:stroke-NeonPink cursor-pointer"
+              onClick={toggleCart}
+            />
+            <sup className="pt-2 -ml-3 bg-red-500 text-white mb-2 px-1 py-1 rounded-full">
+              {count}
+            </sup>
           </div>
           <button
             className="outline-none mobile-menu-button"
@@ -125,9 +161,10 @@ const Navbar = () => {
       </div> */}
       </nav>
       <div className="flex justify-end">
-        {isCartOpen && <CartList toggleCart={toggleCart} setIsCartOpen={setIsCartOpen} />}
+        {isCartOpen && (
+          <CartList toggleCart={toggleCart} setIsCartOpen={setIsCartOpen} />
+        )}
         {/* {!isCartOpen && <CartList toggleCart={setIsCartOpen(false)}  />} */}
-        
       </div>
       {/* <div className="flex items-end"><div><CartList/></div></div> */}
     </>

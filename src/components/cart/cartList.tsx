@@ -8,10 +8,8 @@ import Link from "next/link";
 import { MyContext } from "@/app/context/myContext";
 
 const CartList = ({ toggleCart, setIsCartOpen }: any) => {
-  const [cartData, setCartData] = useState<any[]>([]);
-  const { count, setCount } = useContext(MyContext);
-    
-
+ 
+  const { count, setCount } = useContext(MyContext);  
   // Get cart items from local storage
   const [cartItems, setCartItems] = React.useState(
     JSON.parse(localStorage.getItem('cartItems') || '[]')

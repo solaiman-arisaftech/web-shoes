@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import red_img1 from "../../../public/resources/red_shoes1.png";
 import red_img2 from "../../../public/resources/red_shoes2.png";
 import red_img3 from "../../../public/resources/red_shoes3.png";
@@ -10,8 +11,14 @@ import { Heart, Forward, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const ProductDetails = (Product: any) => {
+const ProductDetails = ({ tittle, desc, price }: any) => {
+  const [selectedDiv, setSelectedDiv] = useState(null);
+  const selectDiv = (id: any) => {
+    setSelectedDiv(id);
+  };
+
   const [count, setCount] = useState(0);
+
   const [srcc, setSrcc] = useState<any>(red_img1);
   const decrease = () => {
     if (count == 0) {
@@ -33,25 +40,25 @@ const ProductDetails = (Product: any) => {
         <div className="flex w-full gap-4 ">
           <div className="flex flex-col gap-4 p-2 w-1/5 md:w-1/6 h-48 ">
             <div
-              className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2  hover:duration-300 opacity-80 hover:opacity-100"
+              className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2  hover:duration-300 opacity-80 hover:opacity-100 cursor-pointer"
               onClick={() => setSrcc(red_img1)}
             >
               <Image src={red_img1} alt="" width={200} height={200} />
             </div>
             <div
-              className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2 hover:duration-300  opacity-80 hover:opacity-100"
+              className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2 hover:duration-300  opacity-80 hover:opacity-100 cursor-pointer"
               onClick={() => setSrcc(red_img2)}
             >
               <Image src={red_img2} alt="" width={200} />
             </div>
             <div
-              className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2 hover:duration-300  opacity-80 hover:opacity-100"
+              className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2 hover:duration-300  opacity-80 hover:opacity-100 cursor-pointer"
               onClick={() => setSrcc(red_img3)}
             >
               <Image src={red_img3} alt="" width={200} />
             </div>
             <div
-              className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2 hover:duration-300  opacity-80 hover:opacity-100"
+              className="bg-gradient-to-br from-NeonPink to-purple rounded-lg p-2 hover:duration-300  opacity-80 hover:opacity-100 cursor-pointer"
               onClick={() => setSrcc(red_img4)}
             >
               <Image src={red_img4} alt="" width={200} />
@@ -71,7 +78,7 @@ const ProductDetails = (Product: any) => {
           <div className="text-base text-bold text-white bg-NeonPink rounded-2xl self-start items-center flex justify-center w-28 py-1">
             New Arrival
           </div>
-          <div className="text-3xl text-bold">Nike Air Max Pulse Roam </div>
+          <div className="text-3xl text-bold">{tittle}</div>
 
           <div className="flex ">
             <Star className="fill-amber-500 stroke-none " size={20} />
@@ -81,16 +88,10 @@ const ProductDetails = (Product: any) => {
             <Star className="fill-amber-500 stroke-none " size={20} />
           </div>
 
-          <div className="text-3xl text-bold"> $100.99</div>
+          <div className="text-3xl text-bold"> {price}</div>
           <div>
-            <div>Description</div>
-            <div>
-              The road is your runway. Get ready to take flight in the most
-              comfortable shoes. Back with the extra bounce which is perfect for
-              the running. Whether you'r sprinting everyday miles or your
-              everyday long run, feel the spring in your step with the same
-              cushioned support as its predeccessor
-            </div>
+            <div className="font-bold">Description</div>
+            <div>{desc}</div>
           </div>
           <div className="flex flex-col gap-2">
             <div className="bg-green-400 text-white w-24 flex justify-center rounded-xl ">
@@ -105,17 +106,18 @@ const ProductDetails = (Product: any) => {
             <div className="flex flex-row h-8 w-28 rounded-lg relative bg-transparent">
               <button
                 onClick={decrease}
-                className=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400  w-10 rounded-l cursor-pointer outline-none"
+                className=" bg-gray-200 text-gray-600 hover:text-gray-700 hover:bg-gray-300  w-10 rounded-l cursor-pointer outline-none"
               >
                 <span className="m-auto text-2xl font-thin">−</span>
               </button>
               <input
-                className="outline-none focus:outline-none text-center w-16 bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700 "
+                type="text"
+                className="flex items-center text-center w-16 bg-gray-100 font-semibold text-md hover:text-black focus:outline-none focus:ring-none border-none md:text-base cursor-text  "
                 value={count}
               ></input>
               <button
                 onClick={increase}
-                className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-10 rounded-r cursor-pointer"
+                className="bg-gray-200 text-gray-600 hover:text-gray-700 hover:bg-gray-300 h-full w-10 rounded-r cursor-pointer"
               >
                 <span className="m-auto text-2xl font-thin">+</span>
               </button>
@@ -123,7 +125,7 @@ const ProductDetails = (Product: any) => {
 
             <div className=" ">
               <Heart
-                className="stroke-NeonPink fill-none hover:fill-NeonPink border-2 hover:border-NeonPink p-1 rounded-md "
+                className="stroke-NeonPink fill-none hover:fill-NeonPink border-2 hover:border-NeonPink p-1 rounded-md cursor-pointer"
                 width={30}
                 height={32}
               />
@@ -132,30 +134,60 @@ const ProductDetails = (Product: any) => {
           <div>
             <div className="font-bold">Available Size</div>
             <div className="flex gap-2">
-              <div className="border-1 p-1 text-xs px-2 hover:bg-NeonPink hover:text-white">
+              <div
+                className={`cursor-pointer border-1 p-1 text-xs px-2 rounded ${
+                  selectedDiv === 1 ? "bg-NeonPink text-white" : "bg-gray-200"
+                }`}
+                onClick={() => selectDiv(1)}
+              >
                 39
               </div>
-              <div className="border-1 p-1 text-xs px-2 hover:bg-NeonPink hover:text-white">
+              <div
+                className={`cursor-pointer border-1 p-1 text-xs px-2 rounded ${
+                  selectedDiv === 2 ? "bg-NeonPink text-white" : "bg-gray-200"
+                }`}
+                onClick={() => selectDiv(2)}
+              >
                 40
               </div>
-              <div className="border-1 p-1 text-xs px-2 hover:bg-NeonPink hover:text-white">
+              <div
+                className={`cursor-pointer border-1 p-1 text-xs px-2 rounded ${
+                  selectedDiv === 3 ? "bg-NeonPink text-white" : "bg-gray-200"
+                }`}
+                onClick={() => selectDiv(3)}
+              >
                 41
               </div>
-              <div className="border-1 p-1 text-xs px-2 hover:bg-NeonPink hover:text-white">
+              <div
+                className={`cursor-pointer border-1 p-1 text-xs px-2 rounded ${
+                  selectedDiv === 4 ? "bg-NeonPink text-white" : "bg-gray-200"
+                }`}
+                onClick={() => selectDiv(4)}
+              >
                 42
               </div>
-              <div className="border-1 p-1 text-xs px-2 hover:bg-NeonPink hover:text-white">
+              <div
+                className={`cursor-pointer border-1 p-1 text-xs px-2 rounded ${
+                  selectedDiv === 5 ? "bg-NeonPink text-white" : "bg-gray-200"
+                }`}
+                onClick={() => selectDiv(5)}
+              >
                 43
               </div>
-              <div className="border-1 p-1 text-xs px-2 hover:bg-NeonPink hover:text-white">
+              <div
+                className={`cursor-pointer border-1 p-1 text-xs px-2 rounded ${
+                  selectedDiv === 6 ? "bg-NeonPink text-white" : "bg-gray-200"
+                }`}
+                onClick={() => selectDiv(6)}
+              >
                 44
               </div>
             </div>
           </div>
-          <div className="hover:bg-NeonPink text-NeonPink font-bold hover:text-white  text-center rounded-2xl border-2 border-NeonPink py-1">
+          <div className="hover:bg-NeonPink text-NeonPink font-bold hover:text-white  text-center rounded-2xl border-2 border-NeonPink py-1 cursor-pointer" >
             Add to Cart
           </div>
-          <div className="bg-NeonPink text-white font-bold text-center rounded-2xl py-1">
+          <div className="bg-NeonPink text-white font-bold text-center rounded-2xl py-1 cursor-pointer">
             Buy Now
           </div>
         </div>

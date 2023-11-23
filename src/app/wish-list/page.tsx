@@ -30,7 +30,7 @@ const Page = (product:any) => {
         Wishlist Products
       </div>
       <div className="flex flex-col gap-4">
-        <div className="bg-slate-300 w-full">
+        <div className="bg-slate-100 w-full border-1 shadow-lg">
           {wishItems.length > 0 ? (
             <ul>
               {wishItems.map((product: any, index: number) => (

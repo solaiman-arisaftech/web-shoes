@@ -6,10 +6,10 @@ import SimpleSlider from "@/components/products/test";
 import React from "react";
 import CheckoutCard from "../checkout/checkoutCard";
 
-const page = () => {
+const page = (product:any) => {
   return (
     <div className="bg-white ">
-      <ProductDetails />
+      <ProductDetails product={product} />
       <ProductInfo />
       <div
         className="flex flex-col gap-4 pb-16 px-4 md:px-16 lg:px-32 xl:px-64 "
