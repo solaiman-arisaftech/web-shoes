@@ -5,8 +5,12 @@ import ProductDetails from "@/components/products/productDetails";
 import ProductInfo from "@/components/products/productInfo";
 import ReviewCard from "@/components/customer-reviews/reviewCard";
 import SimpleSlider from "@/components/products/test";
-const pageDetails = ({ params }: any) => {
-  console.log("params", params.product);
+import { useSearchParams } from "next/navigation";
+const PageDetails = ({ params }: any) => {
+  console.log("params", params.product, params);
+  const router = useSearchParams();
+  console.log("query", router);
+
   // console.log(productData);
 
   const productDetail = productData.find((item) => item.id == params.product);
@@ -44,4 +48,4 @@ const pageDetails = ({ params }: any) => {
   );
 };
 
-export default pageDetails;
+export default PageDetails;

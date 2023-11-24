@@ -16,6 +16,10 @@ export const productData = [
     tittle: "Adidas NMD R1",
     desc: "These breathable sneakers from Adidas are inspired by the trends of the '80s kid's.",
     price: "300.99",
+    sizes: {
+      40: 5,
+      41: 10,
+    },
   },
   {
     id: 4,
@@ -58,5 +62,18 @@ export const productData = [
     tittle: "Nike Tanjun",
     desc: "The Tanjun, which gets its name from the Japanese word for 'simplicity,' comes in a variety of colors.",
     price: "1000.99",
+  },
+];
+
+export const methodData = [
+  {
+    id: 1,
+    company: "Fedex Delivery 1",
+    delivery: " 2-4days",
+  },
+  {
+    id: 2,
+    company: "Fedex Delivery 2",
+    delivery: " 3-7days",
   },
 ];

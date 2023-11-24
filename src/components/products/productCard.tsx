@@ -3,36 +3,38 @@ import React from "react";
 import Image from "next/image";
 import { useState, useContext, useRef } from "react";
 import img1 from "../../../public/resources/shoes3.png";
-// import { Rating } from "flowbite-react";
 import { Heart, Forward, Star } from "lucide-react";
 import { MyContext } from "@/app/context/myContext";
 import Link from "next/link";
 
 const ProductCard = ({ product, idIndexObject }: any) => {
   const { count, setCount, countWish, setWishCount } = useContext(MyContext);
-
+  
   const addToCart = (product: any) => {
     // Get existing cart items from local storage
     const existingCartItems = JSON.parse(
       localStorage.getItem("cartItems") || "[]"
+    
     );
+    console.log(existingCartItems)
     // Add the new product to the cart
     const updatedCartItems = [...existingCartItems, product];
+    console.log(updatedCartItems)
     // Save the updated cart items to local storage
-    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+    localStorage.setItem("cartListItems", JSON.stringify(updatedCartItems));
+    const existingCartListItems = JSON.parse(
+      localStorage.getItem("cartListItems") || "[]")
+      console.log(existingCartListItems)
   };
 
   const addToWish = (product: any) => {
-    // Get existing wish items from local storage
     const existingWishItems = JSON.parse(
       localStorage.getItem("wishItems") || "[]"
     );
-    // Add the new product to the wish
     const updatedWishItems = [...existingWishItems, product];
-    // Save the updated wish items to local storage
     localStorage.setItem("wishItems", JSON.stringify(updatedWishItems));
   };
-
+ 
   const handleCart = () => {
     addToCart(product);
     setCount(count + 1);
@@ -40,15 +42,16 @@ const ProductCard = ({ product, idIndexObject }: any) => {
   const handleWish = () => {
     addToWish(product);
     setWishCount(countWish + 1);
+  
   };
-  const myPageProps = {
-    handleCartProps: handleCart,
-  };
+  
+ 
+
   return (
     <div className="group w-full  md:w-[96%] my-3 border-2 flex flex-col items-center rounded-lg shadow-purple shadow-md bg-white py-5 ">
       <div className="flex flex-col absolute self-start mx-4 mt-4 gap-2  -translate-x-4 invisible group-hover:visible group-hover:translate-x-1 duration-75 delay-75">
         <Heart
-          className="stroke-none fill-black hover:fill-NeonPink border-2 p-2 rounded-md cursor-pointer"
+          className={` stroke-none fill-black hover:fill-NeonPink border-2 p-2 rounded-md cursor-pointer  `}
           width={45}
           height={45}
           onClick={handleWish}
@@ -60,10 +63,11 @@ const ProductCard = ({ product, idIndexObject }: any) => {
         />
       </div>
       <div className=" w-1/2 p-4 group-hover:translate-y-1 group-hover:scale-125 duration-300 ">
+        {/* <Link href={`/${product.id}`}> */}
         <Link
           href={{
             pathname: `/${product.id}`,
-            // query: { product },
+            query: { slug: "my-post" },
           }}
         >
           <Image
@@ -86,7 +90,6 @@ const ProductCard = ({ product, idIndexObject }: any) => {
         </div>
         <button
           className="w-1/2  rounded self-center text-center text-white p-2 bg-gradient-to-r from-NeonPink to-purple hover:-translate-y-1 hover:scale-110 duration-200"
-          // onClick={handleAddToCart}
           onClick={handleCart}
         >
           Add to cart

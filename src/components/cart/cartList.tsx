@@ -8,11 +8,10 @@ import Link from "next/link";
 import { MyContext } from "@/app/context/myContext";
 
 const CartList = ({ toggleCart, setIsCartOpen }: any) => {
- 
-  const { count, setCount } = useContext(MyContext);  
+  const { count, setCount } = useContext(MyContext);
   // Get cart items from local storage
   const [cartItems, setCartItems] = React.useState(
-    JSON.parse(localStorage.getItem('cartItems') || '[]')
+    JSON.parse(localStorage.getItem("cartItems") || "[]")
   );
   const removeFromCart = (index: number) => {
     // Remove the item at the specified index from the cart
@@ -20,10 +19,9 @@ const CartList = ({ toggleCart, setIsCartOpen }: any) => {
     updatedCartItems.splice(index, 1);
 
     // Update local storage and state
-    localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
     setCartItems(updatedCartItems);
   };
-
 
   useEffect(() => {
     try {
@@ -38,28 +36,29 @@ const CartList = ({ toggleCart, setIsCartOpen }: any) => {
     setScore(score + 1);
   };
 
-
   return (
-    <div className=" bg-slate-100 w-full md:w-auto absolute mt-14 flex flex-col items-center shadow-md shadow-slate-300 border-purple z-40">
+    <div className=" bg-slate-100 w-full md:w-auto fixed mt-14 flex flex-col items-center shadow-md shadow-slate-300 border-purple z-40">
       <div className="bg-gradient-to-r from-NeonPink to-purple text-white text-lg font-bold w-full justify-center text-center py-1">
         Selected item list
       </div>
-      {/* <div className="bg-slate-300 w-full">
-        {productData?.map((product: any) => (
-          <CartDetails key={product.id} product={product} />
-        ))}
-      </div> */}
+
       {/* <div>
         <div>Total item = {score}</div>
         <button onClick={increaseScore}>increase score</button>
       </div> */}
-      <div className="bg-slate-300 w-full">
-        
+      <div className="bg-slate-100 w-full">
         {cartItems.length > 0 ? (
           <ul>
-            {cartItems.map((product: any, index: number) => (
+            {cartItems.map((product: any, index: number, totalPrice:number) => (
               <li key={index}>
-                 <CartDetails key={product.id} product={product} remove={() => {removeFromCart(index), setCount(count-1)}} />
+                
+                <CartDetails
+                  key={product.id}
+                  product={product}
+                  remove={() => {
+                    removeFromCart(index), setCount(count - 1);
+                  }}
+                />
               </li>
             ))}
           </ul>
@@ -77,7 +76,7 @@ const CartList = ({ toggleCart, setIsCartOpen }: any) => {
         </div>
 
         <div className="bg-gradient-to-r from-NeonPink to-purple text-white w-1/2 text-center text-lg py-1">
-          $1024.99{" "}
+         Total price: $1024.99{" "}
         </div>
       </div>
     </div>

@@ -8,25 +8,28 @@ import CartList from "../cart/cartList";
 import { MyContext } from "@/app/context/myContext";
 const Navbar = () => {
   const [activeMenu, setActiveMenu] = useState(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const selectedMenu = (id: any) => {
     setActiveMenu(id);
   };
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  // const [isCartOpen, setIsCartOpen] = useState(false);
-
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
   };
-  const { count, setCount, countWish, setWishCount } = useContext(MyContext);
-  const { isCartOpen, setIsCartOpen } = useContext(MyContext);
-  console.log("Nav ", count);
-  console.log(isCartOpen);
+  const {
+    count,
+    setCount,
+    countWish,
+    setWishCount,
+    isCartOpen,
+    setIsCartOpen,
+  } = useContext(MyContext);
+
   return (
     <>
-      <nav className="w-full bg-white h-14 flex justify-between items-center shadow-lg px-4 mx-auto md:px-64 fixed z-50 ">
+      <nav className="w-full bg-white h-14 flex justify-between items-center shadow-lg px-4 mx-auto md:px-64 fixed z-50  ">
         <Link href={"/"} className="text-NeonPink font-extrabold text-4xl">
           Shoe
           <span>
@@ -160,7 +163,7 @@ const Navbar = () => {
         </ul>
       </div> */}
       </nav>
-      <div className="flex justify-end">
+      <div className="flex justify-end ">
         {isCartOpen && (
           <CartList toggleCart={toggleCart} setIsCartOpen={setIsCartOpen} />
         )}

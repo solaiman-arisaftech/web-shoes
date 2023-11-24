@@ -1,17 +1,18 @@
+'use client'
 import CartDetails from "@/components/cart/cartDetails";
-import React from "react";
+import React, {useState} from "react";
 import CheckoutCard from "./checkoutCard";
 import MethodCard from "./methodCard";
-
+import { methodData } from "../lib/data";
 
 const page = () => {
 
 
+  
 
-
-
+  
   return (
-    <section className="w-full flex flex-col  px-4 md:px-16 lg:px-32 xl:px-64 bg-white mt-14 ">
+    <section className="w-full flex flex-col py-48  px-4 md:px-16 lg:px-32 xl:px-64 bg-white mt-14 ">
       <div className="flex justify-between p-4 bg-fuchsia-200">
         <div>Checkout</div>
         <div className="flex gap-4">
@@ -29,16 +30,16 @@ const page = () => {
             </div>
           </div>
           <div className="border-1 rounded-lg border-slate-200 p-4">
-            <CheckoutCard/>
-            <CheckoutCard/>
-
-           
+            <CheckoutCard />
+            <CheckoutCard />
+            
           </div>
           <div className="flex flex-col gap-2">
             <div className="font-bold">Shipping methods</div>
             <div className="flex flex-col gap-4">
-              <MethodCard/>
-              <MethodCard/>
+              {methodData.map((method: any) => (
+                <MethodCard key={method.id} method={method} />
+              ))}
             </div>
           </div>
         </div>

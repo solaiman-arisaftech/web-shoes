@@ -4,7 +4,7 @@ import WishListCard from "./wishListCard";
 import PaginationCard from "@/components/pagination/paginations";
 import { MyContext } from "@/app/context/myContext";
 
-const Page = (product:any) => {
+const Page = (product: any) => {
   const { countWish, setWishCount } = useContext(MyContext);
 
   // Get wish items from local storage
@@ -19,6 +19,7 @@ const Page = (product:any) => {
     // Update local storage and state
     localStorage.setItem("wishItems", JSON.stringify(updatedWishItems));
     setWishItems(updatedWishItems);
+    
   };
 
   return (
@@ -34,7 +35,7 @@ const Page = (product:any) => {
           {wishItems.length > 0 ? (
             <ul>
               {wishItems.map((product: any, index: number) => (
-                <li key={index} >
+                <li key={index}>
                   <WishListCard
                     key={product.id}
                     product={product}
@@ -46,7 +47,9 @@ const Page = (product:any) => {
               ))}
             </ul>
           ) : (
-            <p className="w-full px-48 py-48 text-center">Your wish list is empty.</p>
+            <p className="w-full px-48 py-48 text-center">
+              Your wish list is empty.
+            </p>
           )}
         </div>
       </div>
