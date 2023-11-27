@@ -5,6 +5,7 @@ import Link from "next/link";
 import ProductCard from './../../components/products/productCard';
 import Products from "@/components/products/products";
 import PaginationCard from "@/components/pagination/paginations";
+
 const AllProducts = () => {
    
     

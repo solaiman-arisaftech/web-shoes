@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { useState } from "react";
 import Link from "next/link";
 import { User2, ShoppingCart, Heart, Menu } from "lucide-react";
@@ -16,17 +16,23 @@ const Navbar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
   const toggleCart = () => {
-    setIsCartOpen(!isCartOpen);
+    console.log("Clicked");
+    console.log("REf ", buttRef.current?.contains)
+    setIsCartOpen( (prev: boolean) => !prev);
   };
   const {
-    count,
-    setCount,
+    countCartItems,
+    setCountCartItems,
     countWish,
     setWishCount,
     isCartOpen,
     setIsCartOpen,
   } = useContext(MyContext);
 
+  useEffect(() => {
+    console.log("navbar effect ", countCartItems);
+  }, [countCartItems, isCartOpen]);
+  const buttRef = useRef<any>(null)
   return (
     <>
       <nav className="w-full bg-white h-14 flex justify-between items-center shadow-lg px-4 mx-auto md:px-64 fixed z-50  ">
@@ -93,13 +99,13 @@ const Navbar = () => {
               {countWish}
             </sup>
           </Link>
-          <div className="flex gap-2">
+          <div className="flex gap-2"  onClick={toggleCart}>
             <ShoppingCart
               className="stroke-black stroke-2 fill-black hover:fill-NeonPink hover:stroke-NeonPink cursor-pointer"
-              onClick={toggleCart}
+              ref={buttRef}
             />
             <sup className="pt-2 -ml-4 bg-red-500 text-white mb-2 px-1 py-1 rounded-full">
-              {count}
+              {countCartItems}
             </sup>
           </div>
           <Link href="#login">
@@ -109,18 +115,20 @@ const Navbar = () => {
         </div>
 
         <div className="md:hidden  flex items-center gap-2">
-          <div className="flex gap-1">
+          <div className="flex gap-1" >
             <ShoppingCart
               className="stroke-black stroke-2 fill-black hover:fill-NeonPink hover:stroke-NeonPink cursor-pointer"
               onClick={toggleCart}
+              
             />
             <sup className="pt-2 -ml-3 bg-red-500 text-white mb-2 px-1 py-1 rounded-full">
-              {count}
+              {countCartItems}
             </sup>
           </div>
           <button
             className="outline-none mobile-menu-button"
             onClick={toggleMobileMenu}
+            
           >
             <Menu
               className={`w-6 h-6 text-gray-500 fill-none stroke-current ${
@@ -165,7 +173,7 @@ const Navbar = () => {
       </nav>
       <div className="flex justify-end ">
         {isCartOpen && (
-          <CartList toggleCart={toggleCart} setIsCartOpen={setIsCartOpen} />
+          <CartList toggleCart={toggleCart} setIsCartOpen={setIsCartOpen} buttRef={buttRef}/>
         )}
         {/* {!isCartOpen && <CartList toggleCart={setIsCartOpen(false)}  />} */}
       </div>

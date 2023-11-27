@@ -5,7 +5,7 @@ import PaginationCard from "@/components/pagination/paginations";
 import { MyContext } from "@/app/context/myContext";
 
 const Page = (product: any) => {
-  const { countWish, setWishCount } = useContext(MyContext);
+  const { countWish, setWishCount, disable, setDisable } = useContext(MyContext);
 
   // Get wish items from local storage
   const [wishItems, setWishItems] = React.useState(
@@ -19,7 +19,7 @@ const Page = (product: any) => {
     // Update local storage and state
     localStorage.setItem("wishItems", JSON.stringify(updatedWishItems));
     setWishItems(updatedWishItems);
-    
+    setDisable(!disable) 
   };
 
   return (

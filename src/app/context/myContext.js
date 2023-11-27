@@ -4,11 +4,21 @@ import React, { createContext, useState, useEffect, ReactNode } from "react";
 const MyContext = createContext();
 
 const ContextProvider = ({ children }) => {
+
+  const existingCartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
+  const cartItemslength=existingCartItems.length
+
+  const existingWishItems = JSON.parse(localStorage.getItem("wishItems") || "[]");
+  const wishItemslength=existingWishItems.length
+
+  
   const [isCartOpen, setIsCartOpen] = useState(false);
   //handle add to cart and count
   const [count, setCount] = useState(0);
-  const [countWish, setWishCount] = useState(0);
+  const [countWish, setWishCount] = useState(wishItemslength);
   const [cartData, setCartData] = useState([]);
+  const [countCartItems, SetCountCartItems]=useState(cartItemslength)
+  const [disable, setDisable] = useState(false);
 
   return (
     <MyContext.Provider
@@ -21,6 +31,10 @@ const ContextProvider = ({ children }) => {
         setCartData,
         countWish,
         setWishCount,
+        countCartItems, 
+        SetCountCartItems,
+        disable, 
+        setDisable
       }}
     >
       {children}

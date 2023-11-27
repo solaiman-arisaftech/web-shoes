@@ -6,56 +6,54 @@ import img1 from "../../../public/resources/shoes3.png";
 import { Heart, Forward, Star } from "lucide-react";
 import { MyContext } from "@/app/context/myContext";
 import Link from "next/link";
+import { dataType } from "@/app/lib/dataType";
 
-const ProductCard = ({ product, idIndexObject }: any) => {
-  const { count, setCount, countWish, setWishCount } = useContext(MyContext);
+const ProductCard = (product: dataType, idIndexObject: any) => {
+  const { countCartItems, setCountCartItems, countWish, setWishCount, disable, setDisable } = useContext(MyContext);
   
-  const addToCart = (product: any) => {
+  
+
+  const addToCart = (product: dataType) => {
     // Get existing cart items from local storage
     const existingCartItems = JSON.parse(
       localStorage.getItem("cartItems") || "[]"
-    
     );
-    console.log(existingCartItems)
     // Add the new product to the cart
     const updatedCartItems = [...existingCartItems, product];
-    console.log(updatedCartItems)
     // Save the updated cart items to local storage
-    localStorage.setItem("cartListItems", JSON.stringify(updatedCartItems));
-    const existingCartListItems = JSON.parse(
-      localStorage.getItem("cartListItems") || "[]")
-      console.log(existingCartListItems)
+    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+    
   };
 
-  const addToWish = (product: any) => {
+  const addToWish = (product: dataType) => {
     const existingWishItems = JSON.parse(
       localStorage.getItem("wishItems") || "[]"
     );
     const updatedWishItems = [...existingWishItems, product];
     localStorage.setItem("wishItems", JSON.stringify(updatedWishItems));
   };
- 
+
   const handleCart = () => {
     addToCart(product);
-    setCount(count + 1);
+    setCountCartItems(countCartItems + 1);
+
   };
   const handleWish = () => {
     addToWish(product);
     setWishCount(countWish + 1);
-  
+    setDisable(true)
   };
-  
- 
 
   return (
     <div className="group w-full  md:w-[96%] my-3 border-2 flex flex-col items-center rounded-lg shadow-purple shadow-md bg-white py-5 ">
       <div className="flex flex-col absolute self-start mx-4 mt-4 gap-2  -translate-x-4 invisible group-hover:visible group-hover:translate-x-1 duration-75 delay-75">
-        <Heart
-          className={` stroke-none fill-black hover:fill-NeonPink border-2 p-2 rounded-md cursor-pointer  `}
+         <Heart
+          className={` stroke-none fill-black hover:fill-NeonPink border-2 p-2 rounded-md cursor-pointer`}
           width={45}
           height={45}
           onClick={handleWish}
         />
+       
         <Forward
           className="stroke-fill stroke-2 stroke-black hover:stroke-NeonPink border-2 p-2 rounded-md"
           width={45}
