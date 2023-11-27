@@ -12,7 +12,7 @@ const Products = () => {
     // const alldata = localStorage.setItem('productData', JSON.stringify(productData)) 
     // console.log(localStorage.setItem('productData', JSON.stringify(productData)) )
     // console.log(localStorage.getItem('productData'))
-  
+
   return (
     <section
       className="w-full flex flex-col py-16 px-4 md:px-16 lg:px-32 xl:px-64 gap-8 bg-white"

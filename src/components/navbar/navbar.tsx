@@ -18,7 +18,9 @@ const Navbar = () => {
   const toggleCart = () => {
     console.log("Clicked");
     console.log("REf ", buttRef.current?.contains)
+    console.log("first ", isCartOpen)
     setIsCartOpen( (prev: boolean) => !prev);
+    console.log("last ", isCartOpen)
   };
   const {
     countCartItems,
@@ -29,9 +31,9 @@ const Navbar = () => {
     setIsCartOpen,
   } = useContext(MyContext);
 
-  useEffect(() => {
-    console.log("navbar effect ", countCartItems);
-  }, [countCartItems, isCartOpen]);
+  // useEffect(() => {
+  //   console.log("navbar effect ", countCartItems);
+  // }, [countCartItems, isCartOpen]);
   const buttRef = useRef<any>(null)
   return (
     <>
@@ -138,46 +140,15 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* <div
-        className={`md:hidden mobile-menu mt-64 ${isMobileMenuOpen ? "" : "hidden"}`}
-      >
-        <ul className="flex flex-col gap-4 border-2 w-full ">
-          <li className="active   ">
-            <Link href="index.html" className=" hover:stroke-NeonPink">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link href="#services" className="block hover:stroke-NeonPink">
-              Products
-            </Link>
-          </li>
-
-          <li className="hover:stroke-NeonPink">
-            <Link href="#contact" className="block  hover:stroke-NeonPink">
-              About
-            </Link>
-          </li>
-          <li>
-            <Link href="" className="block  hover:stroke-NeonPink">
-              Review
-            </Link>
-          </li>
-          <li>
-            <Link href="" className="block  hover:stroke-NeonPink">
-              Services
-            </Link>
-          </li>
-        </ul>
-      </div> */}
+     
       </nav>
       <div className="flex justify-end ">
         {isCartOpen && (
-          <CartList toggleCart={toggleCart} setIsCartOpen={setIsCartOpen} buttRef={buttRef}/>
+          <CartList toggleCart={toggleCart} buttRef={buttRef}/>
         )}
-        {/* {!isCartOpen && <CartList toggleCart={setIsCartOpen(false)}  />} */}
+       
       </div>
-      {/* <div className="flex items-end"><div><CartList/></div></div> */}
+   
     </>
   );
 };

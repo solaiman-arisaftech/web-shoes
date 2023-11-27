@@ -4,10 +4,11 @@ import React, {useState} from "react";
 import CheckoutCard from "./checkoutCard";
 import MethodCard from "./methodCard";
 import { methodData } from "../lib/data";
+import { dataType } from "../lib/dataType";
 
 const page = () => {
 
-
+  const existingCartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
   
 
   
@@ -29,10 +30,26 @@ const page = () => {
               Check your items. And select a suitable shipping method.
             </div>
           </div>
-          <div className="border-1 rounded-lg border-slate-200 p-4">
-            <CheckoutCard />
-            <CheckoutCard />
-            
+          <div className="border-1 rounded-lg border-slate-200 p-2">
+            {/* <CheckoutCard />
+            <CheckoutCard /> */}
+            {existingCartItems.length > 0 ? (
+          <ul className="flex flex-col gap-2">
+            {existingCartItems.map(
+              (product: dataType, index: number, totalPrice: number) => (
+                <li key={index}>
+                  <CheckoutCard
+                    key={product.id}
+                    {...product}
+                   
+                  />
+                </li>
+              )
+            )}
+          </ul>
+        ) : (
+          <p className="w-full px-36 py-64">Your cart is empty.</p>
+        )}
           </div>
           <div className="flex flex-col gap-2">
             <div className="font-bold">Shipping methods</div>

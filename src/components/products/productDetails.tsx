@@ -10,8 +10,10 @@ import red_img4 from "../../../public/resources/red_shoes4.png";
 import { Heart, Forward, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { productData } from "@/app/lib/data";
+import { dataType } from "@/app/lib/dataType";
 
-const ProductDetails = ({ tittle, desc, price }: any) => {
+const ProductDetails = ({ tittle, desc, price, sizes }: any) => {
   const [selectedDiv, setSelectedDiv] = useState(null);
   const selectDiv = (id: any) => {
     setSelectedDiv(id);
@@ -30,6 +32,8 @@ const ProductDetails = ({ tittle, desc, price }: any) => {
   const increase = () => {
     setCount(count + 1);
   };
+
+  console.log("data ", productData)
 
   return (
     <div className="flex flex-col  bg-white gap-10 py-28 px-8 md:px-16 lg:px-32 xl:px-64">
@@ -134,15 +138,25 @@ const ProductDetails = ({ tittle, desc, price }: any) => {
           <div>
             <div className="font-bold">Available Size</div>
             <div className="flex gap-2">
-              <div
-                className={`cursor-pointer border-1 p-1 text-xs px-2 rounded ${
-                  selectedDiv === 1 ? "bg-NeonPink text-white" : "bg-gray-200"
-                }`}
-                onClick={() => selectDiv(1)}
-              >
-                39
-              </div>
-              <div
+              {sizes.map((data: any) => (
+                <div key={data}
+                  className={`cursor-pointer border-1 p-1 text-xs px-2 rounded ${
+                    selectedDiv === 1 ? "bg-NeonPink text-white" : "bg-gray-200"
+                  }`}
+                  onClick={() => selectDiv(1)}
+                >
+                  {/* {data.sizes.map((d: any) => (
+                    
+                    <div>{d}</div>
+                    
+                  ))} */}
+                 
+                  
+                  
+                </div>
+              ))}
+
+              {/* <div
                 className={`cursor-pointer border-1 p-1 text-xs px-2 rounded ${
                   selectedDiv === 2 ? "bg-NeonPink text-white" : "bg-gray-200"
                 }`}
@@ -181,10 +195,10 @@ const ProductDetails = ({ tittle, desc, price }: any) => {
                 onClick={() => selectDiv(6)}
               >
                 44
-              </div>
+              </div> */}
             </div>
           </div>
-          <div className="hover:bg-NeonPink text-NeonPink font-bold hover:text-white  text-center rounded-2xl border-2 border-NeonPink py-1 cursor-pointer" >
+          <div className="hover:bg-NeonPink text-NeonPink font-bold hover:text-white  text-center rounded-2xl border-2 border-NeonPink py-1 cursor-pointer">
             Add to Cart
           </div>
           <div className="bg-NeonPink text-white font-bold text-center rounded-2xl py-1 cursor-pointer">

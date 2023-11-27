@@ -7,19 +7,30 @@ import CartDetails from "./cartDetails";
 import Link from "next/link";
 import { MyContext } from "@/app/context/myContext";
 
-const CartList = ({ toggleCart, setIsCartOpen, buttRef }: any) => {
+const CartList = ({toggleCart, buttRef}: any) => {
   const outsideDitectRef = useRef<HTMLInputElement>(null);
+const {setIsCartOpen, isCartOpen} = useContext(MyContext)
 
-  useEffect(() => {
+useEffect(() => {
+    
     const handleOutSideClick = (event: any) => {
-      if (buttRef.current?.contains(event.target)) {
-        toggleCart();
-      } else {
-        if (!outsideDitectRef.current?.contains(event.target)) {
+    
+        if (buttRef.current?.contains(event.target)) {
+        toggleCart()
+        setIsCartOpen(true)
+          console.log("both butt", isCartOpen);
+        } else if (!outsideDitectRef.current?.contains(event.target)) {
           toggleCart();
-          console.log("Outside Clicked. ");
+          // setIsCartOpen(true)
+          // console.log("outside ")
+        } else if(buttRef.current?.contains(event.target)) {
+          console.log("on butt")
+          // setIsCartOpen(true)
+          // toggleCart()
+        } else {
+          console.log("nothing")
         }
-      }
+      
     };
 
     window.addEventListener("mousedown", handleOutSideClick);
@@ -27,7 +38,9 @@ const CartList = ({ toggleCart, setIsCartOpen, buttRef }: any) => {
     return () => {
       window.removeEventListener("mousedown", handleOutSideClick);
     };
-  }, [outsideDitectRef, toggleCart, buttRef]);
+  }, [isCartOpen, buttRef, toggleCart, setIsCartOpen]);
+
+  
 
   const { countCartItems, setCountCartItems } = useContext(MyContext);
   // Get cart items from local storage
@@ -64,6 +77,7 @@ const CartList = ({ toggleCart, setIsCartOpen, buttRef }: any) => {
         {cartItems.length > 0 ? (
           <ul>
             {cartItems.map(
+              
               (product: any, index: number, totalPrice: number) => (
                 <li key={index}>
                   <CartDetails
@@ -96,6 +110,7 @@ const CartList = ({ toggleCart, setIsCartOpen, buttRef }: any) => {
         </div>
       </div>
     </div>
+  // <><div className="text-black">Hello</div></>
   );
 };
 
