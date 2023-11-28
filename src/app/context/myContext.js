@@ -1,5 +1,6 @@
 "use client";
 import React, { createContext, useState, useEffect, ReactNode } from "react";
+import { productData } from "../lib/data";
 
 const MyContext = createContext();
 
@@ -11,7 +12,7 @@ const ContextProvider = ({ children }) => {
   const existingWishItems = JSON.parse(localStorage.getItem("wishItems") || "[]");
   const wishItemslength=existingWishItems.length
 
-  
+  const quantityToAdd = 1;
   const [isCartOpen, setIsCartOpen] = useState(false);
   //handle add to cart and count
   const [count, setCount] = useState(0);
@@ -19,6 +20,26 @@ const ContextProvider = ({ children }) => {
   const [cartData, setCartData] = useState([]);
   const [countCartItems, setCountCartItems]=useState(cartItemslength)
   const [disable, setDisable] = useState(false);
+  const [quantityCount, setQuantityCount] = useState(1);
+  
+  
+  const addToCart = (product, id) => {
+    // Get existing cart items from local storage
+    console.log("product ", product)
+    const existingCartItems = JSON.parse(
+      localStorage.getItem("cartItems") || "[]"
+    );
+    const existingProductIndex= existingCartItems.findIndex((item)=>item.id === product.id)
+      if(existingProductIndex !== -1){
+        existingCartItems[existingProductIndex].quantity +=1
+      }
+      else{
+        existingCartItems.push({...product, quantity:1})
+      }
+    localStorage.setItem("cartItems", JSON.stringify(existingCartItems));
+   
+  };
+  
 
   return (
     <MyContext.Provider
@@ -34,7 +55,12 @@ const ContextProvider = ({ children }) => {
         countCartItems, 
         setCountCartItems,
         disable, 
-        setDisable
+        setDisable,
+        quantityCount,
+        setQuantityCount,
+        quantityToAdd,
+       
+        addToCart
       }}
     >
       {children}

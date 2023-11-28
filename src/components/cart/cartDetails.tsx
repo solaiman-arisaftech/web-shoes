@@ -3,11 +3,12 @@ import React, { useState, useContext } from "react";
 import img1 from "../../../public/resources/shoes1.png";
 import Image from "next/image";
 import { XCircle } from "lucide-react";
+import { MyContext } from "@/app/context/myContext";
 
 const CartDetails = ({ title, desc, price, remove, idIndexObject }: any) => {
   console.log("product", title);
 
-  const [quantityCount, setQuantityCount] = useState(1);
+  const {quantityCount, setQuantityCount, quantityToAdd} = useContext(MyContext)
 
   const decrease = () => {
     if (quantityCount == 0) {
@@ -38,7 +39,7 @@ const CartDetails = ({ title, desc, price, remove, idIndexObject }: any) => {
         </button>
         <input
           className="outline-none focus:outline-none text-center text-sm w-16 bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700 "
-          value={quantityCount}
+          value={quantityToAdd}
         ></input>
         <button
           onClick={increase}
@@ -48,7 +49,7 @@ const CartDetails = ({ title, desc, price, remove, idIndexObject }: any) => {
         </button>
       </div>
       <div className="w-20 text-center text-sm overflow-hidden ">
-        ${price * quantityCount}
+        ${price * quantityToAdd}
       </div>
       <div className=" cursor-pointer " onClick={remove}>
         <XCircle className="fill-red-500 stroke-white hover:-translate-y-1 hover:scale-125 duration-300" />

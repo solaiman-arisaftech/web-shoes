@@ -7,23 +7,11 @@ import { Heart, Forward, Star } from "lucide-react";
 import { MyContext } from "@/app/context/myContext";
 import Link from "next/link";
 import { dataType } from "@/app/lib/dataType";
+import { productData } from "@/app/lib/data";
 
-const ProductCard = (product: dataType, idIndexObject: any) => {
-  const { countCartItems, setCountCartItems, countWish, setWishCount, disable, setDisable } = useContext(MyContext);
+const ProductCard = (productData: dataType, idIndexObject: any) => {
+  const {quantityCount, setQuantityCount, countCartItems, setCountCartItems, countWish, setWishCount, disable, setDisable, addToCart } = useContext(MyContext);
   
-  
-
-  const addToCart = (product: dataType) => {
-    // Get existing cart items from local storage
-    const existingCartItems = JSON.parse(
-      localStorage.getItem("cartItems") || "[]"
-    );
-    // Add the new product to the cart
-    const updatedCartItems = [...existingCartItems, product];
-    // Save the updated cart items to local storage
-    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
-    
-  };
 
   const addToWish = (product: dataType) => {
     const existingWishItems = JSON.parse(
@@ -32,14 +20,14 @@ const ProductCard = (product: dataType, idIndexObject: any) => {
     const updatedWishItems = [...existingWishItems, product];
     localStorage.setItem("wishItems", JSON.stringify(updatedWishItems));
   };
-
+  // const quantityToAdd: number = 1;
   const handleCart = () => {
-    addToCart(product);
+    addToCart(productData);
     setCountCartItems(countCartItems + 1);
 
   };
   const handleWish = () => {
-    addToWish(product);
+    addToWish(productData);
     setWishCount(countWish + 1);
     setDisable(true)
   };
@@ -64,7 +52,7 @@ const ProductCard = (product: dataType, idIndexObject: any) => {
         {/* <Link href={`/${product.id}`}> */}
         <Link
           href={{
-            pathname: `/${product.id}`,
+            pathname: `/${productData.id}`,
             query: { slug: "my-post" },
           }}
         >
@@ -76,9 +64,9 @@ const ProductCard = (product: dataType, idIndexObject: any) => {
         </Link>
       </div>
       <div className=" flex flex-col p-4 gap-4">
-        <div className="text-center text-3xl font-bold">{product.title}</div>
-        <div className="text-center text-slate-500">{product.desc}</div>
-        <div className="text-center font-bold text-lg">${product.price}</div>
+        <div className="text-center text-3xl font-bold">{productData.title}</div>
+        <div className="text-center text-slate-500">{productData.desc}</div>
+        <div className="text-center font-bold text-lg">${productData.price}</div>
         <div className="flex self-center ">
           <Star className="fill-amber-500 stroke-none " size={20} />
           <Star className="fill-amber-500 stroke-none " size={20} />

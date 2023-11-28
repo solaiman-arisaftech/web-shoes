@@ -15,7 +15,7 @@ import { dataType } from "@/app/lib/dataType";
 import { MyContext } from "@/app/context/myContext";
 import { useSearchParams } from "next/navigation";
 
-const ProductDetails = ({ title, desc, price, sizes, params }: any) => {
+const ProductDetails = ({ id, title, desc, price, sizes, params }: any) => {
   const {
     countCartItems,
     setCountCartItems,
@@ -23,6 +23,7 @@ const ProductDetails = ({ title, desc, price, sizes, params }: any) => {
     setWishCount,
     disable,
     setDisable,
+    addToCart
   } = useContext(MyContext);
   const [selectedDiv, setSelectedDiv] = useState(null);
   const [stock, setStock] = useState(true);
@@ -47,6 +48,21 @@ const ProductDetails = ({ title, desc, price, sizes, params }: any) => {
   useEffect(() => {
     console.log(setStock);
   }, [stock]);
+
+  // const handleCart = () => {
+  //   addToCart(product)
+  //     productData.map((product:any)=>{
+  //       if(product.id===id){
+  //        return {...product}
+          
+  //       }
+  //     })
+  //   });
+  //   setCountCartItems(countCartItems + 1);
+
+  // };
+
+
 
   return (
     <div className="flex flex-col  bg-white gap-10 py-28 px-8 md:px-16 lg:px-32 xl:px-64">
@@ -185,6 +201,7 @@ const ProductDetails = ({ title, desc, price, sizes, params }: any) => {
                 ? "hover:bg-NeonPink text-NeonPink  hover:text-white  cursor-pointer"
                 : "bg-slate-300 border-slate-300 text-white border-2 cursor-not-allowed "
             } `}
+            // onClick={handleCart}
             // onClick={handleCart}
           >
             Add to Cart
