@@ -2,9 +2,9 @@
 
 export type dataType = {
     id: number,
-    tittle: string,
+    title: string,
     desc: string,
     price: number,
-    // Size: string,
+    // Size: number,
     // stock:number
   }

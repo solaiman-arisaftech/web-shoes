@@ -17,7 +17,7 @@ const ContextProvider = ({ children }) => {
   const [count, setCount] = useState(0);
   const [countWish, setWishCount] = useState(wishItemslength);
   const [cartData, setCartData] = useState([]);
-  const [countCartItems, SetCountCartItems]=useState(cartItemslength)
+  const [countCartItems, setCountCartItems]=useState(cartItemslength)
   const [disable, setDisable] = useState(false);
 
   return (
@@ -32,7 +32,7 @@ const ContextProvider = ({ children }) => {
         countWish,
         setWishCount,
         countCartItems, 
-        SetCountCartItems,
+        setCountCartItems,
         disable, 
         setDisable
       }}

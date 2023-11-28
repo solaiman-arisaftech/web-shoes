@@ -7,30 +7,27 @@ import CartDetails from "./cartDetails";
 import Link from "next/link";
 import { MyContext } from "@/app/context/myContext";
 
-const CartList = ({toggleCart, buttRef}: any) => {
+const CartList = ({ toggleCart, buttRef }: any) => {
   const outsideDitectRef = useRef<HTMLInputElement>(null);
-const {setIsCartOpen, isCartOpen} = useContext(MyContext)
+  const { setIsCartOpen, isCartOpen } = useContext(MyContext);
 
-useEffect(() => {
-    
+  useEffect(() => {
     const handleOutSideClick = (event: any) => {
-    
-        if (buttRef.current?.contains(event.target)) {
-        toggleCart()
-        setIsCartOpen(true)
-          console.log("both butt", isCartOpen);
-        } else if (!outsideDitectRef.current?.contains(event.target)) {
-          toggleCart();
-          // setIsCartOpen(true)
-          // console.log("outside ")
-        } else if(buttRef.current?.contains(event.target)) {
-          console.log("on butt")
-          // setIsCartOpen(true)
-          // toggleCart()
-        } else {
-          console.log("nothing")
-        }
-      
+      if (buttRef.current?.contains(event.target)) {
+        toggleCart();
+        setIsCartOpen(true);
+        console.log("both butt", isCartOpen);
+      } else if (!outsideDitectRef.current?.contains(event.target)) {
+        toggleCart();
+        // setIsCartOpen(true)
+        // console.log("outside ")
+      } else if (buttRef.current?.contains(event.target)) {
+        console.log("on butt");
+        // setIsCartOpen(true)
+        // toggleCart()
+      } else {
+        console.log("nothing");
+      }
     };
 
     window.addEventListener("mousedown", handleOutSideClick);
@@ -40,13 +37,12 @@ useEffect(() => {
     };
   }, [isCartOpen, buttRef, toggleCart, setIsCartOpen]);
 
-  
-
   const { countCartItems, setCountCartItems } = useContext(MyContext);
   // Get cart items from local storage
   const [cartItems, setCartItems] = React.useState(
     JSON.parse(localStorage.getItem("cartItems") || "[]")
   );
+  console.log("cartItems", cartItems);
   const removeFromCart = (index: number) => {
     // Remove the item at the specified index from the cart
     const updatedCartItems = [...cartItems];
@@ -68,28 +64,27 @@ useEffect(() => {
       <div className="bg-gradient-to-r from-NeonPink to-purple text-white text-lg font-bold w-full justify-center text-center py-1">
         Selected item list
       </div>
-
-      {/* <div>
-        <div>Total item = {score}</div>
-        <button onClick={increaseScore}>increase score</button>
-      </div> */}
+     
       <div className="bg-slate-100 w-full">
         {cartItems.length > 0 ? (
           <ul>
             {cartItems.map(
-              
-              (product: any, index: number, totalPrice: number) => (
-                <li key={index}>
-                  <CartDetails
-                    key={product.id}
-                    product={product}
-                    remove={() => {
-                      removeFromCart(index),
-                        setCountCartItems(countCartItems - 1);
-                    }}
-                  />
-                </li>
-              )
+              (product: any, index: number, totalPrice: number) => {
+                if (product !== null) {
+                  return (
+                    <li key={index}>
+                      <CartDetails
+                        key={product.id}
+                        {...product}
+                        remove={() => {
+                          removeFromCart(index),
+                            setCountCartItems(countCartItems - 1);
+                        }}
+                      />
+                    </li>
+                  );
+                }
+              }
             )}
           </ul>
         ) : (
@@ -110,7 +105,7 @@ useEffect(() => {
         </div>
       </div>
     </div>
-  // <><div className="text-black">Hello</div></>
+    // <><div className="text-black">Hello</div></>
   );
 };
 

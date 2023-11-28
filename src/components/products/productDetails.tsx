@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import red_img1 from "../../../public/resources/red_shoes1.png";
 import red_img2 from "../../../public/resources/red_shoes2.png";
@@ -12,9 +12,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { productData } from "@/app/lib/data";
 import { dataType } from "@/app/lib/dataType";
+import { MyContext } from "@/app/context/myContext";
+import { useSearchParams } from "next/navigation";
 
-const ProductDetails = ({ tittle, desc, price, sizes }: any) => {
+const ProductDetails = ({ title, desc, price, sizes, params }: any) => {
+  const {
+    countCartItems,
+    setCountCartItems,
+    countWish,
+    setWishCount,
+    disable,
+    setDisable,
+  } = useContext(MyContext);
   const [selectedDiv, setSelectedDiv] = useState(null);
+  const [stock, setStock] = useState(true);
   const selectDiv = (id: any) => {
     setSelectedDiv(id);
   };
@@ -33,7 +44,9 @@ const ProductDetails = ({ tittle, desc, price, sizes }: any) => {
     setCount(count + 1);
   };
 
-  console.log("data ", productData)
+  useEffect(() => {
+    console.log(setStock);
+  }, [stock]);
 
   return (
     <div className="flex flex-col  bg-white gap-10 py-28 px-8 md:px-16 lg:px-32 xl:px-64">
@@ -82,7 +95,7 @@ const ProductDetails = ({ tittle, desc, price, sizes }: any) => {
           <div className="text-base text-bold text-white bg-NeonPink rounded-2xl self-start items-center flex justify-center w-28 py-1">
             New Arrival
           </div>
-          <div className="text-3xl text-bold">{tittle}</div>
+          <div className="text-3xl text-bold">{title}</div>
 
           <div className="flex ">
             <Star className="fill-amber-500 stroke-none " size={20} />
@@ -98,8 +111,12 @@ const ProductDetails = ({ tittle, desc, price, sizes }: any) => {
             <div>{desc}</div>
           </div>
           <div className="flex flex-col gap-2">
-            <div className="bg-green-400 text-white w-24 flex justify-center rounded-xl ">
-              In Stock
+            <div
+              className={`w-24 flex justify-center rounded-xl  ${
+                stock ? "bg-green-400 text-white " : "bg-red-400 text-white "
+              }`}
+            >
+              {stock ? "In stock" : "Out of stock"}
             </div>
             <div className="flex flex-col md:flex-row gap-2">
               <div className="text-red-500 ">Ships from china. </div>
@@ -139,66 +156,37 @@ const ProductDetails = ({ tittle, desc, price, sizes }: any) => {
             <div className="font-bold">Available Size</div>
             <div className="flex gap-2">
               {sizes.map((data: any) => (
-                <div key={data}
+                <div
+                  key={data}
                   className={`cursor-pointer border-1 p-1 text-xs px-2 rounded ${
-                    selectedDiv === 1 ? "bg-NeonPink text-white" : "bg-gray-200"
+                    selectedDiv === data.size
+                      ? "bg-NeonPink text-white"
+                      : "bg-gray-200"
                   }`}
-                  onClick={() => selectDiv(1)}
+                  onClick={() => {
+                    selectDiv(data.size);
+
+                    if (data.stock <= 0) {
+                      setStock(false);
+                    } else {
+                      setStock(true);
+                    }
+                    console.log("stock ", stock, " data size ", data.stock);
+                  }}
                 >
-                  {/* {data.sizes.map((d: any) => (
-                    
-                    <div>{d}</div>
-                    
-                  ))} */}
-                 
-                  
-                  
+                  {data.size}
                 </div>
               ))}
-
-              {/* <div
-                className={`cursor-pointer border-1 p-1 text-xs px-2 rounded ${
-                  selectedDiv === 2 ? "bg-NeonPink text-white" : "bg-gray-200"
-                }`}
-                onClick={() => selectDiv(2)}
-              >
-                40
-              </div>
-              <div
-                className={`cursor-pointer border-1 p-1 text-xs px-2 rounded ${
-                  selectedDiv === 3 ? "bg-NeonPink text-white" : "bg-gray-200"
-                }`}
-                onClick={() => selectDiv(3)}
-              >
-                41
-              </div>
-              <div
-                className={`cursor-pointer border-1 p-1 text-xs px-2 rounded ${
-                  selectedDiv === 4 ? "bg-NeonPink text-white" : "bg-gray-200"
-                }`}
-                onClick={() => selectDiv(4)}
-              >
-                42
-              </div>
-              <div
-                className={`cursor-pointer border-1 p-1 text-xs px-2 rounded ${
-                  selectedDiv === 5 ? "bg-NeonPink text-white" : "bg-gray-200"
-                }`}
-                onClick={() => selectDiv(5)}
-              >
-                43
-              </div>
-              <div
-                className={`cursor-pointer border-1 p-1 text-xs px-2 rounded ${
-                  selectedDiv === 6 ? "bg-NeonPink text-white" : "bg-gray-200"
-                }`}
-                onClick={() => selectDiv(6)}
-              >
-                44
-              </div> */}
             </div>
           </div>
-          <div className="hover:bg-NeonPink text-NeonPink font-bold hover:text-white  text-center rounded-2xl border-2 border-NeonPink py-1 cursor-pointer">
+          <div
+            className={`text-center font-bold rounded-2xl border-2 border-NeonPink py-1  ${
+              stock
+                ? "hover:bg-NeonPink text-NeonPink  hover:text-white  cursor-pointer"
+                : "bg-slate-300 border-slate-300 text-white border-2 cursor-not-allowed "
+            } `}
+            // onClick={handleCart}
+          >
             Add to Cart
           </div>
           <div className="bg-NeonPink text-white font-bold text-center rounded-2xl py-1 cursor-pointer">

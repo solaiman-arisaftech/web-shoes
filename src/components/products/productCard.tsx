@@ -76,7 +76,7 @@ const ProductCard = (product: dataType, idIndexObject: any) => {
         </Link>
       </div>
       <div className=" flex flex-col p-4 gap-4">
-        <div className="text-center text-3xl font-bold">{product.tittle}</div>
+        <div className="text-center text-3xl font-bold">{product.title}</div>
         <div className="text-center text-slate-500">{product.desc}</div>
         <div className="text-center font-bold text-lg">${product.price}</div>
         <div className="flex self-center ">
