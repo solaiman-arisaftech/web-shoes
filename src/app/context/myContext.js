@@ -29,6 +29,19 @@ const ContextProvider = ({ children }) => {
     const existingCartItems = JSON.parse(
       localStorage.getItem("cartItems") || "[]"
     );
+    // existingCartItems.map((data)=>{
+    // console.log(data)
+    //   console.log("from pCard",existingCartItems.id)
+    //   if(data.id!=product.id){
+    //     setQuantityCount(quantityCount+1)
+    //     console.log("pId=",product.id, "eId=",existingCartItems.id, "QCount=",quantityCount)
+    //   }
+    //   else{
+    //     console.log("pId=",product, "eId=",existingCartItems, "QCount=",quantityCount)
+    //     const updatedCartItems = [...existingCArtItems, product];
+    //   localStorage.setItem("wishItems", JSON.stringify(updatedCartItems));
+    //   }
+    // })
     const existingProductIndex= existingCartItems.findIndex((item)=>item.id === product.id)
       if(existingProductIndex !== -1){
         existingCartItems[existingProductIndex].quantity +=1

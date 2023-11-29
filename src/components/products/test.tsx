@@ -29,7 +29,7 @@ const SimpleSlider: React.FC = () => {
     <div>
       <Slider {...settings}>
         {productData.map((product: any) => (
-          <ProductCard key={product.key} product={product} />
+          <ProductCard key={product.key} {...product} />
         ))}
       </Slider>
     </div>

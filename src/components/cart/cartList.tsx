@@ -42,7 +42,7 @@ const CartList = ({ toggleCart, buttRef }: any) => {
   const [cartItems, setCartItems] = React.useState(
     JSON.parse(localStorage.getItem("cartItems") || "[]")
   );
-  console.log("cartItems", cartItems);
+  // console.log("cartItems", cartItems);
   const removeFromCart = (index: number) => {
     // Remove the item at the specified index from the cart
     const updatedCartItems = [...cartItems];

@@ -16,11 +16,11 @@ const Navbar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
   const toggleCart = () => {
-    console.log("Clicked");
-    console.log("REf ", buttRef.current?.contains)
-    console.log("first ", isCartOpen)
+    // console.log("Clicked");
+    // console.log("REf ", buttRef.current?.contains)
+    // console.log("first ", isCartOpen)
     setIsCartOpen( (prev: boolean) => !prev);
-    console.log("last ", isCartOpen)
+    // console.log("last ", isCartOpen)
   };
   const {
     countCartItems,
@@ -110,7 +110,7 @@ const Navbar = () => {
               {countCartItems}
             </sup>
           </div>
-          <Link href="#login">
+          <Link href="/login" >
             {" "}
             <User2 className="stroke-white fill-black hover:fill-NeonPink cursor-pointer" />
           </Link>

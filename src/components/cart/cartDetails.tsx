@@ -6,7 +6,7 @@ import { XCircle } from "lucide-react";
 import { MyContext } from "@/app/context/myContext";
 
 const CartDetails = ({ title, desc, price, remove, idIndexObject }: any) => {
-  console.log("product", title);
+  // console.log("product", title);
 
   const {quantityCount, setQuantityCount, quantityToAdd} = useContext(MyContext)
 
@@ -39,7 +39,7 @@ const CartDetails = ({ title, desc, price, remove, idIndexObject }: any) => {
         </button>
         <input
           className="outline-none focus:outline-none text-center text-sm w-16 bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700 "
-          value={quantityToAdd}
+          value={quantityCount}
         ></input>
         <button
           onClick={increase}

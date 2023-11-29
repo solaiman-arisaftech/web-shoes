@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { useState, useContext, useRef } from "react";
 import img1 from "../../../public/resources/shoes3.png";
@@ -10,38 +10,73 @@ import { dataType } from "@/app/lib/dataType";
 import { productData } from "@/app/lib/data";
 
 const ProductCard = (productData: dataType, idIndexObject: any) => {
-  const {quantityCount, setQuantityCount, countCartItems, setCountCartItems, countWish, setWishCount, disable, setDisable, addToCart } = useContext(MyContext);
-  
+  const {
+    quantityCount,
+    setQuantityCount,
+    countCartItems,
+    setCountCartItems,
+    countWish,
+    setWishCount,
+    disable,
+    setDisable,
+    addToCart,
+  } = useContext(MyContext);
 
   const addToWish = (product: dataType) => {
     const existingWishItems = JSON.parse(
       localStorage.getItem("wishItems") || "[]"
     );
     const updatedWishItems = [...existingWishItems, product];
-    localStorage.setItem("wishItems", JSON.stringify(updatedWishItems));
+      localStorage.setItem("wishItems", JSON.stringify(updatedWishItems));
+    // existingCartItems.map((data:any)=>{
+    //   console.log("from pCard",existingCartItems.id)
+    //   if(existingCartItems.id===product.id){
+    //     setQuantityCount(quantityCount+1)
+    //     console.log("pId=",product, "eId=",existingCartItems, "QCount=",quantityCount)
+    //   }
+    //   else{
+    //     console.log("pId=",product, "eId=",existingCartItems, "QCount=",quantityCount)
+    //     const updatedWishItems = [...existingWishItems, product];
+    //   localStorage.setItem("wishItems", JSON.stringify(updatedWishItems));
+    //   }
+    // })
   };
+  const existingCartItems = JSON.parse(
+    localStorage.getItem("wishItems") || "[]"
+  );
   // const quantityToAdd: number = 1;
   const handleCart = () => {
     addToCart(productData);
     setCountCartItems(countCartItems + 1);
-
   };
   const handleWish = () => {
     addToWish(productData);
     setWishCount(countWish + 1);
-    setDisable(true)
-  };
 
+    setDisable(true);
+  };
+  const [selectedDiv, setSelectedDiv] = useState(null);
+  const selectDiv = (id: any) => {
+    setSelectedDiv(id);
+  };
+  const existingWishItems = JSON.parse(
+    localStorage.getItem("wishItems") || "[]"
+  );
+  // useEffect(() => {
+  //   console.log("rpod ", typeof productData);
+  //   console.log(" ", productData);
+  // }, []);
   return (
     <div className="group w-full  md:w-[96%] my-3 border-2 flex flex-col items-center rounded-lg shadow-purple shadow-md bg-white py-5 ">
       <div className="flex flex-col absolute self-start mx-4 mt-4 gap-2  -translate-x-4 invisible group-hover:visible group-hover:translate-x-1 duration-75 delay-75">
-         <Heart
-          className={` stroke-none fill-black hover:fill-NeonPink border-2 p-2 rounded-md cursor-pointer`}
+        <Heart
+          className={` stroke-none fill-black hover:fill-NeonPink border-2 p-2 rounded-md cursor-pointer
+         `}
           width={45}
           height={45}
           onClick={handleWish}
         />
-       
+
         <Forward
           className="stroke-fill stroke-2 stroke-black hover:stroke-NeonPink border-2 p-2 rounded-md"
           width={45}
@@ -64,9 +99,13 @@ const ProductCard = (productData: dataType, idIndexObject: any) => {
         </Link>
       </div>
       <div className=" flex flex-col p-4 gap-4">
-        <div className="text-center text-3xl font-bold">{productData.title}</div>
+        <div className="text-center text-3xl font-bold">
+          {productData.title}
+        </div>
         <div className="text-center text-slate-500">{productData.desc}</div>
-        <div className="text-center font-bold text-lg">${productData.price}</div>
+        <div className="text-center font-bold text-lg">
+          ${productData.price}
+        </div>
         <div className="flex self-center ">
           <Star className="fill-amber-500 stroke-none " size={20} />
           <Star className="fill-amber-500 stroke-none " size={20} />

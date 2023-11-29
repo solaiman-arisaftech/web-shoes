@@ -15,7 +15,8 @@ import { dataType } from "@/app/lib/dataType";
 import { MyContext } from "@/app/context/myContext";
 import { useSearchParams } from "next/navigation";
 
-const ProductDetails = ({ id, title, desc, price, sizes, params }: any) => {
+const ProductDetails = ({ id, title, desc, price, sizes}: any) => {
+ 
   const {
     countCartItems,
     setCountCartItems,
@@ -31,18 +32,16 @@ const ProductDetails = ({ id, title, desc, price, sizes, params }: any) => {
     setSelectedDiv(id);
   };
 
-  const [count, setCount] = useState(0);
+  const [quantity, setQuantity] = useState(0);
 
   const [srcc, setSrcc] = useState<any>(red_img1);
   const decrease = () => {
-    if (count == 0) {
-      setCount(0);
-    } else {
-      setCount(count - 1);
-    }
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    } 
   };
   const increase = () => {
-    setCount(count + 1);
+    setQuantity(quantity + 1);
   };
 
   useEffect(() => {
@@ -61,7 +60,10 @@ const ProductDetails = ({ id, title, desc, price, sizes, params }: any) => {
   //   setCountCartItems(countCartItems + 1);
 
   // };
-
+  const handleInputChange = (e:any) => {
+    const value = parseInt(e.target.value, 10);
+    setQuantity(isNaN(value) ? 1 : value);
+  };
 
 
   return (
@@ -148,9 +150,11 @@ const ProductDetails = ({ id, title, desc, price, sizes, params }: any) => {
                 <span className="m-auto text-2xl font-thin">−</span>
               </button>
               <input
-                type="text"
+                type="number"
                 className="flex items-center text-center w-16 bg-gray-100 font-semibold text-md hover:text-black focus:outline-none focus:ring-none border-none md:text-base cursor-text  "
-                value={count}
+                value={quantity}
+
+                onChange={handleInputChange}
               ></input>
               <button
                 onClick={increase}
@@ -161,6 +165,7 @@ const ProductDetails = ({ id, title, desc, price, sizes, params }: any) => {
             </div>
 
             <div className=" ">
+              {}
               <Heart
                 className="stroke-NeonPink fill-none hover:fill-NeonPink border-2 hover:border-NeonPink p-1 rounded-md cursor-pointer"
                 width={30}
