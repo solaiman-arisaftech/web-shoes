@@ -36,7 +36,8 @@ const ProductDetails = ({ productDetail,id, title, desc, price, sizes }: any) =>
   }, [stock]);
 
   const handleCart = () => {
-    addToCart(productDetail)
+    
+    addToCart()
      
   };
   const handleWish = () => {

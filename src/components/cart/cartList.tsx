@@ -1,11 +1,12 @@
 "use client";
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useContext, useRef, useMemo } from "react";
 import img1 from "../../../public/resources/shoes1.png";
 import Image from "next/image";
 import { describe } from "node:test";
 import CartDetails from "./cartDetails";
 import Link from "next/link";
 import { MyContext } from "@/app/context/myContext";
+import { CarIcon } from "lucide-react";
 
 const CartList = ({ toggleCart, buttRef }: any) => {
   const outsideDitectRef = useRef<HTMLInputElement>(null);
@@ -56,6 +57,19 @@ const CartList = ({ toggleCart, buttRef }: any) => {
     setScore(score + 1);
   };
 
+  const [total, setTotal] = useState <any>(0);
+
+const mappedData = useMemo(() => {
+  let x = 0;
+  cartItems.map((item: any) => {
+    x += item.price;
+    setTotal(x);
+    return x; 
+  });
+}, [cartItems]);
+
+
+
   return (
     <div
       className=" bg-slate-100 w-full md:w-auto fixed mt-14 flex flex-col items-center shadow-md shadow-slate-300 border-purple z-40 "
@@ -64,7 +78,7 @@ const CartList = ({ toggleCart, buttRef }: any) => {
       <div className="bg-gradient-to-r from-NeonPink to-purple text-white text-lg font-bold w-full justify-center text-center py-1">
         Selected item list
       </div>
-     
+
       <div className="bg-slate-100 w-full">
         {cartItems.length > 0 ? (
           <ul>
@@ -101,7 +115,7 @@ const CartList = ({ toggleCart, buttRef }: any) => {
         </div>
 
         <div className="bg-gradient-to-r from-NeonPink to-purple text-white w-1/2 text-center text-lg py-1">
-          Total price: $1024.99{" "}
+          Total price: ${total}
         </div>
       </div>
     </div>

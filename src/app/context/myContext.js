@@ -22,7 +22,7 @@ const ContextProvider = ({ children }) => {
   const [count, setCount] = useState(0);
   const [countWishItems, setCountWishItems] = useState(wishItemslength);
   const [countCartItems, setCountCartItems] = useState(cartItemslength);
-  const [disable, setDisable] = useState(false);
+  const [disable, setDisable] = useState(true);
   const [quantityCount, setQuantityCount] = useState(1);
   const decrease = () => {
     if (quantityCount == 0) {
@@ -36,36 +36,28 @@ const ContextProvider = ({ children }) => {
   };
 
   const addToCart = (product, id) => {
+    console.log("Product", product);
     // Get existing cart items from local storage
     console.log("product ", product);
     const existingCartItems = JSON.parse(
       localStorage.getItem("cartItems") || "[]"
     );
-    // existingCartItems.map((data)=>{
-    // console.log(data)
-    //   console.log("from pCard",existingCartItems.id)
-    //   if(data.id!=product.id){
-    //     setQuantityCount(quantityCount+1)
-    //     console.log("pId=",product.id, "eId=",existingCartItems.id, "QCount=",quantityCount)
-    //   }
-    //   else{
-    //     console.log("pId=",product, "eId=",existingCartItems, "QCount=",quantityCount)
-    //     const updatedCartItems = [...existingCArtItems, product];
-    //   localStorage.setItem("wishItems", JSON.stringify(updatedCartItems));
-    //   }
-    // })
+
     const existingProductIndex = existingCartItems.findIndex(
       (item) => item.id === product.id
     );
 
     if (existingProductIndex >= 0) {
-      alert("This product already exist in your cart");
+      // alert("This product already exist in your cart");
+      // console.log(product.cQuantity)
+      setQuantityCount(quantityCount + 1);
     } else {
       existingCartItems.push({ ...product });
       setCountCartItems(countCartItems + 1);
     }
     localStorage.setItem("cartItems", JSON.stringify(existingCartItems));
   };
+
   const addToWish = (product) => {
     const existingWishItems = JSON.parse(
       localStorage.getItem("wishItems") || "[]"
@@ -75,11 +67,11 @@ const ContextProvider = ({ children }) => {
     );
     if (existingWishIndex >= 0) {
       alert("This product already exist in your wishlist");
+      // setDisable(false)
     } else {
       existingWishItems.push({ ...product });
       setCountWishItems(countWishItems + 1);
     }
-    // const updatedWishItems = [...existingWishItems, product];
     localStorage.setItem("wishItems", JSON.stringify(existingWishItems));
   };
 
@@ -104,7 +96,8 @@ const ContextProvider = ({ children }) => {
         increase,
         decrease,
         addToCart,
-        addToWish
+        addToWish,
+        existingCartItems,
       }}
     >
       {children}

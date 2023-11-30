@@ -5,7 +5,7 @@ import Image from "next/image";
 import { XCircle } from "lucide-react";
 import { MyContext } from "@/app/context/myContext";
 
-const CartDetails = ({ title, desc, price, remove, idIndexObject }: any) => {
+const CartDetails = ({ title, desc, price, remove, cQuantity, idIndexObject }: any) => {
   // console.log("product", title);
 
   const {quantityCount, setQuantityCount, quantityToAdd, decrease, increase} = useContext(MyContext)
