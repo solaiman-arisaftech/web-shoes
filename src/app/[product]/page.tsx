@@ -19,7 +19,7 @@ const PageDetails = ({ params }: any) => {
   return (
     <>
       <div className="bg-white ">
-        <ProductDetails {...productDetail} />
+        <ProductDetails productDetail={productDetail} />
         <ProductInfo />
         <div
           className="flex flex-col gap-4 pb-16 px-4 md:px-16 lg:px-32 xl:px-64 "

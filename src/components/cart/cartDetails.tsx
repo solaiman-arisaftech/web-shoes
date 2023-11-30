@@ -8,19 +8,12 @@ import { MyContext } from "@/app/context/myContext";
 const CartDetails = ({ title, desc, price, remove, idIndexObject }: any) => {
   // console.log("product", title);
 
-  const {quantityCount, setQuantityCount, quantityToAdd} = useContext(MyContext)
+  const {quantityCount, setQuantityCount, quantityToAdd, decrease, increase} = useContext(MyContext)
 
-  const decrease = () => {
-    if (quantityCount == 0) {
-      setQuantityCount(0);
-    } else {
-      setQuantityCount(quantityCount - 1);
-    }
+  const handleInputChange = (e:any) => {
+    const value = parseInt(e.target.value, 10);
+    setQuantityCount(isNaN(value) ? 0 : value);
   };
-  const increase = () => {
-    setQuantityCount(quantityCount + 1);
-  };
-
   return (
     <div className=" bg-white  flex justify-between items-center  p-4 gap-4 border-b-1 z-40 overflow-y-hidden ">
       <div>
@@ -40,6 +33,8 @@ const CartDetails = ({ title, desc, price, remove, idIndexObject }: any) => {
         <input
           className="outline-none focus:outline-none text-center text-sm w-16 bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700 "
           value={quantityCount}
+          onChange={handleInputChange}
+
         ></input>
         <button
           onClick={increase}

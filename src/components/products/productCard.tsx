@@ -20,39 +20,20 @@ const ProductCard = (productData: dataType, idIndexObject: any) => {
     disable,
     setDisable,
     addToCart,
+    addToWish
   } = useContext(MyContext);
 
-  const addToWish = (product: dataType) => {
-    const existingWishItems = JSON.parse(
-      localStorage.getItem("wishItems") || "[]"
-    );
-    const updatedWishItems = [...existingWishItems, product];
-      localStorage.setItem("wishItems", JSON.stringify(updatedWishItems));
-    // existingCartItems.map((data:any)=>{
-    //   console.log("from pCard",existingCartItems.id)
-    //   if(existingCartItems.id===product.id){
-    //     setQuantityCount(quantityCount+1)
-    //     console.log("pId=",product, "eId=",existingCartItems, "QCount=",quantityCount)
-    //   }
-    //   else{
-    //     console.log("pId=",product, "eId=",existingCartItems, "QCount=",quantityCount)
-    //     const updatedWishItems = [...existingWishItems, product];
-    //   localStorage.setItem("wishItems", JSON.stringify(updatedWishItems));
-    //   }
-    // })
-  };
+
   const existingCartItems = JSON.parse(
     localStorage.getItem("wishItems") || "[]"
   );
   // const quantityToAdd: number = 1;
   const handleCart = () => {
     addToCart(productData);
-    setCountCartItems(countCartItems + 1);
+    
   };
   const handleWish = () => {
     addToWish(productData);
-    setWishCount(countWish + 1);
-
     setDisable(true);
   };
   const [selectedDiv, setSelectedDiv] = useState(null);

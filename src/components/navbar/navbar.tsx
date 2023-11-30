@@ -25,8 +25,8 @@ const Navbar = () => {
   const {
     countCartItems,
     setCountCartItems,
-    countWish,
-    setWishCount,
+    countWishItems,
+    setCountWishItems,
     isCartOpen,
     setIsCartOpen,
   } = useContext(MyContext);
@@ -98,7 +98,7 @@ const Navbar = () => {
           <Link href="/wish-list" className="flex gap-2">
             <Heart className="stroke-none fill-black hover:fill-NeonPink cursor-pointer" />
             <sup className="pt-2 -ml-4 bg-red-500 text-white mb-2 px-1 py-1 rounded-full">
-              {countWish}
+              {countWishItems}
             </sup>
           </Link>
           <div className="flex gap-2"  onClick={toggleCart}>

@@ -5,27 +5,39 @@ import { productData } from "../lib/data";
 const MyContext = createContext();
 
 const ContextProvider = ({ children }) => {
+  const existingCartItems = JSON.parse(
+    localStorage.getItem("cartItems") || "[]"
+  );
+  const cartItemslength = existingCartItems.length;
 
-  const existingCartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
-  const cartItemslength=existingCartItems.length
-
-  const existingWishItems = JSON.parse(localStorage.getItem("wishItems") || "[]");
-  const wishItemslength=existingWishItems.length
+  const existingWishItems = JSON.parse(
+    localStorage.getItem("wishItems") || "[]"
+  );
+  const wishItemslength = existingWishItems.length;
 
   const quantityToAdd = 1;
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cartData, setCartData] = useState([]);
   //handle add to cart and count
   const [count, setCount] = useState(0);
-  const [countWish, setWishCount] = useState(wishItemslength);
-  const [cartData, setCartData] = useState([]);
-  const [countCartItems, setCountCartItems]=useState(cartItemslength)
+  const [countWishItems, setCountWishItems] = useState(wishItemslength);
+  const [countCartItems, setCountCartItems] = useState(cartItemslength);
   const [disable, setDisable] = useState(false);
   const [quantityCount, setQuantityCount] = useState(1);
-  
-  
+  const decrease = () => {
+    if (quantityCount == 0) {
+      setQuantityCount(0);
+    } else {
+      setQuantityCount(quantityCount - 1);
+    }
+  };
+  const increase = () => {
+    setQuantityCount(quantityCount + 1);
+  };
+
   const addToCart = (product, id) => {
     // Get existing cart items from local storage
-    console.log("product ", product)
+    console.log("product ", product);
     const existingCartItems = JSON.parse(
       localStorage.getItem("cartItems") || "[]"
     );
@@ -42,17 +54,34 @@ const ContextProvider = ({ children }) => {
     //   localStorage.setItem("wishItems", JSON.stringify(updatedCartItems));
     //   }
     // })
-    const existingProductIndex= existingCartItems.findIndex((item)=>item.id === product.id)
-      if(existingProductIndex !== -1){
-        existingCartItems[existingProductIndex].quantity +=1
-      }
-      else{
-        existingCartItems.push({...product, quantity:1})
-      }
+    const existingProductIndex = existingCartItems.findIndex(
+      (item) => item.id === product.id
+    );
+
+    if (existingProductIndex >= 0) {
+      alert("This product already exist in your cart");
+    } else {
+      existingCartItems.push({ ...product });
+      setCountCartItems(countCartItems + 1);
+    }
     localStorage.setItem("cartItems", JSON.stringify(existingCartItems));
-   
   };
-  
+  const addToWish = (product) => {
+    const existingWishItems = JSON.parse(
+      localStorage.getItem("wishItems") || "[]"
+    );
+    const existingWishIndex = existingWishItems.findIndex(
+      (item) => item.id === product.id
+    );
+    if (existingWishIndex >= 0) {
+      alert("This product already exist in your wishlist");
+    } else {
+      existingWishItems.push({ ...product });
+      setCountWishItems(countWishItems + 1);
+    }
+    // const updatedWishItems = [...existingWishItems, product];
+    localStorage.setItem("wishItems", JSON.stringify(existingWishItems));
+  };
 
   return (
     <MyContext.Provider
@@ -63,17 +92,19 @@ const ContextProvider = ({ children }) => {
         setIsCartOpen,
         cartData,
         setCartData,
-        countWish,
-        setWishCount,
-        countCartItems, 
+        countWishItems,
+        setCountWishItems,
+        countCartItems,
         setCountCartItems,
-        disable, 
+        disable,
         setDisable,
         quantityCount,
         setQuantityCount,
         quantityToAdd,
-       
-        addToCart
+        increase,
+        decrease,
+        addToCart,
+        addToWish
       }}
     >
       {children}
