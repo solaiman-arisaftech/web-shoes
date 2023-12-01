@@ -15,9 +15,8 @@ import { dataType } from "@/app/lib/dataType";
 import { MyContext } from "@/app/context/myContext";
 import { useSearchParams } from "next/navigation";
 
-const ProductDetails = ({ productDetail,id, title, desc, price, sizes }: any) => {
-  const { quantityCount, setQuantityCount, quantityToAdd, decrease, increase, addToCart,addToWish } =
-    useContext(MyContext);
+const ProductDetails = ({ productDetail }: any) => {
+  const { addToCart, addToWish } = useContext(MyContext);
   const [selectedDiv, setSelectedDiv] = useState(null);
   const [stock, setStock] = useState(true);
   const selectDiv = (id: any) => {
@@ -26,23 +25,67 @@ const ProductDetails = ({ productDetail,id, title, desc, price, sizes }: any) =>
 
   const [srcc, setSrcc] = useState<any>(red_img1);
 
-  const handleInputChange = (e: any) => {
-    const value = parseInt(e.target.value, 10);
-    setQuantityCount(isNaN(value) ? 0 : value);
+  const [size, setSize] = useState(39);
+  const handleCart = () => {
+    // const productDetail = {
+    //   id: "take from product detils",
+    //   name: "take from product detils",
+    //   qty: "take from input",
+    //   size: "take from input",
+    //   price: "take from product detils/ pc",
+    //   discount: "take from product detils if exists",
+    //   subtotal: qty*(price||discount)
+    // }
+
+    addToCart(productDetail);
+  };
+  const [qty, setQty] = useState(1);
+
+  const decrease = () => {
+    if (qty <= 1) {
+      setQty(1);
+    } else {
+      setQty(qty - 1);
+    }
+  };
+  const increase = () => {
+    setQty(qty + 1);
   };
 
-  useEffect(() => {
-    console.log(setStock);
-  }, [stock]);
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Retrieve existing form data from local storage
+    const existingFormData = JSON.parse(
+      localStorage.getItem("formData") || "[]"
+    );
 
-  const handleCart = () => {
-    
-    addToCart()
-     
+    const formData = {
+      id: productDetail.id,
+      title: productDetail.title,
+      price: productDetail.price,
+      qty,
+      size,
+    };
+    console.log("formdata", formData);
+
+    const existingFormId = existingFormData.find((item: any) => {
+      item.id === formData.id;
+    });
+    console.log("formData ID", existingFormId);
+    // if(existingFormId=== formData.id){
+    //   setQty(qty+1)
+    //   localStorage.setItem("formData", JSON.stringify(formData));
+    // }
+    // else{
+    //   const newFormData = [...existingFormData, formData];
+
+    // }
+
+    // // Save the updated array to local storage
+    // localStorage.setItem("formData", JSON.stringify(formData));
   };
   const handleWish = () => {
-    addToWish(productDetail)
-     
+    addToWish(productDetail);
   };
 
   return (
@@ -50,7 +93,10 @@ const ProductDetails = ({ productDetail,id, title, desc, price, sizes }: any) =>
       <div className="flex self-center text-center text-5xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-NeonPink to-purple pb-5 ">
         Product Details
       </div>
-      <div className="w-full flex flex-col md:flex-row justify-center gap-20 ">
+      <form
+        className="w-full flex flex-col md:flex-row justify-center gap-20 "
+        onSubmit={handleSubmit}
+      >
         <div className="flex w-full gap-4 ">
           <div className="flex flex-col gap-4 p-2 w-1/5 md:w-1/6 h-48 ">
             <div
@@ -92,7 +138,8 @@ const ProductDetails = ({ productDetail,id, title, desc, price, sizes }: any) =>
           <div className="text-base text-bold text-white bg-NeonPink rounded-2xl self-start items-center flex justify-center w-28 py-1">
             New Arrival
           </div>
-          <div className="text-3xl text-bold">{productDetail.title}</div>
+          <label className="text-3xl text-bold">{productDetail.title}</label>
+
           <div className="flex ">
             <Star className="fill-amber-500 stroke-none " size={20} />
             <Star className="fill-amber-500 stroke-none " size={20} />
@@ -100,7 +147,7 @@ const ProductDetails = ({ productDetail,id, title, desc, price, sizes }: any) =>
             <Star className="fill-amber-500 stroke-none " size={20} />
             <Star className="fill-amber-500 stroke-none " size={20} />
           </div>
-          <div className="text-3xl text-bold"> {productDetail.price}</div>
+          <label className="text-3xl text-bold">{productDetail.price}</label>
           <div>
             <div className="font-bold">Description</div>
             <div>{productDetail.desc}</div>
@@ -119,28 +166,27 @@ const ProductDetails = ({ productDetail,id, title, desc, price, sizes }: any) =>
             </div>
           </div>
           <div className="flex gap-4 items-center">
-            <div className="flex flex-row h-8 rounded-lg">
-              <button
+            <div className="flex flex-row h-8 rounded-lg ">
+              <span
                 onClick={decrease}
                 className=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400  w-10 rounded-l cursor-pointer outline-none"
               >
                 <span className="m-auto font-bold p-2 ">−</span>
-              </button>
+              </span>
               <input
                 className="outline-none focus:outline-none text-center text-sm w-16 bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700 "
-                value={quantityCount}
-                onChange={handleInputChange}
+                value={qty}
+                onChange={(e) => setQty(+e.target.value)}
               ></input>
-              <button
+              <span
                 onClick={increase}
                 className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-10 rounded-r cursor-pointer"
               >
                 <span className="m-auto  font-bold p-2">+</span>
-              </button>
+              </span>
             </div>
 
             <div className="flex ">
-             
               <Heart
                 className="stroke-NeonPink fill-none hover:fill-NeonPink border-2 hover:border-NeonPink p-1 rounded-md cursor-pointer"
                 width={30}
@@ -162,14 +208,16 @@ const ProductDetails = ({ productDetail,id, title, desc, price, sizes }: any) =>
                   }`}
                   onClick={() => {
                     selectDiv(data.size);
-
+                    setSize(data.size);
                     if (data.stock <= 0) {
                       setStock(false);
+                      setQty(1);
                     } else {
                       setStock(true);
                     }
                     console.log("stock ", stock, " data size ", data.stock);
                   }}
+                  // onChange={(e) => setSize(data.size)}
                 >
                   {data.size}
                 </div>
@@ -183,18 +231,22 @@ const ProductDetails = ({ productDetail,id, title, desc, price, sizes }: any) =>
                 : "bg-slate-300 border-slate-300 text-white border-2 cursor-not-allowed "
             } `}
             // onClick={handleCart}
-            onClick={()=>{
-              if(stock === true){
-                handleCart()
-              }}}
+            onClick={() => {
+              if (stock === true) {
+                handleCart();
+              }
+            }}
           >
             Add to Cart
           </div>
-          <div className="bg-NeonPink text-white font-bold text-center rounded-2xl py-1 cursor-pointer">
+          <button
+            type="submit"
+            className="bg-NeonPink text-white font-bold text-center rounded-2xl py-1 cursor-pointer"
+          >
             Buy Now
-          </div>
+          </button>
         </div>
-      </div>
+      </form>
       <div className="flex gap-4 items-center self-center ">
         <Link href="#pInfo">
           <div className="p-4 border-1 border-NeonPink cursor-pointer hover:text-white hover:bg-purple hover:border-none font-bold shadow-xl rounded">

@@ -6,20 +6,22 @@ import ProductInfo from "@/components/products/productInfo";
 import ReviewCard from "@/components/customer-reviews/reviewCard";
 import SimpleSlider from "@/components/products/test";
 import { useSearchParams } from "next/navigation";
+import FormData from "@/components/products/formData";
 const PageDetails = ({ params }: any) => {
-  console.log("params", params.product, params);
+  // console.log("params", params.product, params);
   const router = useSearchParams();
-  console.log("query", router);
+  // console.log("query", router);
 
   // console.log(productData);
 
   const productDetail = productData.find((item) => item.id == params.product);
-  console.log(productDetail);
+
 
   return (
     <>
       <div className="bg-white ">
         <ProductDetails productDetail={productDetail} />
+        {/* <FormData /> */}
         <ProductInfo />
         <div
           className="flex flex-col gap-4 pb-16 px-4 md:px-16 lg:px-32 xl:px-64 "
@@ -40,7 +42,7 @@ const PageDetails = ({ params }: any) => {
           </div>
           {/* <RelatedProduct /> */}
           <div className="pb-20 " id="relatedProduct">
-            <SimpleSlider />
+            {/* <SimpleSlider /> */}
           </div>
         </div>
       </div>

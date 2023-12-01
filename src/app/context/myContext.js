@@ -24,21 +24,8 @@ const ContextProvider = ({ children }) => {
   const [countCartItems, setCountCartItems] = useState(cartItemslength);
   const [disable, setDisable] = useState(true);
   const [quantityCount, setQuantityCount] = useState(1);
-  const decrease = () => {
-    if (quantityCount == 0) {
-      setQuantityCount(0);
-    } else {
-      setQuantityCount(quantityCount - 1);
-    }
-  };
-  const increase = () => {
-    setQuantityCount(quantityCount + 1);
-  };
 
-  const addToCart = (product, id) => {
-    console.log("Product", product);
-    // Get existing cart items from local storage
-    console.log("product ", product);
+  const addToCart = (product) => {
     const existingCartItems = JSON.parse(
       localStorage.getItem("cartItems") || "[]"
     );
@@ -48,9 +35,7 @@ const ContextProvider = ({ children }) => {
     );
 
     if (existingProductIndex >= 0) {
-      // alert("This product already exist in your cart");
-      // console.log(product.cQuantity)
-      setQuantityCount(quantityCount + 1);
+      alert("This product already exist in your cart");
     } else {
       existingCartItems.push({ ...product });
       setCountCartItems(countCartItems + 1);
@@ -59,6 +44,7 @@ const ContextProvider = ({ children }) => {
   };
 
   const addToWish = (product) => {
+    console.log("product wish ", product);
     const existingWishItems = JSON.parse(
       localStorage.getItem("wishItems") || "[]"
     );
@@ -66,7 +52,7 @@ const ContextProvider = ({ children }) => {
       (item) => item.id === product.id
     );
     if (existingWishIndex >= 0) {
-      alert("This product already exist in your wishlist");
+      // alert("This product already exist in your wishlist");
       // setDisable(false)
     } else {
       existingWishItems.push({ ...product });
@@ -93,8 +79,6 @@ const ContextProvider = ({ children }) => {
         quantityCount,
         setQuantityCount,
         quantityToAdd,
-        increase,
-        decrease,
         addToCart,
         addToWish,
         existingCartItems,
