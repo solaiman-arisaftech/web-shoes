@@ -5,14 +5,10 @@ import { productData } from "../lib/data";
 const MyContext = createContext();
 
 const ContextProvider = ({ children }) => {
-  const existingCartItems = JSON.parse(
-    localStorage.getItem("cartItems") || "[]"
-  );
+  const existingCartItems = localStorage.getItem("cartItems");
   const cartItemslength = existingCartItems.length;
 
-  const existingWishItems = JSON.parse(
-    localStorage.getItem("wishItems") || "[]"
-  );
+  const existingWishItems = JSON.parse(localStorage.getItem("cartItems")) || [];
   const wishItemslength = existingWishItems.length;
 
   const quantityToAdd = 1;

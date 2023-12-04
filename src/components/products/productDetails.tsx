@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-import React, { useState, useEffect, useContext } from "react";
-import { useRouter } from "next/router";
+import React, { useState, useContext } from "react";
 import red_img1 from "../../../public/resources/red_shoes1.png";
 import red_img2 from "../../../public/resources/red_shoes2.png";
 import red_img3 from "../../../public/resources/red_shoes3.png";
@@ -10,10 +9,15 @@ import red_img4 from "../../../public/resources/red_shoes4.png";
 import { Heart, Forward, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { productData } from "@/app/lib/data";
-import { dataType } from "@/app/lib/dataType";
 import { MyContext } from "@/app/context/myContext";
-import { useSearchParams } from "next/navigation";
+
+type Item = {
+  id: string;
+  price: number;
+  qty: number;
+  size: number;
+  title: string;
+};
 
 const ProductDetails = ({ productDetail }: any) => {
   const { addToCart, addToWish } = useContext(MyContext);
@@ -22,6 +26,8 @@ const ProductDetails = ({ productDetail }: any) => {
   const selectDiv = (id: any) => {
     setSelectedDiv(id);
   };
+
+  const cart: Item[] = JSON.parse(localStorage.getItem("cartItems")) || [];
 
   const [srcc, setSrcc] = useState<any>(red_img1);
 
@@ -54,10 +60,6 @@ const ProductDetails = ({ productDetail }: any) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Retrieve existing form data from local storage
-    const existingFormData = JSON.parse(
-      localStorage.getItem("formData") || "[]"
-    );
 
     const formData = {
       id: productDetail.id,
@@ -66,23 +68,20 @@ const ProductDetails = ({ productDetail }: any) => {
       qty,
       size,
     };
-    console.log("formdata", formData);
 
-    const existingFormId = existingFormData.find((item: any) => {
-      item.id === formData.id;
-    });
-    console.log("formData ID", existingFormId);
-    // if(existingFormId=== formData.id){
-    //   setQty(qty+1)
-    //   localStorage.setItem("formData", JSON.stringify(formData));
-    // }
-    // else{
-    //   const newFormData = [...existingFormData, formData];
+    const existingIndex = cart.findIndex(
+      (item: Item) => item.id === formData.id && item.size === formData.size
+    );
 
-    // }
+    if (existingIndex !== -1) {
+      // Item exists, increase the quantity
+      cart[existingIndex].qty += formData.qty;
+    } else {
+      // Item does not exist, add it to the cart
+      cart.push(formData);
+    }
 
-    // // Save the updated array to local storage
-    // localStorage.setItem("formData", JSON.stringify(formData));
+    localStorage.setItem("cartItems", JSON.stringify(cart));
   };
   const handleWish = () => {
     addToWish(productDetail);
@@ -124,6 +123,7 @@ const ProductDetails = ({ productDetail }: any) => {
               <Image src={red_img4} alt="" width={200} />
             </div>
           </div>
+
           <div className=" border-NeonPink shadow-md shadow-NeonPink  rounded-xl border-2 p-2 w-full flex items-center justify-center  ">
             <Image
               className="object-fit "
@@ -198,9 +198,9 @@ const ProductDetails = ({ productDetail }: any) => {
           <div>
             <div className="font-bold">Available Size</div>
             <div className="flex gap-2">
-              {productDetail.sizes.map((data: any) => (
+              {productDetail.sizes.map((data: any, index: number) => (
                 <div
-                  key={data}
+                  key={index}
                   className={`cursor-pointer border-1 p-1 text-xs px-2 rounded ${
                     selectedDiv === data.size
                       ? "bg-NeonPink text-white"
