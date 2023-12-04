@@ -3,7 +3,7 @@ export const productData = [
     id: 1,
     title: "Nike Air Max",
     desc: "Air Max shoes are identified by their midsoles incorporating flexible urethane pouches filled with pressurized gas",
-    price: 100.99,
+    price: 100,
     sizes: [
       { size: 39, stock: 5 },
       { size: 40, stock: 10 },
@@ -17,7 +17,7 @@ export const productData = [
     id: 2,
     title: "Nike Air Force 1",
     desc: "This pair of Nike sneakers represents a modern take on a classic. The Air Force 1 model comes in a variety of styles.",
-    price: 200.99,
+    price: 200,
     sizes: [
       { size: 39, stock: 5 },
       { size: 40, stock: 10 },
@@ -39,7 +39,7 @@ export const productData = [
     id: 3,
     title: "Adidas NMD R1",
     desc: "These breathable sneakers from Adidas are inspired by the trends of the '80s kid's.",
-    price: 300.99,
+    price: 300,
     sizes: [
       { size: 39, stock: 5 },
       { size: 40, stock: 10 },
@@ -53,7 +53,7 @@ export const productData = [
     id: 4,
     title: "Air Jordan 4 Retro",
     desc: "The Air Jordan 4 was the first global release of the Jordan brand and was originally released as a tribute. ",
-    price: 400.99,
+    price: 400,
     sizes: [
       { size: 39, stock: 5 },
       { size: 40, stock: 10 },
@@ -67,7 +67,7 @@ export const productData = [
     id: 5,
     title: "Adidas Yeezy V2",
     desc: "Yeezy sales were overall down against 2018 for the year, but this 2017 model made the top sellers list.",
-    price: 500.99,
+    price: 500,
     sizes: [
       { size: 39, stock: 5 },
       { size: 40, stock: 10 },
@@ -81,7 +81,7 @@ export const productData = [
     id: 6,
     title: "Vans Ward",
     desc: "One of the most popular skate shoes, the Ward Low Top from Vans features an iconic side stripe.",
-    price: 600.99,
+    price: 600,
     sizes: [
       { size: 39, stock: 5 },
       { size: 40, stock: 10 },
@@ -95,7 +95,7 @@ export const productData = [
     id: 7,
     title: "Converse OX Low",
     desc: "Probably one of the most classic sneakers of all time, the Chuck Taylor All Stars are available.",
-    price: 700.99,
+    price: 700,
     sizes: [
       { size: 39, stock: 5 },
       { size: 40, stock: 10 },
@@ -109,7 +109,7 @@ export const productData = [
     id: 8,
     title: "Nike Air Max 97 ",
     desc: "The water-ripple line design of the Nike Air Max 97 makes this sneaker iconic.",
-    price: 800.99,
+    price: 800,
     sizes: [
       { size: 39, stock: 5 },
       { size: 40, stock: 10 },
@@ -123,7 +123,7 @@ export const productData = [
     id: 9,
     title: "Jordan 11 Retro",
     desc: "The Air Jordan 11 collection was originally released in 1995 and appeared in the 1996 animated film 'Space Jam'.",
-    price: 900.99,
+    price: 900,
     sizes: [
       { size: 39, stock: 5 },
       { size: 40, stock: 10 },
@@ -138,7 +138,7 @@ export const productData = [
     id: 10,
     title: "Nike Tanjun",
     desc: "The Tanjun, which gets its name from the Japanese word for 'simplicity,' comes in a variety of colors.",
-    price: 1000.99,
+    price: 1000,
     sizes: [
       { size: 39, stock: 5 },
       { size: 40, stock: 10 },

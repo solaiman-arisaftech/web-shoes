@@ -5,14 +5,11 @@ import { productData } from "../lib/data";
 const MyContext = createContext();
 
 const ContextProvider = ({ children }) => {
-  const existingCartItems = JSON.parse(
-    localStorage.getItem("cartItems") || "[]"
-  );
+  const existingCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
   const cartItemslength = existingCartItems.length;
 
-  const existingWishItems = JSON.parse(
-    localStorage.getItem("wishItems") || "[]"
-  );
+  const existingWishItems = JSON.parse(localStorage.getItem("wishItems")) || [];
+
   const wishItemslength = existingWishItems.length;
 
   const quantityToAdd = 1;
@@ -22,40 +19,41 @@ const ContextProvider = ({ children }) => {
   const [count, setCount] = useState(0);
   const [countWishItems, setCountWishItems] = useState(wishItemslength);
   const [countCartItems, setCountCartItems] = useState(cartItemslength);
-  const [disable, setDisable] = useState(true);
+  const [disable, setDisable] = useState(false);
   const [quantityCount, setQuantityCount] = useState(1);
 
-  const addToCart = (product) => {
-    const existingCartItems = JSON.parse(
-      localStorage.getItem("cartItems") || "[]"
+  const addToCart = (formData) => {
+    const cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+    const existingIndex = cart.findIndex(
+      (item) => item.id === formData.id && item.size === formData.size
     );
 
-    const existingProductIndex = existingCartItems.findIndex(
-      (item) => item.id === product.id
-    );
-
-    if (existingProductIndex >= 0) {
-      alert("This product already exist in your cart");
+    if (existingIndex !== -1) {
+      // Item exists, increase the quantity
+      cart[existingIndex].qty = formData.qty;
     } else {
-      existingCartItems.push({ ...product });
+      // Item does not exist, add it to the cart
+      cart.push(formData);
       setCountCartItems(countCartItems + 1);
     }
-    localStorage.setItem("cartItems", JSON.stringify(existingCartItems));
+
+    localStorage.setItem("cartItems", JSON.stringify(cart));
   };
 
-  const addToWish = (product) => {
-    console.log("product wish ", product);
-    const existingWishItems = JSON.parse(
-      localStorage.getItem("wishItems") || "[]"
-    );
+  const addToWish = (wishData) => {
+    const existingWishItems =
+      JSON.parse(localStorage.getItem("wishItems")) || [];
+
     const existingWishIndex = existingWishItems.findIndex(
-      (item) => item.id === product.id
+      (item) => item.id === wishData.id && item.title === wishData.title
     );
-    if (existingWishIndex >= 0) {
+    if (existingWishIndex !== -1) {
       // alert("This product already exist in your wishlist");
-      // setDisable(false)
+      existingWishItems.splice(existingWishIndex, 1);
+      setCountWishItems(countWishItems - 1);
     } else {
-      existingWishItems.push({ ...product });
+      existingWishItems.push(wishData);
       setCountWishItems(countWishItems + 1);
     }
     localStorage.setItem("wishItems", JSON.stringify(existingWishItems));
@@ -82,6 +80,7 @@ const ContextProvider = ({ children }) => {
         addToCart,
         addToWish,
         existingCartItems,
+        existingWishItems,
       }}
     >
       {children}

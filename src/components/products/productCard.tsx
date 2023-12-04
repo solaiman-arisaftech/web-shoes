@@ -20,21 +20,20 @@ const ProductCard = (productData: dataType, idIndexObject: any) => {
     disable,
     setDisable,
     addToCart,
-    addToWish
+    addToWish,
   } = useContext(MyContext);
 
-
-  const existingCartItems = JSON.parse(
-    localStorage.getItem("wishItems") || "[]"
-  );
   // const quantityToAdd: number = 1;
   const handleCart = () => {
-    addToCart(productData);
-    
+    const formData = {
+      id: productData.id,
+      title: productData.title,
+      price: productData.price,
+    };
+    addToCart(formData);
   };
   const handleWish = () => {
     addToWish(productData);
-
   };
   const [selectedDiv, setSelectedDiv] = useState(null);
   const selectDiv = (id: any) => {
@@ -51,7 +50,11 @@ const ProductCard = (productData: dataType, idIndexObject: any) => {
     <div className="group w-full  md:w-[96%] my-3 border-2 flex flex-col items-center rounded-lg shadow-purple shadow-md bg-white py-5 ">
       <div className="flex flex-col absolute self-start mx-4 mt-4 gap-2  -translate-x-4 invisible group-hover:visible group-hover:translate-x-1 duration-75 delay-75">
         <Heart
-          className={`  border-2 p-2 rounded-md cursor-pointer ${disable?"stroke-none fill-black hover:border-red-500 hover:fill-red-500": " stroke-red-500 fill-red-500 border-red-500"}
+          className={`  border-2 p-2 rounded-md cursor-pointer ${
+            disable
+              ? "stroke-none fill-black hover:border-red-500 hover:fill-red-500"
+              : " stroke-red-500 fill-red-500 border-red-500"
+          }
          `}
           width={45}
           height={45}
@@ -94,12 +97,20 @@ const ProductCard = (productData: dataType, idIndexObject: any) => {
           <Star className="fill-amber-500 stroke-none " size={20} />
           <Star className="fill-amber-500 stroke-none " size={20} />
         </div>
-        <button
-          className="w-1/2  rounded self-center text-center text-white p-2 bg-gradient-to-r from-NeonPink to-purple hover:-translate-y-1 hover:scale-110 duration-200"
-          onClick={handleCart}
+        <Link
+          className=" flex justify-center"
+          href={{
+            pathname: `/${productData.id}`,
+            query: { slug: "my-post" },
+          }}
         >
-          Add to cart
-        </button>
+          <div
+            className="w-1/2 rounded self-center text-center text-white p-2 bg-gradient-to-r from-NeonPink to-purple hover:-translate-y-1 hover:scale-110 duration-200"
+            // onClick={handleCart}
+          >
+            More Details
+          </div>
+        </Link>
       </div>
     </div>
   );

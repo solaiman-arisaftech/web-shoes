@@ -5,21 +5,47 @@ import Image from "next/image";
 import { XCircle } from "lucide-react";
 import { MyContext } from "@/app/context/myContext";
 
-const CartDetails = ({ title, desc, price, remove, cQuantity, idIndexObject }: any) => {
+const CartDetails = ({
+  title,
+  desc,
+  price,
+  remove,
+  size,
+  qty,
+  cQuantity,
+  idIndexObject,
+}: any) => {
   // console.log("product", title);
 
-  const {quantityCount, setQuantityCount, quantityToAdd, decrease, increase} = useContext(MyContext)
-
-  const handleInputChange = (e:any) => {
+  const { quantityCount, setQuantityCount, quantityToAdd } =
+    useContext(MyContext);
+  console.log(qty);
+  const handleInputChange = (e: any) => {
     const value = parseInt(e.target.value, 10);
     setQuantityCount(isNaN(value) ? 0 : value);
   };
+  const [qty1, setQty1] = useState(qty);
+
+  const decrease = () => {
+    if (qty1 <= 1) {
+      setQty1(1);
+    } else {
+      setQty1(qty1 - 1);
+    }
+  };
+  const increase = () => {
+    setQty1(qty1 + 1);
+  };
+
   return (
     <div className=" bg-white  flex justify-between items-center  p-4 gap-4 border-b-1 z-40 overflow-y-hidden ">
       <div>
-        <Image  src={img1} alt="" width={40} />
+        <Image src={img1} alt="" width={40} />
       </div>
-      <h4 className="text-start text-sm w-36">{title}</h4>
+      <h4 className="text-start text-sm w-36">
+        {title}
+        <sub>({size} )</sub>
+      </h4>
       {/* <div className="w-20 text-xs">
           <p>{desc}</p>
         </div> */}
@@ -32,9 +58,7 @@ const CartDetails = ({ title, desc, price, remove, cQuantity, idIndexObject }: a
         </button>
         <input
           className="outline-none focus:outline-none text-center text-sm w-16 bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700 "
-          value={quantityCount}
-          onChange={handleInputChange}
-
+          value={qty1}
         ></input>
         <button
           onClick={increase}
@@ -44,7 +68,7 @@ const CartDetails = ({ title, desc, price, remove, cQuantity, idIndexObject }: a
         </button>
       </div>
       <div className="w-20 text-center text-sm overflow-hidden ">
-        ${price * quantityToAdd}
+        ${price * qty1}
       </div>
       <div className=" cursor-pointer " onClick={remove}>
         <XCircle className="fill-red-500 stroke-white hover:-translate-y-1 hover:scale-125 duration-300" />
@@ -54,3 +78,6 @@ const CartDetails = ({ title, desc, price, remove, cQuantity, idIndexObject }: a
 };
 
 export default CartDetails;
+function getItem(arg0: string): any {
+  throw new Error("Function not implemented.");
+}

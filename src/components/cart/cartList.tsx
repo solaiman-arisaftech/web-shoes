@@ -57,18 +57,16 @@ const CartList = ({ toggleCart, buttRef }: any) => {
     setScore(score + 1);
   };
 
-  const [total, setTotal] = useState <any>(0);
+  const [total, setTotal] = useState<any>(0);
 
-const mappedData = useMemo(() => {
-  let x = 0;
-  cartItems.map((item: any) => {
-    x += item.price;
-    setTotal(x);
-    return x; 
-  });
-}, [cartItems]);
-
-
+  const mappedData = useMemo(() => {
+    let x = 0;
+    cartItems.map((item: any) => {
+      x += item.price * item.qty;
+      setTotal(x);
+      return x;
+    });
+  }, [cartItems]);
 
   return (
     <div
