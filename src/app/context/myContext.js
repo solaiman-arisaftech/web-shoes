@@ -5,11 +5,18 @@ import { productData } from "../lib/data";
 const MyContext = createContext();
 
 const ContextProvider = ({ children }) => {
+<<<<<<< HEAD
   const existingCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
   const cartItemslength = existingCartItems.length;
 
   const existingWishItems = JSON.parse(localStorage.getItem("wishItems")) || [];
 
+=======
+  const existingCartItems = localStorage.getItem("cartItems");
+  const cartItemslength = existingCartItems.length;
+
+  const existingWishItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+>>>>>>> 36dacde71d625e0c93c649b5f7be42d68537522a
   const wishItemslength = existingWishItems.length;
 
   const quantityToAdd = 1;
