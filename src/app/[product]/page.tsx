@@ -16,7 +16,6 @@ const PageDetails = ({ params }: any) => {
 
   const productDetail = productData.find((item) => item.id == params.product);
 
-
   return (
     <>
       <div className="bg-white ">

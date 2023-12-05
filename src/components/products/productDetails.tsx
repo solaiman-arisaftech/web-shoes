@@ -54,21 +54,7 @@ const ProductDetails = ({ productDetail }: any) => {
       qty,
       size,
     };
-
-    const existingIndex = cart.findIndex(
-      (item: Item) => item.id === formData.id && item.size === formData.size
-    );
-
-    if (existingIndex !== -1) {
-      // Item exists, increase the quantity
-      cart[existingIndex].qty += formData.qty;
-    } else {
-      // Item does not exist, add it to the cart
-      cart.push(formData);
-    }
-
-    localStorage.setItem("cartItems", JSON.stringify(cart));
->>>>>>> 36dacde71d625e0c93c649b5f7be42d68537522a
+    addToCart(formData);
   };
   const handleWish = () => {
     addToWish(productDetail);
@@ -110,7 +96,6 @@ const ProductDetails = ({ productDetail }: any) => {
               <Image src={red_img4} alt="" width={200} />
             </div>
           </div>
-
           <div className=" border-NeonPink shadow-md shadow-NeonPink  rounded-xl border-2 p-2 w-full flex items-center justify-center  ">
             <Image
               className="object-fit "
@@ -185,7 +170,7 @@ const ProductDetails = ({ productDetail }: any) => {
           <div>
             <div className="font-bold">Available Size</div>
             <div className="flex gap-2">
-              {productDetail.sizes.map((data: any, index:number) => (
+              {productDetail.sizes.map((data: any, index: number) => (
                 <div
                   key={index}
                   className={`cursor-pointer border-1 p-1 text-xs px-2 rounded ${
