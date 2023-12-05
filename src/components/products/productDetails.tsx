@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-import React, { useState, useEffect, useContext } from "react";
-import { useRouter } from "next/router";
+import React, { useState, useContext } from "react";
 import red_img1 from "../../../public/resources/red_shoes1.png";
 import red_img2 from "../../../public/resources/red_shoes2.png";
 import red_img3 from "../../../public/resources/red_shoes3.png";
@@ -10,10 +9,15 @@ import red_img4 from "../../../public/resources/red_shoes4.png";
 import { Heart, Forward, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { productData } from "@/app/lib/data";
-import { dataType } from "@/app/lib/dataType";
 import { MyContext } from "@/app/context/myContext";
-import { useSearchParams } from "next/navigation";
+
+type Item = {
+  id: string;
+  price: number;
+  qty: number;
+  size: number;
+  title: string;
+};
 
 const ProductDetails = ({ productDetail }: any) => {
   const { addToCart, addToWish } = useContext(MyContext);
@@ -22,6 +26,8 @@ const ProductDetails = ({ productDetail }: any) => {
   const selectDiv = (id: any) => {
     setSelectedDiv(id);
   };
+
+  const cart: Item[] = JSON.parse(localStorage.getItem("cartItems")) || [];
 
   const [srcc, setSrcc] = useState<any>(red_img1);
   const [size, setSize] = useState(39);
@@ -48,7 +54,21 @@ const ProductDetails = ({ productDetail }: any) => {
       qty,
       size,
     };
-    addToCart(formData);
+
+    const existingIndex = cart.findIndex(
+      (item: Item) => item.id === formData.id && item.size === formData.size
+    );
+
+    if (existingIndex !== -1) {
+      // Item exists, increase the quantity
+      cart[existingIndex].qty += formData.qty;
+    } else {
+      // Item does not exist, add it to the cart
+      cart.push(formData);
+    }
+
+    localStorage.setItem("cartItems", JSON.stringify(cart));
+>>>>>>> 36dacde71d625e0c93c649b5f7be42d68537522a
   };
   const handleWish = () => {
     addToWish(productDetail);
@@ -90,6 +110,7 @@ const ProductDetails = ({ productDetail }: any) => {
               <Image src={red_img4} alt="" width={200} />
             </div>
           </div>
+
           <div className=" border-NeonPink shadow-md shadow-NeonPink  rounded-xl border-2 p-2 w-full flex items-center justify-center  ">
             <Image
               className="object-fit "
