@@ -9,20 +9,7 @@ const Page = (product: any) => {
   const { countWishItems, setCountWishItems, addToWish } =
     useContext(MyContext);
 
-  // Get wish items from local storage
-  // const [wishItems, setWishItems] = React.useState(
-  //   JSON.parse(localStorage.getItem("wishItems") || "[]")
-  // );
-
-  // const removeFromWish = (index: number) => {
-  //   // Remove the item at the specified index from the cart
-  //   const updatedWishItems = [...wishItems];
-  //   updatedWishItems.splice(index, 1);
-  //   // Update local storage and state
-  //   localStorage.setItem("wishItems", JSON.stringify(updatedWishItems));
-  //   setWishItems(updatedWishItems);
-  //   setDisable(!disable);
-  // };
+  
   const wishItems = JSON.parse(localStorage.getItem("wishItems")) || [];
   return (
     <section
@@ -33,18 +20,17 @@ const Page = (product: any) => {
         Wishlist Products
       </div>
       <div className="flex flex-col gap-4">
-        <div className="bg-slate-100 w-full border-1 shadow-lg">
+        <div className="bg-whitw w-full border-1 shadow-lg">
           {wishItems.length > 0 ? (
-            <table className="p-4 w-full">
-              <thead className="flex justify-evenly p-4 border-b-2">
-                <th>Image</th>
-                <th>Title</th>
-                <th>Price</th>
-                <th>Size</th>
-                <th>Image</th>
+            <table className="p-4 w-full table-auto">
+              <thead className="flex justify-between p-4 border-b-1 text-center w-full">
+                <th className="text-center w-1/4"></th>
+                <th className="text-center w-1/4">Title</th>
+                <th className="text-center w-1/4">Price</th>
+                <th className="w-1/4"></th>
               </thead>
               {wishItems.map((product: any, index: number) => (
-                <tbody key={index}>
+                <tbody  key={index}>
                   <WishListCard
                     key={product.id}
                     product={product}
