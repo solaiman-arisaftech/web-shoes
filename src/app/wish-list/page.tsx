@@ -8,8 +8,7 @@ import { table } from "console";
 const Page = (product: any) => {
   const { countWishItems, setCountWishItems, addToWish } =
     useContext(MyContext);
-
-  
+// @ts-ignore
   const wishItems = JSON.parse(localStorage.getItem("wishItems")) || [];
   return (
     <section
@@ -24,13 +23,15 @@ const Page = (product: any) => {
           {wishItems.length > 0 ? (
             <table className="p-4 w-full table-auto">
               <thead className="flex justify-between p-4 border-b-1 text-center w-full">
-                <th className="text-center w-1/4"></th>
-                <th className="text-center w-1/4">Title</th>
-                <th className="text-center w-1/4">Price</th>
-                <th className="w-1/4"></th>
+                <tr>
+                  <th className="text-center w-1/4"></th>
+                  <th className="text-center w-1/4">Title</th>
+                  <th className="text-center w-1/4">Price</th>
+                  <th className="w-1/4"></th>
+                </tr>
               </thead>
               {wishItems.map((product: any, index: number) => (
-                <tbody  key={index}>
+                <tbody key={index}>
                   <WishListCard
                     key={product.id}
                     product={product}

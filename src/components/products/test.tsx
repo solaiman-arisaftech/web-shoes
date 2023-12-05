@@ -32,6 +32,7 @@ const SimpleSlider: React.FC = () => {
           <ProductCard key={product.key} {...product} />
         ))}
       </Slider>
+      
     </div>
   );
 };

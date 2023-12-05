@@ -5,26 +5,12 @@ import Image from "next/image";
 import { XCircle } from "lucide-react";
 import { MyContext } from "@/app/context/myContext";
 
-const CartDetails = ({
-  title,
-  desc,
-  price,
-  remove,
-  size,
-  qty,
-  cQuantity,
-  idIndexObject,
-}: any) => {
+const CartDetails = ({ product, remove }: any) => {
   // console.log("product", title);
 
-  const { quantityCount, setQuantityCount, quantityToAdd } =
-    useContext(MyContext);
-  console.log(qty);
-  const handleInputChange = (e: any) => {
-    const value = parseInt(e.target.value, 10);
-    setQuantityCount(isNaN(value) ? 0 : value);
-  };
-  const [qty1, setQty1] = useState(qty);
+  const { setQuantityCount, addToCart } = useContext(MyContext);
+
+  const [qty1, setQty1] = useState(product.qty);
 
   const decrease = () => {
     if (qty1 <= 1) {
@@ -42,13 +28,11 @@ const CartDetails = ({
       <div>
         <Image src={img1} alt="" width={40} />
       </div>
-      <h4 className="text-start text-sm w-36">
-        {title}
-        <sub>({size} )</sub>
-      </h4>
-      {/* <div className="w-20 text-xs">
-          <p>{desc}</p>
-        </div> */}
+      <div className="text-start text-sm w-36">
+        {product.title}
+        <sub>({product.size} )</sub>
+      </div>
+
       <div className="flex flex-row h-8 w-24 rounded-lg relative bg-transparent">
         <button
           onClick={decrease}
@@ -68,7 +52,7 @@ const CartDetails = ({
         </button>
       </div>
       <div className="w-20 text-center text-sm overflow-hidden ">
-        ${price * qty1}
+        ${product.price * qty1}
       </div>
       <div className=" cursor-pointer " onClick={remove}>
         <XCircle className="fill-red-500 stroke-white hover:-translate-y-1 hover:scale-125 duration-300" />

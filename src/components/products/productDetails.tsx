@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import red_img1 from "../../../public/resources/red_shoes1.png";
 import red_img2 from "../../../public/resources/red_shoes2.png";
 import red_img3 from "../../../public/resources/red_shoes3.png";
@@ -20,15 +20,16 @@ type Item = {
 };
 
 const ProductDetails = ({ productDetail }: any) => {
-  const { addToCart, addToWish } = useContext(MyContext);
+  // const { addToCart, addToWish, selecetedWish, setSelectedWish} =
+  //   useContext(MyContext);
   const [selectedDiv, setSelectedDiv] = useState(null);
   const [stock, setStock] = useState(true);
   const selectDiv = (id: any) => {
     setSelectedDiv(id);
   };
-
+  const {wishColor,setWishColor, count, addToCart, addToWish} = useContext(MyContext)
+  // @ts-ignore
   const cart: Item[] = JSON.parse(localStorage.getItem("cartItems")) || [];
-
   const [srcc, setSrcc] = useState<any>(red_img1);
   const [size, setSize] = useState(39);
   const [qty, setQty] = useState(1);
@@ -57,7 +58,15 @@ const ProductDetails = ({ productDetail }: any) => {
     addToCart(formData);
   };
   const handleWish = () => {
-    addToWish(productDetail);
+    const formData = {
+      id: productDetail.id,
+      title: productDetail.title,
+      price: productDetail.price,
+      color: setWishColor(1),
+      
+    };
+    addToWish(formData);
+   
   };
 
   return (
@@ -160,7 +169,11 @@ const ProductDetails = ({ productDetail }: any) => {
 
             <div className="flex ">
               <Heart
-                className="stroke-NeonPink fill-none hover:fill-NeonPink border-2 hover:border-NeonPink p-1 rounded-md cursor-pointer"
+                className={`${
+                  wishColor === 1
+                    ? "border-red-500 fill-red-500 stroke-red-500"
+                    : "  "
+                }  border-2 p-1 rounded-md cursor-pointer`}
                 width={30}
                 height={32}
                 onClick={handleWish}

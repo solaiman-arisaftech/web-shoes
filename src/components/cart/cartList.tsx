@@ -87,7 +87,7 @@ const CartList = ({ toggleCart, buttRef }: any) => {
                     <li key={index}>
                       <CartDetails
                         key={product.id}
-                        {...product}
+                        product={product}
                         remove={() => {
                           removeFromCart(index),
                             setCountCartItems(countCartItems - 1);

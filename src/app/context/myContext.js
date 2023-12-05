@@ -19,7 +19,7 @@ const ContextProvider = ({ children }) => {
   const [count, setCount] = useState(0);
   const [countWishItems, setCountWishItems] = useState(wishItemslength);
   const [countCartItems, setCountCartItems] = useState(cartItemslength);
-  const [disable, setDisable] = useState(false);
+  const [wishColor, setWishColor] = useState(0);
   const [quantityCount, setQuantityCount] = useState(1);
 
   const addToCart = (formData) => {
@@ -52,10 +52,15 @@ const ContextProvider = ({ children }) => {
       // alert("This product already exist in your wishlist");
       existingWishItems.splice(existingWishIndex, 1);
       setCountWishItems(countWishItems - 1);
+      // setSelectedWish(0);
+      setWishColor(0)
     } else {
       existingWishItems.push(wishData);
       setCountWishItems(countWishItems + 1);
+      // setSelectedWish(1);
+      setWishColor(1)
     }
+
     localStorage.setItem("wishItems", JSON.stringify(existingWishItems));
   };
 
@@ -72,8 +77,6 @@ const ContextProvider = ({ children }) => {
         setCountWishItems,
         countCartItems,
         setCountCartItems,
-        disable,
-        setDisable,
         quantityCount,
         setQuantityCount,
         quantityToAdd,
@@ -81,6 +84,8 @@ const ContextProvider = ({ children }) => {
         addToWish,
         existingCartItems,
         existingWishItems,
+        wishColor, 
+        setWishColor
       }}
     >
       {children}
