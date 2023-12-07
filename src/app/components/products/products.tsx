@@ -22,8 +22,10 @@ const Products = () => {
         PRODUCTS
       </div>
       <div className=" justify-evenly self-center w-full gap-6 grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-        {productData.map((product:dataType) => (
+        {productData.slice(0,10).map((product:dataType) => (
+        
           <ProductCard key={product.id} {...product} />
+        
         ))}
       </div>
     </section>

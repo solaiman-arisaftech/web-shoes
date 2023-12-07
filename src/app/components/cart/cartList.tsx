@@ -8,13 +8,13 @@ import Link from "next/link";
 import { MyContext } from "@/app/context/myContext";
 import { CarIcon } from "lucide-react";
 
-const CartList = ({ toggleCart, buttRef }: any) => {
+const CartList = ({ toggleCart, butRef }: any) => {
   const outsideDitectRef = useRef<HTMLInputElement>(null);
-  const { setIsCartOpen, isCartOpen } = useContext(MyContext);
+  const { setIsCartOpen, isCartOpen,total } = useContext(MyContext);
 
   useEffect(() => {
     const handleOutSideClick = (event: any) => {
-      if (buttRef.current?.contains(event.target)) {
+      if (butRef.current?.contains(event.target)) {
         toggleCart();
         setIsCartOpen(true);
         console.log("both butt", isCartOpen);
@@ -22,7 +22,7 @@ const CartList = ({ toggleCart, buttRef }: any) => {
         toggleCart();
         // setIsCartOpen(true)
         // console.log("outside ")
-      } else if (buttRef.current?.contains(event.target)) {
+      } else if (butRef.current?.contains(event.target)) {
         console.log("on butt");
         // setIsCartOpen(true)
         // toggleCart()
@@ -36,7 +36,7 @@ const CartList = ({ toggleCart, buttRef }: any) => {
     return () => {
       window.removeEventListener("mousedown", handleOutSideClick);
     };
-  }, [isCartOpen, buttRef, toggleCart, setIsCartOpen]);
+  }, [isCartOpen, butRef, toggleCart, setIsCartOpen]);
 
   const { countCartItems, setCountCartItems } = useContext(MyContext);
   // Get cart items from local storage
@@ -57,16 +57,7 @@ const CartList = ({ toggleCart, buttRef }: any) => {
     setScore(score + 1);
   };
 
-  const [total, setTotal] = useState<any>(0);
 
-  const mappedData = useMemo(() => {
-    let x = 0;
-    cartItems.map((item: any) => {
-      x += item.price * item.qty;
-      setTotal(x);
-      return x;
-    });
-  }, [cartItems]);
 
   return (
     <div

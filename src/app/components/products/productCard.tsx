@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
 import { useState, useContext, useRef } from "react";
-import img1 from "../../../public/resources/shoes3.png";
+import img1 from "../../../../public/resources/shoes3.png";
 import { Heart, Forward, Star } from "lucide-react";
 import { MyContext } from "@/app/context/myContext";
 import Link from "next/link";
@@ -31,36 +31,24 @@ const ProductCard = (productData: dataType, idIndexObject: any) => {
     addToWish(formData);
   };
   // @ts-ignore
-  const wishItem = JSON.parse(localStorage.getItem("wishItems")) || []
-  
+  const wishItem = JSON.parse(localStorage.getItem("wishItems")) || [];
 
   return (
     <div className="group w-full  md:w-[96%] my-3 border-2 flex flex-col items-center rounded-lg shadow-purple shadow-md bg-white py-5 ">
       <div className="flex flex-col absolute self-start mx-4 mt-4 gap-2  -translate-x-4 invisible group-hover:visible group-hover:translate-x-1 duration-75 delay-75">
         <Heart
-        onClick={handleWish}
-          className={`border-2 p-2 rounded-md cursor-pointer ${
-            wishItem.map((wish:any)=>{wish.id === productData.id ? "border-red-500 fill-red-500 stroke-red-500" : " "})
-           
-          }
+          onClick={handleWish}
+          className={`border-2 p-2 rounded-md cursor-pointer ${wishItem.map(
+            (wish: any) => {
+              wish.id === productData.id
+                ? "border-red-500 fill-red-500 stroke-red-500"
+                : " ";
+            }
+          )}
          `}
           width={45}
           height={45}
-          
         />
-        {/* {wishItem.map((m: any) => (
-          <>
-            {m.id === productData.id ? <Heart /> : <></>}
-          </>
-        ) )} */}
-        {/* <Heart /> */}
-
-        {/* {wishItem.map((m: any) => (
-          <div key={m.id} className={`border-2 p-2 rounded-md cursor-pointer ${m.id === productData.id ? <Heart className="border-red-500"/> : <Heart/>}`}>
-
-          </div>
-        ))} */}
-
         <Forward
           className="stroke-fill stroke-2 stroke-black hover:stroke-NeonPink border-2 p-2 rounded-md"
           width={45}

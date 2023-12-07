@@ -16,11 +16,7 @@ const Navbar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
   const toggleCart = () => {
-    // console.log("Clicked");
-    // console.log("REf ", buttRef.current?.contains)
-    // console.log("first ", isCartOpen)
-    setIsCartOpen( (prev: boolean) => !prev);
-    // console.log("last ", isCartOpen)
+    setIsCartOpen((prev: boolean) => !prev);
   };
   const {
     countCartItems,
@@ -34,7 +30,7 @@ const Navbar = () => {
   // useEffect(() => {
   //   console.log("navbar effect ", countCartItems);
   // }, [countCartItems, isCartOpen]);
-  const buttRef = useRef<any>(null)
+  const butRef = useRef<any>(null);
   return (
     <>
       <nav className="w-full bg-white h-14 flex justify-between items-center shadow-lg px-4 mx-auto md:px-64 fixed z-50  ">
@@ -96,32 +92,46 @@ const Navbar = () => {
         </div>
         <div className="hidden md:flex gap-2">
           <Link href="/wish-list" className="flex gap-2">
-            <Heart className="stroke-none fill-black hover:fill-NeonPink cursor-pointer" />
+            <Heart
+              className={`stroke-none fill-black hover:fill-NeonPink cursor-pointer${
+                activeMenu === 6 ? "fill-NeonPink" : "fill-black"
+              }`}
+              onClick={() => selectedMenu(6)}
+            />
             <sup className="pt-2 -ml-4 bg-red-500 text-white mb-2 px-1 py-1 rounded-full">
               {countWishItems}
             </sup>
           </Link>
-          <div className="flex gap-2"  onClick={toggleCart}>
+          <div className="flex gap-2" onClick={toggleCart}>
             <ShoppingCart
-              className="stroke-black stroke-2 fill-black hover:fill-NeonPink hover:stroke-NeonPink cursor-pointer"
-              ref={buttRef}
+              className={` stroke-2 hover:fill-NeonPink hover:stroke-NeonPink cursor-pointer ${
+                activeMenu === 7
+                  ? " fill-NeonPink stroke-NeonPink"
+                  : "fill-black  stroke-black  "
+              }`}
+              onClick={() => selectedMenu(7)}
+              ref={butRef}
             />
             <sup className="pt-2 -ml-4 bg-red-500 text-white mb-2 px-1 py-1 rounded-full">
               {countCartItems}
             </sup>
           </div>
-          <Link href="/login" >
+          <Link href="/login">
             {" "}
-            <User2 className="stroke-white fill-black hover:fill-NeonPink cursor-pointer" />
+            <User2
+              className={`stroke-white hover:fill-NeonPink cursor-pointer ${
+                activeMenu === 8 ? "fill-NeonPink" : "fill-black "
+              }`}
+              onClick={() => selectedMenu(8)}
+            />
           </Link>
         </div>
 
         <div className="md:hidden  flex items-center gap-2">
-          <div className="flex gap-1" >
+          <div className="flex gap-1">
             <ShoppingCart
               className="stroke-black stroke-2 fill-black hover:fill-NeonPink hover:stroke-NeonPink cursor-pointer"
               onClick={toggleCart}
-              
             />
             <sup className="pt-2 -ml-3 bg-red-500 text-white mb-2 px-1 py-1 rounded-full">
               {countCartItems}
@@ -130,7 +140,6 @@ const Navbar = () => {
           <button
             className="outline-none mobile-menu-button"
             onClick={toggleMobileMenu}
-            
           >
             <Menu
               className={`w-6 h-6 text-gray-500 fill-none stroke-current ${
@@ -139,16 +148,10 @@ const Navbar = () => {
             />
           </button>
         </div>
-
-     
       </nav>
       <div className="flex justify-end ">
-        {isCartOpen && (
-          <CartList toggleCart={toggleCart} buttRef={buttRef}/>
-        )}
-       
+        {isCartOpen && <CartList toggleCart={toggleCart} butRef={butRef} />}
       </div>
-   
     </>
   );
 };

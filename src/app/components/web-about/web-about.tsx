@@ -3,10 +3,10 @@
 
 // import ProductCard from "./productCard";
 import React, { useState } from "react";
-import red_img1 from "../../../public/resources/red_shoes1.png";
-import red_img2 from "../../../public/resources/red_shoes2.png";
-import red_img3 from "../../../public/resources/red_shoes3.png";
-import red_img4 from "../../../public/resources/red_shoes4.png";
+import red_img1 from "../../../../public/resources/red_shoes1.png";
+import red_img2 from "../../../../public/resources/red_shoes2.png";
+import red_img3 from "../../../../public/resources/red_shoes3.png";
+import red_img4 from "../../../../public/resources/red_shoes4.png";
 import Image from "next/image";
 
 const About = () => {

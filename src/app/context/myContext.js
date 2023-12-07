@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useState, useEffect, ReactNode } from "react";
+import React, { createContext, useState, useEffect, ReactNode, useMemo } from "react";
 import { productData } from "../lib/data";
 
 const MyContext = createContext();
@@ -21,6 +21,32 @@ const ContextProvider = ({ children }) => {
   const [countCartItems, setCountCartItems] = useState(cartItemslength);
   const [wishColor, setWishColor] = useState(0);
   const [quantityCount, setQuantityCount] = useState(1);
+
+  const [qty, setQty] = useState(1);
+
+  const decrease = () => {
+    if (qty <= 1) {
+      setQty(1);
+    } else {
+      setQty(qty - 1);
+    }
+  };
+  const increase = () => {
+    setQty(qty + 1);
+  };
+
+  const cartItemsNew =  JSON.parse(localStorage.getItem("cartItems")) || []
+
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    let x = 0;
+    cartItemsNew.map((item) => {
+      x += item.price * item.qty;
+      setTotal(x);
+      return x;
+    });
+  }, );
 
   const addToCart = (formData) => {
     const cart = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -85,7 +111,12 @@ const ContextProvider = ({ children }) => {
         existingCartItems,
         existingWishItems,
         wishColor, 
-        setWishColor
+        setWishColor,
+        increase,
+        decrease,
+        qty,
+        setQty,
+        total
       }}
     >
       {children}

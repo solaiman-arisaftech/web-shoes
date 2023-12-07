@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
 import { productData } from "@/app/lib/data";
-import ProductDetails from "@/components/products/productDetails";
-import ProductInfo from "@/components/products/productInfo";
-import ReviewCard from "@/components/customer-reviews/reviewCard";
-import SimpleSlider from "@/components/products/test";
+import ProductDetails from "@/app/components/products/productDetails";
+import ProductInfo from "@/app/components/products/productInfo";
+import ReviewCard from "@/app/components/customer-reviews/reviewCard";
+import SimpleSlider from "@/app/components/products/test";
 import { useSearchParams } from "next/navigation";
-import FormData from "@/components/products/formData";
+import FormData from "@/app/components/products/formData";
 const PageDetails = ({ params }: any) => {
   // console.log("params", params.product, params);
   const router = useSearchParams();

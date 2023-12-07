@@ -1,17 +1,14 @@
-'use client'
-import CartDetails from "@/components/cart/cartDetails";
-import React, {useState} from "react";
+"use client";
+import CartDetails from "@/app/components/cart/cartDetails";
+import React, { useState } from "react";
 import CheckoutCard from "./checkoutCard";
 import MethodCard from "./methodCard";
 import { methodData } from "../lib/data";
 import { dataType } from "../lib/dataType";
 
 const page = () => {
-
   const existingCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-  
 
-  
   return (
     <section className="w-full flex flex-col py-36  px-4 md:px-16 lg:px-32 xl:px-64 bg-white mt-14 ">
       <div className="flex justify-between p-4 bg-fuchsia-200">
@@ -31,24 +28,19 @@ const page = () => {
             </div>
           </div>
           <div className="border-1 rounded-lg border-slate-200 p-2 overflow-y-hidden">
-           
             {existingCartItems.length > 0 ? (
-          <ul className="flex flex-col gap-8 overflow-y-scroll h-64">
-            {existingCartItems.map(
-              (product: any, index: number, totalPrice: number) => (
-                <li key={index}>
-                  <CheckoutCard
-                    key={product.id}
-                    {...product}
-                   
-                  />
-                </li>
-              )
+              <ul className="flex flex-col gap-8 overflow-y-scroll h-64">
+                {existingCartItems.map(
+                  (product: any, index: number, totalPrice: number) => (
+                    <li key={index}>
+                      <CheckoutCard key={product.id} {...product} />
+                    </li>
+                  )
+                )}
+              </ul>
+            ) : (
+              <p className="w-full px-36 py-64">Your cart is empty.</p>
             )}
-          </ul>
-        ) : (
-          <p className="w-full px-36 py-64">Your cart is empty.</p>
-        )}
           </div>
           <div className="flex flex-col gap-2">
             <div className="font-bold">Shipping methods</div>

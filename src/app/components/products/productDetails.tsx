@@ -1,10 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 import React, { useState, useContext, useEffect } from "react";
-import red_img1 from "../../../public/resources/red_shoes1.png";
-import red_img2 from "../../../public/resources/red_shoes2.png";
-import red_img3 from "../../../public/resources/red_shoes3.png";
-import red_img4 from "../../../public/resources/red_shoes4.png";
+import red_img1 from "../../../../public/resources/red_shoes1.png";
+import red_img2 from "../../../../public/resources/red_shoes2.png";
+import red_img3 from "../../../../public/resources/red_shoes3.png";
+import red_img4 from "../../../../public/resources/red_shoes4.png";
 // import { Rating } from "flowbite-react";
 import { Heart, Forward, Star } from "lucide-react";
 import Image from "next/image";
@@ -27,23 +27,12 @@ const ProductDetails = ({ productDetail }: any) => {
   const selectDiv = (id: any) => {
     setSelectedDiv(id);
   };
-  const {wishColor,setWishColor, count, addToCart, addToWish} = useContext(MyContext)
+  const {wishColor,setWishColor, count, addToCart, addToWish,increase, decrease, qty, setQty} = useContext(MyContext)
   // @ts-ignore
   const cart: Item[] = JSON.parse(localStorage.getItem("cartItems")) || [];
   const [srcc, setSrcc] = useState<any>(red_img1);
   const [size, setSize] = useState(39);
-  const [qty, setQty] = useState(1);
-
-  const decrease = () => {
-    if (qty <= 1) {
-      setQty(1);
-    } else {
-      setQty(qty - 1);
-    }
-  };
-  const increase = () => {
-    setQty(qty + 1);
-  };
+  
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -128,7 +117,7 @@ const ProductDetails = ({ productDetail }: any) => {
             <Star className="fill-amber-500 stroke-none " size={20} />
             <Star className="fill-amber-500 stroke-none " size={20} />
           </div>
-          <label className="text-3xl text-bold">{productDetail.price}</label>
+          <label className="text-3xl text-bold">${productDetail.price}</label>
           <div>
             <div className="font-bold">Description</div>
             <div>{productDetail.desc}</div>

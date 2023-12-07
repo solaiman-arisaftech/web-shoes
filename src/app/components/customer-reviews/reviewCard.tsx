@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import reviewer1 from "../../../public/resources/gir_dp2.jpg";
+import reviewer1 from "../../../../public/resources/gir_dp2.jpg";
 // import { Rating } from "flowbite-react";
 import { Heart, Forward, Star } from "lucide-react";
 

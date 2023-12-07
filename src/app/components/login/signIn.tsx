@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import Image from "next/image";
-import img1 from "../../../public/resources/logshoes.png";
+import img1 from "../../../../public/resources/logshoes.png";
 import { Jost } from "next/font/google";
 
 const SignIn = () => {

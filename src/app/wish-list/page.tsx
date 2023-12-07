@@ -1,14 +1,14 @@
 "use client";
 import React, { useState, useContext } from "react";
 import WishListCard from "./wishListCard";
-import PaginationCard from "@/components/pagination/paginations";
+import PaginationCard from "@/app/components/pagination/paginations";
 import { MyContext } from "@/app/context/myContext";
 import { table } from "console";
 
 const Page = (product: any) => {
   const { countWishItems, setCountWishItems, addToWish } =
     useContext(MyContext);
-// @ts-ignore
+  // @ts-ignore
   const wishItems = JSON.parse(localStorage.getItem("wishItems")) || [];
   return (
     <section
@@ -23,7 +23,7 @@ const Page = (product: any) => {
           {wishItems.length > 0 ? (
             <table className="p-4 w-full table-auto">
               <thead className="flex justify-between p-4 border-b-1 text-center w-full">
-                <tr>
+                <tr className="flex justify-between w-full">
                   <th className="text-center w-1/4"></th>
                   <th className="text-center w-1/4">Title</th>
                   <th className="text-center w-1/4">Price</th>
@@ -49,9 +49,7 @@ const Page = (product: any) => {
           )}
         </div>
       </div>
-      <div className="flex justify-center">
-        <PaginationCard />
-      </div>
+      
     </section>
   );
 };

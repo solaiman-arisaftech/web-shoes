@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar/navbar";
+import Navbar from "@/app/components/navbar/navbar";
 import { Jost } from "next/font/google";
-import Footer from "@/components/footer/footer";
+import Footer from "@/app/components/footer/footer";
 const inter = Inter({ subsets: ["latin"] });
 // const jost = Jost({ subsets: ['latin'] })
 import { ContextProvider } from "./context/myContext";
