@@ -20,19 +20,25 @@ type Item = {
 };
 
 const ProductDetails = ({ productDetail }: any) => {
-  // const { addToCart, addToWish, selecetedWish, setSelectedWish} =
-  //   useContext(MyContext);
   const [selectedDiv, setSelectedDiv] = useState(null);
   const [stock, setStock] = useState(true);
   const selectDiv = (id: any) => {
     setSelectedDiv(id);
   };
-  const {wishColor,setWishColor, count, addToCart, addToWish,increase, decrease, qty, setQty} = useContext(MyContext)
+  const {
+    wishColor,
+    setWishColor,
+    addToCart,
+    addToWish,
+    increase,
+    decrease,
+    qty,
+    setQty,
+  } = useContext(MyContext);
   // @ts-ignore
-  const cart: Item[] = JSON.parse(localStorage.getItem("cartItems")) || [];
+  // const cart: Item[] = JSON.parse(localStorage.getItem("cartItems")) || [];
   const [srcc, setSrcc] = useState<any>(red_img1);
   const [size, setSize] = useState(39);
-  
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,6 +49,7 @@ const ProductDetails = ({ productDetail }: any) => {
       price: productDetail.price,
       qty,
       size,
+      subtotal: productDetail.price * qty,
     };
     addToCart(formData);
   };
@@ -52,10 +59,8 @@ const ProductDetails = ({ productDetail }: any) => {
       title: productDetail.title,
       price: productDetail.price,
       color: setWishColor(1),
-      
     };
     addToWish(formData);
-   
   };
 
   return (
@@ -191,7 +196,6 @@ const ProductDetails = ({ productDetail }: any) => {
                     }
                     console.log("stock ", stock, " data size ", data.stock);
                   }}
-                  // onChange={(e) => setSize(data.size)}
                 >
                   {data.size}
                 </div>
