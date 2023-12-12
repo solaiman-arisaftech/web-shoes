@@ -6,10 +6,10 @@ import { MyContext } from "@/app/context/myContext";
 import { table } from "console";
 
 const Page = (product: any) => {
-  const { countWishItems, setCountWishItems, addToWish } =
+  const { countWishItems, setCountWishItems, addToWish, wishItems } =
     useContext(MyContext);
   // @ts-ignore
-  const wishItems = JSON.parse(localStorage.getItem("wishItems")) || [];
+  
   return (
     <section
       className="w-full flex flex-col py-36 px-4 md:px-16 lg:px-32 xl:px-64 gap-8 bg-white "

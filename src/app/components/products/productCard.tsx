@@ -10,9 +10,8 @@ import { dataType } from "@/app/lib/dataType";
 import { productData } from "@/app/lib/data";
 
 const ProductCard = (productData: dataType, idIndexObject: any) => {
-  const { wishColor, addToCart, addToWish } = useContext(MyContext);
-
-  // const quantityToAdd: number = 1;
+  const { wishColor, addToCart, addToWish,
+    setWishColor, wishItems } = useContext(MyContext);
   const handleCart = () => {
     const formData = {
       id: productData.id,
@@ -26,23 +25,25 @@ const ProductCard = (productData: dataType, idIndexObject: any) => {
       id: productData.id,
       title: productData.title,
       price: productData.price,
+      qty: 1,
+      size: 39,
       color: 1,
     };
     addToWish(formData);
   };
-  // @ts-ignore
-  const wishItem = JSON.parse(localStorage.getItem("wishItems")) || [];
+
 
   return (
     <div className="group w-full  md:w-[96%] my-3 border-2 flex flex-col items-center rounded-lg shadow-purple shadow-md bg-white py-5 ">
       <div className="flex flex-col absolute self-start mx-4 mt-4 gap-2  -translate-x-4 invisible group-hover:visible group-hover:translate-x-1 duration-75 delay-75">
         <Heart
           onClick={handleWish}
-          className={`border-2 p-2 rounded-md cursor-pointer ${wishItem.map(
+          className={`border-2 p-2 rounded-md cursor-pointer ${wishItems.map(
             (wish: any) => {
-              wish.id === productData.id
+              console.log()
+              wish.id === productData.id && wish.color === 1
                 ? "border-red-500 fill-red-500 stroke-red-500"
-                : " ";
+                : "border-1 fill-black stroke-black"
             }
           )}
          `}
@@ -56,7 +57,6 @@ const ProductCard = (productData: dataType, idIndexObject: any) => {
         />
       </div>
       <div className=" w-1/2 p-4 group-hover:translate-y-1 group-hover:scale-125 duration-300 ">
-        {/* <Link href={`/${product.id}`}> */}
         <Link
           href={{
             pathname: `/${productData.id}`,

@@ -38,16 +38,6 @@ const CartDetails = ({ product, remove }: any) => {
     addToCart(formData);
   };
 
-  // useEffect(() => {
-  //   const formData = {
-  //     id: product.id,
-  //     qty: qty1,
-  //     size: product.size,
-  //     subtotal: (product.price * qty1),
-  //   };
-
-  // }, [increase, decrease]);
-
   return (
     <div className=" bg-white flex  justify-evenly items-center p-4 gap-4 border-b-1 z-40 overflow-y-hidden ">
       <div className="">
@@ -68,7 +58,6 @@ const CartDetails = ({ product, remove }: any) => {
         <input
           className="outline-none focus:outline-none text-center text-sm w-1/2 bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700 "
           value={singleCartQuantity}
-          // onChange={(e) => setSingleCartQuantity(+e.target.value)}
           readOnly
         ></input>
         <button

@@ -35,8 +35,7 @@ const ProductDetails = ({ productDetail }: any) => {
     qty,
     setQty,
   } = useContext(MyContext);
-  // @ts-ignore
-  // const cart: Item[] = JSON.parse(localStorage.getItem("cartItems")) || [];
+
   const [srcc, setSrcc] = useState<any>(red_img1);
   const [size, setSize] = useState(39);
 
@@ -58,6 +57,9 @@ const ProductDetails = ({ productDetail }: any) => {
       id: productDetail.id,
       title: productDetail.title,
       price: productDetail.price,
+      qty: 1,
+      size,
+      subtotal: productDetail.price * qty,
       color: setWishColor(1),
     };
     addToWish(formData);

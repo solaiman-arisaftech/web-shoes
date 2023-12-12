@@ -36,7 +36,7 @@ const ContextProvider = ({ children }) => {
   const [quantityCount, setQuantityCount] = useState(1);
   const [qty, setQty] = useState(1);
 
-  // effect
+  //effect
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
@@ -47,39 +47,23 @@ const ContextProvider = ({ children }) => {
 
   //actions
   const addToCart = (items) => {
-    console.log("rer", items);
-    // const existingIndex = cartItems.findIndex(
-    //   (item) => item.id === items.id && item.size === items.size
-    // );
-    // if (existingIndex !== -1) {
-    //   // Item exists, increase the quantity
-    //   cartItems[existingIndex].qty = items.qty;
-    //   cartItems[existingIndex].subtotal= items.subtotal
-    // } else {
-    //   // Item does not exist, add it to the cart
-    //   cartItems.push(items);
-    //   setCountCartItems(countCartItems + 1);
-    // }
-    // localStorage.setItem("cartItems", JSON.stringify(cartItems));
     const existingIndex = cartItems.findIndex(
       (item) => item.id === items.id && item.size === items.size
     );
-    console.log(existingIndex);
+
     if (existingIndex !== -1) {
       // Item exists, increase the quantity
       setCartItems((prev) => {
-        console.log("exists", prev);
-        prev[existingIndex].qty = items.qty;
-        prev[existingIndex].subtotal= items.subtotal
-        return prev;
+        const updatedItems = [...prev];
+        updatedItems[existingIndex].qty = items.qty;
+        updatedItems[existingIndex].subtotal = items.subtotal;
+        return updatedItems;
       });
     } else {
       // Item does not exist, add it to the cart
       setCartItems((prev) => {
-        console.log("not exists", prev);
         setCountCartItems(countCartItems + 1);
-        prev.push(items);
-        return prev;
+        return [...prev, items];
       });
     }
 
@@ -90,7 +74,6 @@ const ContextProvider = ({ children }) => {
       });
     }
     setCartTotalPrice(total);
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
   };
 
   const addToWish = (wishData) => {
@@ -99,15 +82,20 @@ const ContextProvider = ({ children }) => {
     );
     if (existingWishIndex !== -1) {
       // If exist, remove from wish list
-      wishItems.splice(existingWishIndex, 1);
-      setCountWishItems(countWishItems - 1);
-      setWishColor(0);
+      setWishItems((prev) => {
+        const updatedItems = [...prev];
+        updatedItems.splice(existingWishIndex, 1);
+        setCountWishItems(countWishItems - 1);
+        setWishColor(0);
+        return updatedItems;
+      });
     } else {
-      wishItems.push(wishData);
-      setCountWishItems(countWishItems + 1);
-      setWishColor(1);
+      setWishItems((prev) => {
+        setCountWishItems(countWishItems + 1);
+        setWishColor(1);
+        return [...prev, wishData];
+      });
     }
-    localStorage.setItem("wishItems", JSON.stringify(wishItems));
   };
   const decrease = () => {
     if (qty > 1) {
@@ -119,15 +107,6 @@ const ContextProvider = ({ children }) => {
   const increase = () => {
     setQty(qty + 1);
   };
-
-  // computed
-  const hasWishItems = useMemo(() => !!wishItems.length, [wishItems]);
-  const totalPrice = useMemo(() => {
-    return cartItems.reduce((prev, cur) => prev + cur.subtotal, 0);
-  }, [cartItems]);
-  const subTotals = useMemo(() => {
-    return cartItems.map((item) => item.qty * item.price);
-  }, [cartItems]);
 
   return (
     <MyContext.Provider
@@ -154,10 +133,11 @@ const ContextProvider = ({ children }) => {
         decrease,
         qty,
         setQty,
-        totalPrice,
+        // totalPrice,
         cartItems,
         setCartItems,
         cartTotalPrice,
+        wishItems,
       }}
     >
       {children}

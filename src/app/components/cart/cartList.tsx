@@ -16,7 +16,7 @@ const CartList = ({ toggleCart, butRef }: any) => {
     cartTotalPrice,
     setCartItems,
   } = useContext(MyContext);
-
+  // console.log(cartItems)
   const [total, setTotal] = useState(cartTotalPrice);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const CartList = ({ toggleCart, butRef }: any) => {
     localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
     setCartItems(updatedCartItems);
   };
-  console.log(cartItems)
+  // console.log(cartItems)
   return (
     <div
       className=" bg-slate-100 w-full md:w-auto fixed mt-14 flex flex-col items-center shadow-md shadow-slate-300 border-purple z-40 "
@@ -63,10 +63,8 @@ const CartList = ({ toggleCart, butRef }: any) => {
 
       <div className="bg-slate-100 w-full">
         {cartItems.length > 0 ? (
-          
           <ul>
             {cartItems.map(
-              
               (product: any, index: number, totalPrice: number) => {
                 if (product !== null) {
                   return (
@@ -83,9 +81,7 @@ const CartList = ({ toggleCart, butRef }: any) => {
                   );
                 }
               }
-            )
-            
-            }
+            )}
           </ul>
         ) : (
           <p className="w-full px-36 py-64">Your cart is empty.</p>
@@ -105,7 +101,6 @@ const CartList = ({ toggleCart, butRef }: any) => {
         </div>
       </div>
     </div>
-
   );
 };
 

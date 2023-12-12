@@ -7,7 +7,7 @@ import { MyContext } from "@/app/context/myContext";
 import { Heart, Forward, Star } from "lucide-react";
 
 const WishListCard = ({ product, removeWish }: any) => {
-  const { addToCart } = useContext(MyContext);
+  const { addToCart, addToWish } = useContext(MyContext);
 
   const [wish, setWish] = useState(false);
   const toggleWish = () => {
@@ -20,21 +20,8 @@ const WishListCard = ({ product, removeWish }: any) => {
     setAfterWish(beforeWish);
   };
 
-  // const handleCart = (e: React.FormEvent) => {
-  //   e.preventDefault();
-
-  //   const formData = {
-  //     id: product.id,
-  //     title: product.title,
-  //     price: product.price,
-  //     qty: 1,
-  //     size:39
-
-  //   };
-  //   addToCart(formData);
-  // };
   return (
-    // <tbody className="group w-full border-2 flex justify-between  rounded-lg shadow-slate-500 shadow-md bg-goldlight">
+
     <tr className="flex justify-between text-center p-4 border-b-1 w-full">
       <td>{}.</td>
       <td className="rounded-lg hover:scale-125 self-center flex justify-center duration-300  w-1/4">
@@ -65,25 +52,16 @@ const WishListCard = ({ product, removeWish }: any) => {
         >
           DELETE
         </div>
-        {/* <div onClick={removeWish}>
-          {beforeWish && (
-            <Heart className={`stroke-red-500 fill-red-500 cursor-pointer`} />
-          )}
-        </div> */}
-        {/* <div>
-          {afterWish && (
-            <Heart className={`stroke-red-500 fill-none cursor-pointer`} />
-          )}
-        </div> */}
+
         <div
           className="w-1/2 rounded self-center text-sm text-center text-white p-1 bg-gray-500 hover:bg-gray-400  hover:scale-110 duration-200 cursor-pointer"
-          // onClick={handleCart}
+          onClick={()=>addToCart(product)}
         >
           Add To Cart
         </div>
       </td>
     </tr>
-    // </tbody>
+
   );
 };
 
